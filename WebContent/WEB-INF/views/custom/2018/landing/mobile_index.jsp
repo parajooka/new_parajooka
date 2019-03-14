@@ -94,7 +94,7 @@
 <div class="yes_no_btn_section">
 	<div class="yes_no_btn">
 		<a href="/custom/menu/index?menu_idx=${about_idx}">YES</a>
-		<a href="/custom/2018/landing/no">NO</a>
+		<a href="/custom/2018/landing/no"><span style="display: inline-block; position: absolute; width: 1vw; height: 1vw; background: #d87646; border-radius: 100%; left: 3vw; top: 2.7vw;"></span>NO</a>
 	</div>
 </div>
 </div>

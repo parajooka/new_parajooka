@@ -52,19 +52,20 @@ p, ul {margin: 0; padding: 0;}
 
 .yes_no{width: 100%; position: fixed; z-index: 500; background: #e3e3dc; display: table; top:0; text-align: center; font-size: 6.3vw; line-height: 10vw; opacity: 0; height: 100vh !important;}
 .yes_no_cell {width: 100%; height: 100%; display: table-cell; vertical-align: middle;}
-.yes_no_btn_section {width: 100%; height: 50px; background: white; position: fixed; bottom:-100px; z-index: 501; display: table; opacity: 0;}
+.yes_no_btn_section {width: 100%; height: 50px; position: fixed; bottom:-100px; z-index: 501; display: table; opacity: 0;}
 .yes_no_btn {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center;}
 .yes_no_btn a {
     display: inline-block;
     width: 8vw;
-    background: #ff7151;
+    background: #eeeeeb;
+    border:1px solid black;
     padding: 1vw 4vw;
-    border-radius: 15px;
+    border-radius: 50px;
     color : black !important;
     text-decoration:none;
     font-size: 4vw;
-    border: 1px solid #f76544;
     font-family: 'Gothic NeoB' !important;
+    position: relative;
 }
 
 .yes_no_btn a:first-child {

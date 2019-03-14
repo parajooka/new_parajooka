@@ -127,7 +127,11 @@ $('.steven-section').sequencer({
 			timer = setTimeout(function (){$(".money-back-img").fadeOut(500, function() {
 	    		$(".money-back-img").attr("src", "").hide();
 			});}, 2500);
-    		$(".money-back-img").css("width", "100%").attr("src", "/resources/img/landing/rain.gif").show();
+    		$(".money-back-img").css({
+    			"width": "85%",
+    			"left" : "50%",
+    			"margin-left" : "-42.5%"
+    		}).attr("src", "/resources/img/landing/rain.gif").show();
     	}
     },
     func : function() {
