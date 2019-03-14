@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.HireDao">
+<insert id="InsertHire" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.Hire">
+	INSERT INTO hire 
+		( 
+			title, info, personnel, portfolio,
+			start_date, end_date, phone_certified, interview,
+			gender_use, email_use, address_use, activation
+		)
+	VALUES 
+		(
+			#{title}, #{info}, ${personnel}, ${portfolio},
+			#{start_date}, #{end_date}, ${phone_certified}, ${interview},
+			${gender_use}, ${email_use}, ${address_use}, ${activation}
+		)
+</insert>
+
+<update id="UpdateHire">
+	UPDATE 
+   		hire
+	SET 
+		title=#{title}, info=#{info}, personnel=${personnel}, portfolio = ${portfolio},
+		start_date=#{start_date}, end_date=#{end_date}, phone_certified=${phone_certified}, interview=${interview},
+		gender_use = ${gender_use}, email_use = ${email_use}, address_use = ${address_use}, activation = ${activation}
+	WHERE
+		id = ${id}
+</update>
+
+
+<delete id="DeleteHire" parameterType="int">
+	DELETE FROM
+		hire
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getHireById" resultType="com.para.object.hire.Hire" parameterType="int">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+    WHERE
+    	id = #{id}
+</select>
+
+<select id="getHireByPage" resultType="com.para.object.hire.Hire">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+  		order by id desc limit ${limit_count}, ${limit};
+</select>
+
+<!-- 진행중인 공고(사용자 페이지용) -->
+<select id="getHireByUser" resultType="com.para.object.hire.Hire" parameterType="date">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date <= #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+    AND
+   		activation = 0
+</select>
+
+<!-- 진행중인 공고 카운팅(사용자 페이지용) -->
+<select id="CountHireByuser" resultType="int" parameterType="date">
+	SELECT  
+		count(id)
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date <= #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+    AND
+   		activation = 0
+</select>
+
+<!-- 진행중인 공고(관리자 페이지용) -->
+<select id="getHireByProceeding" resultType="com.para.object.hire.Hire" parameterType="date">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date <= #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+</select>
+
+<!-- 진행중인 공고 카운팅(관리자 페이지용) -->
+<select id="CountHireByProceeding" resultType="int" parameterType="date">
+	SELECT  
+		count(id)
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date <= #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+</select>
+
+<!-- 진행예정인 공고 (관리자 페이지용) -->
+<select id="getHireByExpected" resultType="com.para.object.hire.Hire" parameterType="date">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date > #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+</select>
+
+<!-- 전체 공고 (관리자 페이지용) -->
+<select id="getHire" resultType="com.para.object.hire.Hire">
+	SELECT  
+		id, title, info, personnel, portfolio,
+		start_date, end_date, phone_certified, interview,
+		gender_use, email_use, address_use, activation
+    FROM    
+    	hire
+</select>
+
+<!-- 진행예정인 공고 카운팅(관리자 페이지용) -->
+<select id="CountHireByExpected" resultType="int" parameterType="date">
+	SELECT  
+		count(id)
+    FROM    
+    	hire
+    WHERE
+    	<![CDATA[
+    		start_date > #{date}
+    AND
+    		end_date >= #{date}
+    	]]> 
+</select>
+
+
+<select id="CountAllHire" resultType="int" parameterType="date">
+	SELECT  
+		count(id)
+    FROM    
+    	hire
+</select>
+</mapper>

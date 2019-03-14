@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.MenuDao">
+<insert id="insertMenu" useGeneratedKeys="true" keyProperty="menu_idx" parameterType="com.paraframework.object.Menu">
+	INSERT INTO menu 
+		( 
+			add_date, 
+			group_idx, 
+			menu_name, 
+			menu_type,
+			modify_date, 
+			parent_menu_idx, 
+			print_seq, 
+			view_yn,
+			menu_url,
+			use_yn
+		)
+	VALUES 
+		(
+			#{add_date}, ${group_idx}, #{menu_name},
+			${menu_type}, #{modify_date}, ${parent_menu_idx},
+			${print_seq}, ${view_yn}, #{menu_url}, ${use_yn}
+		)
+</insert>
+
+<update id="moveMenu">
+	UPDATE 
+   		menu
+	SET 
+		group_idx = ${group_idx}, 
+		modify_date = #{modify_date}, 
+		parent_menu_idx = ${parent_menu_idx}
+	WHERE
+		menu_idx = ${menu_idx}
+</update>
+
+
+<update id="updateMenu">
+	UPDATE 
+   		menu
+	SET 
+		menu_name = #{menu_name}, 
+		menu_type = ${menu_type},
+		modify_date = #{modify_date}, 
+		print_seq = ${print_seq}, 
+		view_yn = ${view_yn},
+		menu_url = #{menu_url},
+		use_yn = ${use_yn}
+	WHERE
+		menu_idx = ${menu_idx}
+</update>
+
+<delete id="deleteMenu" parameterType="int">
+	DELETE FROM
+		menu
+	WHERE
+		menu_idx = #{id}
+</delete>
+
+<select id="getAllMenu" resultType="com.paraframework.object.Menu">
+	SELECT  
+			menu_idx,
+            add_date, 
+			group_idx, 
+			menu_name, 
+			menu_url, 
+			menu_type,
+			modify_date, 
+			parent_menu_idx, 
+			print_seq, 
+			view_yn,
+			use_yn
+    FROM    
+    		(select * from menu
+             order by parent_menu_idx, print_seq) products_sorted,
+            (select @pv := '0') initialisation
+    WHERE   
+    		find_in_set(parent_menu_idx, @pv) and length(@pv := concat(@pv, ',', menu_idx));
+</select>
+
+<select id="getViewMenu" resultType="com.paraframework.object.Menu">
+	SELECT  
+			menu_idx,
+            add_date, 
+			group_idx, 
+			menu_name, 
+			menu_url, 
+			menu_type,
+			modify_date, 
+			parent_menu_idx, 
+			print_seq, 
+			view_yn,
+			use_yn
+    FROM    
+    		(select * from menu where view_yn = 0 and use_yn = 0
+             order by parent_menu_idx, print_seq) products_sorted,
+            (select @pv := '0') initialisation
+    WHERE   
+    		find_in_set(parent_menu_idx, @pv) and length(@pv := concat(@pv, ',', menu_idx));
+</select>
+
+<select id="getMenuByParentId" parameterType="int" resultType="com.paraframework.object.Menu">
+	SELECT  
+			menu_idx,
+            add_date, 
+			group_idx, 
+			menu_name, 
+			menu_type,
+			menu_url, 
+			modify_date, 
+			parent_menu_idx, 
+			print_seq, 
+			view_yn,
+			use_yn
+    FROM    
+    		(select * from menu where use_yn = 0
+             order by parent_menu_idx, print_seq) products_sorted,
+            (select @pv := #{id}) initialisation
+    WHERE
+    		find_in_set(parent_menu_idx, @pv) and length(@pv := concat(@pv, ',', menu_idx));
+</select>
+<select id="getMenuById" parameterType="int" resultType="com.paraframework.object.Menu">
+	SELECT  
+		menu_idx,
+        add_date, 
+		group_idx, 
+		menu_name, 
+		menu_type,
+		menu_url, 
+		modify_date, 
+		parent_menu_idx, 
+		print_seq, 
+		view_yn,
+		use_yn
+    FROM
+    	menu
+    WHERE
+    	menu_idx = #{id}
+</select>
+<select id="getMenuByName" parameterType="string" resultType="com.paraframework.object.Menu">
+	SELECT  
+		menu_idx,
+        add_date, 
+		group_idx, 
+		menu_name, 
+		menu_type,
+		menu_url, 
+		modify_date, 
+		parent_menu_idx, 
+		print_seq, 
+		view_yn,
+		use_yn
+    FROM
+    	menu
+    WHERE
+    	menu_name = #{name}
+</select>
+</mapper>

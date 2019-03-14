@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.landing.LandingQuestionChainDao">
+<insert id="InsertChain" useGeneratedKeys="true" keyProperty="question_id" parameterType="com.para.object.landing.LandingQuestionChain">
+	INSERT LANDINGQUESTIONCHAIN
+		(
+			question_id,
+			answer_id
+		) 
+	SELECT 
+			${question_id},
+			${answer_id} 
+	FROM 
+		DUAL 
+	WHERE 
+		NOT EXISTS
+				(
+					SELECT 
+						* 
+					FROM 
+						LANDINGQUESTIONCHAIN
+					WHERE 
+						question_id = ${question_id}
+					AND
+						answer_id = ${answer_id}
+					AND 
+						${question_id} != ${answer_id}
+				)
+</insert>
+
+<update id="UpdateChain">
+	UPDATE 
+   		LANDINGQUESTIONCHAIN
+	SET 
+		question_id = ${question_id},
+		answer_id = ${answer_id}
+	WHERE
+		chain_id = ${chain_id}
+</update>
+
+
+<delete id="DeleteChain" parameterType="int">
+	DELETE FROM
+		LANDINGQUESTIONCHAIN
+	WHERE
+		chain_id = #{chain_id}
+</delete>
+
+<select id="getChainById" resultType="com.para.object.landing.LandingQuestionChain" parameterType="int">
+	SELECT  
+		chain_id,
+		question_id,
+		answer_id
+    FROM    
+    	LANDINGQUESTIONCHAIN
+    WHERE
+    	chain_id = #{chain_id}
+</select>
+</mapper>

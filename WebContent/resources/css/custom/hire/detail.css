@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.container, .section {background: #eaeaea; overflow-x:hidden;}
+
+.hire_title{text-align: center; font-size: 2vw; padding: 0.8vw 0; font-family: 'Gothic NeoB' !important;}
+.hire_detail_layout {width: 60%; padding: 0 20%; margin-top: 1vw;}
+.hire_detail_layout .hire_detail_table {width: 100%; border-spacing: 0;}
+.hire_detail_layout .hire_detail_table tr td:first-child {
+    font-size: 1.2vw;
+    width: 16%;
+    background-color: #afabab;
+    color: white;
+    padding: 0.3vw 0.5vw;
+    text-align: center;
+    border: 1px solid #BDBDBD;
+}
+.hire_detail_layout .hire_detail_table tr td:nth-child(2) {padding: 0.5vw 1vw; font-size: 1vw; border: 1px solid #BDBDBD;}
+.survey_btn {text-align: center; padding:1vw 0;}
+.survey_btn .btn-darkblue {padding: 0.5vw 0.8vw; font-size: 1vw; display: inline-block;}
+
+.info_section {font-size: inherit !important;}
+
+/* 모바일 반응형 */
+@media (max-width: 700px) {
+	.container {padding-top:33vw !important;}
+	.hire_detail_layout {width: 96%; padding: 0 2%;}
+	.hire_title {font-size: 5vw; padding: 4vw 0;}
+	.hire_detail_layout .hire_detail_table tr td:first-child {font-size: 3.5vw; width: 23%; padding:3vw 2vw;}
+	.hire_detail_layout .hire_detail_table tr td:nth-child(2) {font-size: 3.5vw; padding: 0.5vw 3vw;}
+	.survey_btn {padding: 6vw 0;}
+	.survey_btn .btn-darkblue {font-size: 5vw; padding: 1.5vw 2.5vw;}
+}

@@ -1,0 +1,62 @@
+﻿/*======================================================================== jqtree  */
+.body {margin-top : 1vw;}
+.tree-section {width: 100%; height: 450px; border: 0.5px solid #EAEAEA; margin-top: 10px; overflow-y:auto; font-size: small;}
+/* jqtree 내부 속성 */
+.jq-cutline {display: inline-block; width: 8px; height: 12px; border-left: 1px dotted black; border-bottom: 1px dotted black;}
+
+/*======================================================================== 레이아웃 영역 구분  */
+/* 전체 레이아웃 구분 : 메뉴트리가 들어갈 영역, 트리에서 선택한 메뉴의 상세 정보가 들어올 영역 */
+.content-container {min-width: 100%;}
+.content-container .menu-tree {display:inline-block; width: 25%; padding-right:2%; overflow: hidden; margin-bottom: 0; vertical-align: top;}
+.content-container .detail-menu {float: left; width: 61%; overflow: hidden; position: relative;}
+
+/*======================================================================== jqtree  */
+/* 상단 검색 폼 */
+.content-container .menu-tree .tree-search-result {font-size: 0.8vw; width: 100%; height: 2vw;}
+.content-container .menu-tree .search-section {display: table; width: 100%; height: 50px;  background: #fafbfc; border: 1px solid #dee1e7;}
+.content-container .menu-tree .search-section .search-form {display: table-cell; vertical-align: middle; margin: 0; padding: 0;}
+.content-container .menu-tree .search-section .search-form .search-layout {width: 97%; margin: auto; height: 80%;}
+.content-container .menu-tree .search-section .search-form .search-layout input {float: left; height: 100%; width: 13vw; margin: 0; padding: 0; border: 0.1px solid #EAEAEA; font-size: 0.6vw; padding-left: 5px;}
+.content-container .menu-tree .search-section .search-form .search-layout .btn-gray {display:inline-block; text-align: center; padding: 0.5vw 1.3vw; margin-left: 0.5vw;}
+
+/* jqtree 코드그룹 정보 */
+.content-container .menu-tree .tree-manage {width: 100%; margin-top: 10px;}
+.content-container .menu-tree .tree-manage table tr td {border: 0.5px solid #ced8da;}
+.content-container .menu-tree .tree-manage table tr .table-title {padding: 10px; background: #adb5c0; color: white; font-size: small; font-weight: bold;}
+
+/* jqtree 등록 수정 삭제 btn */
+.content-container .menu-tree .tree-btn {width: 100%; margin-top: 10px;}
+.content-container .menu-tree .tree-btn .btn-darkblue {float: right;}
+.content-container .menu-tree .tree-btn .btn-orange {min-width: 40px; float: right; padding-right: 5px; height: 30px; font-size: small; line-height: 30px;}
+.content-container .menu-tree .tree-btn .btn-orange div {float: left;}
+.content-container .menu-tree .tree-btn .btn-orange .btn-img-box {margin-top: 2px; margin-left: 6px;}
+.content-container .menu-tree .tree-btn .btn-orange .btn-name {margin-left: 5px;}
+.content-container .menu-tree .tree-btn .btn-gray, .content-container .menu-tree .tree-btn .btn-darkblue {float:right; display: inline-block; height: 30px; line-height: 30px; font-size: small; min-width: 50px; text-align: center; margin-left: 5px;}
+.modal {position: fixed; top:100px;}
+
+/*=========================================================================jqtree type 1(좌측에는 그룹정보 우측에는 그룹에 해당하는 자료를 불러오는곳)*/
+/*======================================================================== 하단 선택(수정,추가,삭제) 노드 내역 영역  */
+.detail-menu .tree-mask {position: absolute; top:0; width: 100%; height: 100%; cursor: not-allowed; background-color: rgba(255,255,255, 0.2); z-index:9999;}
+.detail-menu .detail-header {width: 100%; margin-bottom: 20px; font-size: small;}
+.detail-menu .detail-header a {float: right;} 
+.detail-menu .detail-header .btn-orange {padding: 0 10px 0 10px; min-width:60px; height: 30px; text-align: center; line-height: 30px;}
+
+.detail-menu .detail-body .content-table {min-width: 0; width: 100%;}
+.detail-menu .detail-body .content-table .table-body {display: none;}
+.detail-menu .detail-body .content-table tr .noSelect {height: 500px; text-align: center; vertical-align: middle; font-size: small; border-left: none; border-right: none;}
+.detail-menu .detail-body .content-table tr .codeId, .detail-body .content-table tr .codeName,
+.detail-menu .detail-body .content-table tr .positionNum, .detail-body .content-table tr .expranation,
+.detail-menu .detail-body .content-table tr .function {width: 18%;}
+.detail-body .content-table tr .useType {width: 10%;}
+
+/*=========================================================================jqtree type 2(좌측에는 메뉴정보 우측에는 선택한 메뉴의 정보를 불러오는곳)*/
+.tree-type2 {height: auto;}
+.detail-menu .detail-body .direct-table {width: 100%;}
+.detail-menu .detail-body .direct-table tr td {border-bottom: none; border-top: 0.05px solid #e5e8eb; border-collapse: collapse;}
+.detail-menu .detail-body .direct-table tr .item {background: #fbfbfb; width: 150px; color: black;}
+.detail-menu .detail-body .direct-table tr .value {color: black; text-align: left; padding: 5px 0 5px 15px;}
+
+.detail-menu .detail-footter {width: 100%; margin: 10px; font-size: small;}
+.detail-menu .detail-footter .edit, .detail-menu .detail-footter .del, .detail-menu .detail-footter .save {float: right; padding: 0 10px 0 10px; margin-right: 5px; height: 30px; line-height: 30px;}
+.detail-menu .detail-footter .del {margin-right: 15px;}
+.detail-menu .detail-footter .save {margin-right: 15px;}

@@ -1,0 +1,44 @@
+﻿@font-face {
+	font-family: 'Gothic NeoB'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoB.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoEB'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoEB.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoH'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoH.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoL'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoL.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoM'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoM.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoR'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoR.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoSB'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoSB.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoT'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoT.ttf'); /*폰트 파일 주소*/
+}
+
+@font-face {
+	font-family: 'Gothic NeoUL'; /* 폰트 패밀리 이름 주기*/
+	src: url('/resources/common/font/AppleSDGothicNeoUL.ttf'); /*폰트 파일 주소*/
+}

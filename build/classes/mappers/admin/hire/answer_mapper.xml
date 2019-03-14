@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.AnswerDao">
+<insert id="InsertAnswer" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.Answer">
+	INSERT INTO answer 
+		( 
+			question_id,
+			content,
+			reply
+		)
+	VALUES 
+		(
+			${question_id},
+			#{content},
+			${reply}
+		)
+</insert>
+
+<update id="UpdateAnswer">
+	UPDATE 
+   		answer
+	SET 
+		question_id = ${question_id},
+		content = #{content},
+		reply = ${reply}
+	WHERE
+		id = ${id}
+</update>
+
+
+<delete id="DeleteAnswer" parameterType="int">
+	DELETE FROM
+		answer
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getAnswerByQuestionId" parameterType="int" resultType="com.para.object.hire.Answer">
+	SELECT
+		id,
+		question_id,
+		content,
+		reply
+	FROM
+		answer
+	WHERE
+		question_id = #{id}
+		order by id ASC
+</select>
+
+<select id="CountAnswerById" parameterType="int" resultType="int">
+	SELECT
+		COUNT(id)
+	FROM
+		answer
+	WHERE
+		id = #{id}
+</select>
+</mapper>

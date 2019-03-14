@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.board.PostCommentDao">
+<insert id="InserComment" useGeneratedKeys="true" keyProperty="post_id" parameterType="com.paraframework.object.board.PostComment">
+	INSERT INTO postcomment 
+		( 
+			post_id,
+			writter_ip_add,
+			modify_ip_add,
+			reply_to,
+			contents,
+			write_date,
+			modify_date
+		)
+	VALUES 
+		(
+			${post_id},
+			#{writter_ip_add},
+			#{modify_ip_add},
+			${reply_to},
+			#{contents},
+			#{write_date},
+			#{modify_date}
+		)
+</insert>
+
+<update id="UpdateComment">
+	UPDATE 
+   		postcomment
+	SET 
+		modify_ip_add=#{modify_ip_add},
+		contents=#{contents},
+		modify_date=#{modify_date}
+	WHERE
+		post_id = ${post_id}
+</update>
+
+<delete id="DeleteComment" parameterType="int">
+	DELETE FROM
+		postcomment
+	WHERE
+		comment_id = #{id}
+</delete>
+
+<select id="getCommentByPostId" parameterType="int" resultType="com.paraframework.object.board.PostComment">
+   	SELECT  
+		comment_id,
+		writter_ip_add,
+		contents,
+		write_date,
+		reply_to
+    FROM    
+   		postcomment
+    WHERE   
+   		post_id = #{id}
+</select>
+
+<select id="getParentcommentByPostId" parameterType="int" resultType="com.paraframework.object.board.PostComment">
+   	SELECT  
+		comment_id,
+		writter_ip_add,
+		contents,
+		write_date,
+		reply_to
+    FROM    
+   		postcomment
+    WHERE   
+   		post_id = #{id}
+   	AND
+   		reply_to = 0
+</select>
+
+<select id="getCommentById" parameterType="int" resultType="com.paraframework.object.board.PostComment">
+    	SELECT 
+    		comment_id,
+    		post_id,
+			writter_ip_add,
+			modify_ip_add,
+			reply_to,
+			contents,
+			write_date,
+			modify_date
+		FROM 
+			postcomment
+		WHERE
+			comment_id = #{id}
+</select>
+</mapper>

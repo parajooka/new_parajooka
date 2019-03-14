@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.contact.ContactDao">
+<resultMap type="com.para.object.landing.LandingParticipant" id="Participant">
+    <result column="NAME" property="name"/>
+    <result column="COMPANY" property="company"/>
+    <result column="PARTICIPANT_ID" property="participant_id"/>
+</resultMap>
+ 
+<resultMap type="com.para.object.contact.Contact" id="Contact">
+    <result column="CONTACT_ID" property="contact_id"/>
+    <result column="PARTICIPANT_ID" property="participant_id"/>
+    <result column="RESERVATION_DATE" property="reservation_date"/>
+    <result column="RESERVATION_TYPE" property="reservation_type"/>
+    <result column="RESERVATION_MEMO" property="reservation_memo"/>
+    <result column="RESERVATION_PW" property="reservation_pw"/>
+    <result column="CONTACT_DATE" property="contact_Date"/>
+    <collection property="participant" resultMap="Participant"/>
+</resultMap>
+<insert id="InsertContact" useGeneratedKeys="true" keyProperty="contact_id" parameterType="com.para.object.contact.Contact">
+	INSERT INTO CONTACT 
+		( 
+			participant_id,
+			reservation_date,
+			reservation_type,
+			reservation_memo,
+			reservation_pw,
+			contact_Date
+		)
+	VALUES 
+		(
+			${participant_id},
+			#{reservation_date},
+			${reservation_type},
+			#{reservation_memo},
+			#{reservation_pw},
+			#{contact_Date}
+		)
+</insert>
+
+<update id="UpdateContact">
+	UPDATE 
+   		CONTACT
+	SET 
+		reservation_date = #{reservation_date},
+		reservation_type = ${reservation_type},
+		reservation_memo = #{reservation_memo}
+	WHERE
+		contact_id = ${contact_id}
+</update>
+
+
+<delete id="DeleteContact" parameterType="int">
+	DELETE FROM
+		CONTACT
+	WHERE
+		contact_id = #{id}
+</delete>
+
+<select id="getContactById" resultMap="Contact" parameterType="int">
+	SELECT 
+		c.CONTACT_ID,
+		c.PARTICIPANT_ID,
+		c.RESERVATION_DATE,
+		c.RESERVATION_TYPE,
+		c.RESERVATION_MEMO,
+		c.RESERVATION_PW,
+		c.CONTACT_DATE,
+		p.name,
+		p.company
+	FROM 
+		CONTACT AS c
+	JOIN
+		LANDINGPARTICIPANT AS p
+	ON
+		c.PARTICIPANT_ID = p.PARTICIPANT_ID
+	WHERE
+		c.CONTACT_ID = #{id}
+</select>
+
+<select id="getContactByYearAndMonth" resultType="com.para.object.contact.Contact" parameterType="string">
+	SELECT  
+		contact_id,
+		participant_id,
+		reservation_date,
+		reservation_type,
+		reservation_memo,
+		reservation_pw,
+		contact_Date
+	FROM
+		CONTACT
+	WHERE
+		<![CDATA[date(reservation_date) >= date(#{start_date})]]>
+	AND
+		<![CDATA[date(reservation_date) <= date(#{end_date})]]>
+</select>
+
+<select id="getContactByParticipant" resultMap="Contact" parameterType="int">
+	SELECT 
+		c.CONTACT_ID,
+		c.PARTICIPANT_ID,
+		c.RESERVATION_DATE,
+		c.RESERVATION_TYPE,
+		c.RESERVATION_MEMO,
+		c.RESERVATION_PW,
+		c.CONTACT_DATE,
+		p.name,
+		p.company
+	FROM 
+		CONTACT AS c
+	JOIN
+		LANDINGPARTICIPANT AS p
+	ON
+		c.PARTICIPANT_ID = p.PARTICIPANT_ID
+	WHERE
+		c.PARTICIPANT_ID = #{id}
+</select>
+<select id="CountByParticipant" resultType="int" parameterType="int">
+	SELECT  
+		COUNT(contact_id)
+	FROM
+		CONTACT
+	WHERE
+		participant_id = #{id}
+</select>
+<select id="getContactByDate" resultMap="Contact" parameterType="string">
+	SELECT 
+		c.CONTACT_ID,
+		c.PARTICIPANT_ID,
+		c.RESERVATION_DATE,
+		c.RESERVATION_TYPE,
+		c.RESERVATION_MEMO,
+		c.RESERVATION_PW,
+		c.CONTACT_DATE,
+		p.name,
+		p.company
+	FROM 
+		CONTACT AS c
+	JOIN
+		LANDINGPARTICIPANT AS p
+	ON
+		c.PARTICIPANT_ID = p.PARTICIPANT_ID
+	WHERE
+		date(c.RESERVATION_DATE) = date(#{date})
+</select>
+<select id="ValidContactByDate" resultType="int" parameterType="string">
+	SELECT  
+		COUNT(contact_id)
+	FROM
+		CONTACT
+	WHERE
+		date(reservation_date) = date(#{date})
+</select>
+<select id="CountContact" resultType="int">
+	SELECT  
+		COUNT(contact_id)
+	FROM
+		CONTACT
+</select>
+<select id="getContactByPaging" resultMap="Contact">
+   	SELECT 
+		c.CONTACT_ID,
+		c.PARTICIPANT_ID,
+		c.RESERVATION_DATE,
+		c.RESERVATION_TYPE,
+		c.CONTACT_DATE,
+		p.name,
+		p.company
+	FROM 
+		CONTACT AS c
+	JOIN
+		LANDINGPARTICIPANT AS p
+	ON
+		c.PARTICIPANT_ID = p.PARTICIPANT_ID
+		order by contact_id desc limit ${limit_count}, ${limit};
+</select>
+<select id="getMemoByContactId" parameterType="int" resultType="string">
+	SELECT
+		reservation_memo
+	FROM
+		CONTACT
+	WHERE
+		contact_id = #{contact_id}
+</select>
+</mapper>

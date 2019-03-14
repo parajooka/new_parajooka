@@ -1,0 +1,55 @@
+html, body {overflow-x:hidden; background-color: #e3e3dc;}
+html, body, .container, .section {margin: 0; padding: 0;}
+body {display: none; font-family : 'Gothic NeoUL' !important;}
+ul {list-style: none;}
+p, ul {margin: 0; padding: 0;}
+a {text-decoration: none; font-weight: normal;}
+
+.container {width:1200px; margin:auto; margin-top:80px;}
+.section {width:100%;}
+.container, .section {overflow : hidden}
+
+/* 사용자 메뉴바 */
+.menubar {clear:both; position:fixed; z-index:3334; top:0; left:0px; width: 100%;}
+.logo_section {width: 100%; position: relative; height: 110px;}
+.logo_img_box {display: inline-block; margin: 15px 0 0 25px; width: 13px;}
+.logo_img_box img {width:100%;}
+
+/* menubar */
+.menubar {font-size: 14px;}
+.deco_round {width: 7px; height: 7px; background-color: #ff5400; display: inline-block; vertical-align: top; margin-top: 7px; margin-left: 2px; border-radius: 100% 100%;}
+.left_menu_layout {position: absolute; top: 0; left: 0; height: 100vh; width: 15px; border-right: 1px solid #737373; display: table;}
+.left_menu_layout_cell {width:100%; height: 100%; display: table-cell; vertical-align: middle;}
+
+.menu_line {display: inline-block; width: 5px; height: 1px; border-top: 1px solid #737373; vertical-align: top; margin-top: 8px; margin-right:11px;}
+.menu_btn {cursor: pointer; letter-spacing: 0.5px;}
+.menu_select_arrow {width: 10.5px; float: right; margin-right: -11px; position: relative; z-index: 10;}
+.menu_line_box {padding:6.5px 0;}
+
+.mobile_menu_open_btn {float: right; width: 30px; margin: 30px 20px 0 0; display: none;}
+.mobile_menu_open_btn img {width:100%;}
+.mobile_menu_container {display: none; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; background: #3e3c3d; background: -moz-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e3c3d), color-stop(100%, #2d2c2d)); background: -webkit-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -o-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -ms-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: linear-gradient(to bottom, #3e3c3d 0%, #2d2c2d 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3e3c3d', endColorstr='#2d2c2d', GradientType=0);}
+.mobile_menu_container ul {list-style: none; margin: 0; width: 100%; padding: 0;}
+.mobile_menu_container ul li {position: relative; font-size: 3vw; font-weight: bold; border-bottom: 1px solid #222222; border-top: 1px solid #444444; padding: 3vw 2vw;}
+.mobile_menu_mask {display:none;}
+
+.follw_me_container {position: absolute; bottom: 0; margin-left: 22px; width: 70px; margin-bottom: 7px;}
+.behance_logo {width: 14px; vertical-align: top; margin-top: 3px;}
+.instagram_logo {width: 12px; margin-left: 5px;}
+.heart_logo {width: 13px;}
+
+h1 {display: inline-block; font-size: 1.5vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}
+h2 {display: inline-block; font-size: 1vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}
+
+/* input file */
+.upload_box {border: 3px solid #157efb; margin: 1vw 0; text-align: center; cursor: pointer;}
+.upload_box img {width: 20%;}
+.upload_file_name {font-size: 1vw; text-align: center; color: #157efb;}
+
+@media (max-width:1200px) {
+	.container {width:90%; margin:auto; margin-top:120px;}
+	.left_menu_container {display: none;}
+	.mobile_menu_container {box-shadow: 2vw 2vw 2vw 2vw #2c2c2c; display: block; position: absolute; top: 0; right: -55vw; min-height: 100vh; z-index: 9999; width: 50vw;}
+	.mobile_menu_mask {position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9998; background-color: #000; opacity: 0; display: none;}
+	.mobile_menu_open_btn {display: inline-block; cursor: pointer;}
+}

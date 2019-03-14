@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.paging_section {width: 100%; clear: both; text-align: center;}
+.paging_section .page_number {display: inline-block;  margin: 0 0.2vw; font-size: 1vw;  text-decoration: none; background: #8C8C8C; border:0.5px solid #8C8C8C; color: white; text-align: center; padding: 0.4vw 0; width: 2vw;} 
+.paging_section .page_number:hover {background: #EAEAEA !important; color: black;}
+.paging_section .page_arrow {font-family: cursive !important; font-size: 1vw; margin:0 1vw; color: #8C8C8C; text-decoration: none;}
+.paging_next_arrow, .paging_before_arrow {color: black; text-decoration: none; margin: 0; font-size: 1vw; padding: 0 1.5vw;}

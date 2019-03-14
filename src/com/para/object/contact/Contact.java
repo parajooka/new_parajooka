@@ -1,0 +1,85 @@
+package com.para.object.contact;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.para.object.landing.LandingParticipant;
+
+public class Contact {
+	private static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
+	private int contact_id;
+	@NotNull(message="세션이 만료되었습니다. 처음부터 다시 시도해주세요.")
+	@Min(value=1, message="잘못된 접근입니다. 다시 시도해주세요.")
+	private int participant_id; 
+	@NotNull(message="미팅 시간을 선택해주세요.")
+	@Size(min=15, max=16, message="잘못된 형식의 미팅날짜입니다.")
+	private String reservation_date;
+	@NotNull(message="미팅 방식을 선택해주세요.")
+	@Min(value=0, message="미팅 방식에 잘못된 값이 입력되었습니다.")
+	@Max(value=2, message="미팅 방식에 잘못된 값이 입력되었습니다.")
+	private int reservation_type;
+	private String reservation_memo;
+	@NotNull(message="암호를 입력해주세요.\r\n암호는 최소 1자리에서 최대 10자리까지 입력 가능합니다.")
+	@Size(min=1, max=10, message="암호는 최소 1자리에서 최대 10자리까지 입력 가능합니다.")
+	private String reservation_pw;
+	private String contact_Date = formatTime.format(new Date());
+	private LandingParticipant participant;
+	
+	
+	public LandingParticipant getParticipant() {
+		return participant;
+	}
+	public void setParticipant(LandingParticipant participant) {
+		this.participant = participant;
+	}
+	public int getParticipant_id() {
+		return participant_id;
+	}
+	public void setParticipant_id(int participant_id) {
+		this.participant_id = participant_id;
+	}
+	public int getContact_id() {
+		return contact_id;
+	}
+	public void setContact_id(int contact_id) {
+		this.contact_id = contact_id;
+	}
+	public String getReservation_date() {
+		return reservation_date;
+	}
+	public void setReservation_date(String reservation_date) {
+		this.reservation_date = reservation_date;
+	}
+	public int getReservation_type() {
+		return reservation_type;
+	}
+	public void setReservation_type(int reservation_type) {
+		this.reservation_type = reservation_type;
+	}
+	public String getReservation_memo() {
+		return reservation_memo;
+	}
+	public void setReservation_memo(String reservation_memo) {
+		this.reservation_memo = reservation_memo;
+	}
+	public String getReservation_pw() {
+		return reservation_pw;
+	}
+	public void setReservation_pw(String reservation_pw) {
+		this.reservation_pw = reservation_pw;
+	}
+	public String getContact_Date() {
+		return contact_Date;
+	}
+	public void setContact_Date(String contact_Date) {
+		this.contact_Date = contact_Date;
+	}
+	
+	
+}

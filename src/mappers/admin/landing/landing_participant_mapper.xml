@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.landing.LandingParticipantDao">
+<insert id="InsertParticipant" useGeneratedKeys="true" keyProperty="participant_id" parameterType="com.para.object.landing.LandingParticipant">
+	INSERT INTO LANDINGPARTICIPANT 
+		( 
+			name,
+			company,
+			ip_address,
+			record,
+			start_time,
+			end_time
+		)
+	VALUES 
+		(
+			#{name},
+			#{company},
+			#{ip_address},
+			#{record},
+			#{start_time},
+			#{end_time}
+		)
+</insert>
+
+<update id="UpdateParticipant">
+	UPDATE 
+   		LANDINGPARTICIPANT
+	SET 
+		name = #{name},
+		company = #{company},
+		ip_address = #{ip_address},
+		record = #{record},
+	WHERE
+		participant_id = ${participant_id}
+</update>
+
+
+<delete id="DeleteParticipant" parameterType="int">
+	DELETE FROM
+		LANDINGPARTICIPANT
+	WHERE
+		participant_id = #{participant_id}
+</delete>
+
+<select id="getParticipant" resultType="com.para.object.landing.LandingParticipant" parameterType="int">
+	SELECT  
+		participant_id,
+		name,
+		company,
+		ip_address,
+		record,
+		start_time,
+		end_time
+	FROM
+		LANDINGPARTICIPANT
+	WHERE
+		participant_id = #{participant_id}
+</select>
+
+<select id="getParticipantByPaging" resultType="com.para.object.landing.LandingParticipant">
+	SELECT  
+		participant_id,
+		name,
+		company,
+		ip_address,
+		start_time,
+		end_time
+    FROM  
+   		LANDINGPARTICIPANT
+   		order by participant_id desc limit ${limit_count}, ${limit};
+</select>
+
+<select id="CountParticipant" resultType="int">
+	SELECT
+		COUNT(participant_id)
+	FROM
+		LANDINGPARTICIPANT
+</select>
+<select id="ValidParticipant" resultType="int" parameterType="string">
+	SELECT
+		COUNT(PARTICIPANT_ID)
+	FROM
+		LANDINGPARTICIPANT
+	WHERE
+		IP_ADDRESS = #{ip}
+</select>
+<select id="getParticipantByIp" resultType="com.para.object.landing.LandingParticipant" parameterType="string">
+	SELECT
+		participant_id,
+		name,
+		company,
+		ip_address,
+		start_time,
+		end_time
+	FROM
+		LANDINGPARTICIPANT
+	WHERE
+		IP_ADDRESS = #{ip}
+</select>
+</mapper>

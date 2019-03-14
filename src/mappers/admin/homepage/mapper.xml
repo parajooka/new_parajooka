@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.HomepageDao">
+<insert id="insertHompage" useGeneratedKeys="true" keyProperty="menu_idx" parameterType="com.paraframework.object.Homepage">
+	INSERT INTO homepage 
+		( 
+			name,
+			favicon,
+			main_url,
+			info,
+			logo,
+			mail,
+			phone,
+			fax,
+			address,
+			representative,
+			mobile_use
+		)
+	VALUES 
+		(
+			#{name}, #{favicon}, #{main_url},
+			#{info}, #{logo},
+			#{mail}, #{phone}, #{fax},
+			#{address}, #{representative}, ${mobile_use}
+		)
+</insert>
+
+<update id="updateHomepage">
+	UPDATE 
+   		homepage
+	SET 
+		name = #{name},
+		favicon = #{favicon},
+		main_url = #{main_url},
+		info = #{info},
+		logo = #{logo},
+		mail = #{mail},
+		phone = #{phone},
+		fax = #{fax},
+		address = #{address},
+		representative = #{representative},
+		mobile_use = ${mobile_use}
+</update>
+
+
+<delete id="deleteHomepage" parameterType="int">
+	DELETE FROM
+		homepage
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getHomepage" resultType="com.paraframework.object.Homepage">
+	SELECT  
+		id,
+		name,
+		favicon,
+		main_url,
+		info,
+		logo,
+		mail,
+		phone,
+		fax,
+		address,
+		representative,
+		mobile_use
+    FROM    
+    	homepage
+</select>
+</mapper>

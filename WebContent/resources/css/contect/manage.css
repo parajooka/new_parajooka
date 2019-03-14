@@ -1,0 +1,18 @@
+html, body {overflow-x: hidden; width: 100%; height: 100%; background: #eaeaea;}
+.inject {padding: 50px 0 50px 0; position: fixed; bottom: 0; left: 0; text-align: center; background: white; width: 100%; font-size: 25px;}
+.inject2 {padding: 10px 0 10px 0; position: fixed; width:100px; float:right; bottom: 0; right: 0; text-align: center; background: none; font-size: 25px;}
+.inject3 {padding: 50px 0 50px 0; position: absolute; bottom: 0; left: 0; text-align: center; background: white; font-size: 25px; width: 100%;}
+.inject a {cursor:pointer; display: inline-block; padding: 15px 0 15px 0; background: #FFBB00; color: white; width: 150px; border-radius: 50px 50px;}
+.inject3 a {cursor:pointer; display: inline-block; padding: 15px 0 15px 0; background: #FFBB00; color: white; width: 150px; border-radius: 50px 50px;}
+.inject-form {width: 100%; height: 100%; position: absolute; top:0; left: 100%; background: #eaeaea;}
+.close_btn {position: absolute; top:0; right: 0; margin: 30px 50px 0 0; cursor: pointer; z-index: 9999;}
+.close_btn2 {position: absolute; top:0; right: 0; margin: 10px 50px 0 0; cursor: pointer; z-index: 9999;}
+
+.board-section {position: absolute; top:0; left:0; width: 100%; height: 100%;}
+
+.inject-form {display: table;}
+.inject-form .input_area {display: table-cell; vertical-align: middle; text-align: center;}
+
+.product-zone {margin-top: 10px; margin-left: 20px; margin-bottom: 30px;}
+.save-show {display: none;}
+.edit_btn, .delete_btn {cursor: pointer;}

@@ -1,0 +1,32 @@
+html, body {overflow-x:hidden; background-color: #EAEAEA;}
+html, body, .container, .section {margin: 0; padding: 0; width: 100%;}
+.container, .section {overflow : hidden; position: relative;}
+.section {padding-bottom: 2vw;}
+body {display: none; font-family : 'Gothic NeoR' !important;}
+ul {list-style: none;}
+p, ul {margin: 0; padding: 0;}
+
+/* 관리자 메뉴바 */
+.container, .navigation {float: left;}
+.container {width: 80%; padding-left:2.5%; padding-right:2.5%; background: white;}
+.navigation {width: 15%;}
+
+.navigation .navi-container {width: 100%;}
+.navigation .navi-container .navi-logo {width: 100%; background-color: #5D5D5D;}
+.navigation .navi-container .navi-logo a {display: inline-block; width: 100%; text-align: center; padding: 1vw 0;}
+.navigation .navi-container .navi-logo a img {width: 80%;}
+.navigation .navi-container .navi {width: 100%; border-bottom: 1px solid #8C8C8C;}
+.navigation .navi-container .navi a {position:relative; display: inline-block; width:90%; cursor:pointer; font-size: 0.9vw; padding: 1vw 5%;font-family: 'Gothic NeoB' !important; color: black !important; text-decoration: none !important;}
+
+.parent_menu {cursor: inherit !important;}
+.child_menu {width: 90%; padding: 0 0 0 10%; font-size: 0.8vw; background: #f3f3f3; border-top: 1px solid #c3c3c3; display: none;}
+.admin_menu_open {width: 2vw; position: absolute;  right: 0; top: 0.6vw; cursor:pointer;}
+
+/* 우측 메뉴 타이틀바 */
+.obj-title {width: 100%; border-bottom: 1px solid #8C8C8C; padding: 2vw 0; font-size: 1.5vw;}
+
+/* jQuery ui Dialog CSS*/
+.modal_table tr td {padding: 0.5vw 0;}
+.modal_table tr td:first-child {padding-right:2vw; font-size: 1vw; font-family: 'Gothic NeoL' !important;}
+.dialog_submit {text-align: center; padding-right: 0 !important;}
+.dialog_submit .dialog_submit_btn {display: inline-block; width: 100%; padding: 0.5vw 0; color: white; background: #5D5D5D; border-radius: 15px; cursor: pointer; margin:1vw 2vw 0 2vw; max-width: 11vw;}

@@ -1,0 +1,69 @@
+/* html �ʱ�ȭ */
+html, body {overflow-x: hidden; width: 100%; height: auto; background-color: #e3e3dc;}
+ul {list-style: none;}
+p, ul {margin: 0; padding: 0;}
+.container {width:100%;}
+.left_menu_container {display: none;}
+
+/* 랜딩화면 */
+.landing-mask {width:100%; font-size:1.8vw; position: fixed; top:0; left: 0; z-index: 9999; background-color: white; color: black; display: table;}
+.landing-mask div {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center;}
+.mask_last {display: none;}
+.mask_last .last_message {opacity: 0;}
+.mask2 {background-color: rgba( 255, 255, 255, 0); display: table; position: fixed; top: 0; left: 0; z-index: 9000;}
+
+/* ���� ���̾ƿ� ���� */
+.top-section, .bottom-section {width : 100%; height: 100%; margin-top:-13.2vw;}
+.bottom-section {position: relative;}
+
+
+/* ���̾ƿ�1 �ΰ� ���̾ƿ� */
+.logo-section {width:100%; height: 100%; background-color: #e3e3dc;}
+.logo-section .logo-container {display: table; width: 100%; height: 100%; font-size: 21px;}
+.logo-section .logo-container .logo-box {display: table-cell; vertical-align: middle; text-align: center; width: 100%; height: 100%;}
+.logo-section .logo-container .logo-box .logo {width: 30vw;}
+.logo-section .logo-container .logo-box p {font-size: 1vw; margin-top:10px;}
+.logo-section .logo-ment {text-align: center;}
+.money-back-img {position: fixed; top:0; z-index: 1; display: none; z-index: 4;}
+
+
+/* ���̾ƿ�2 ��Ƽ�� ���̾ƿ� */
+.steven-section {width:100%; height: 100%; background-color: #e3e3dc; position: relative;}
+.steven-section .img-zone {text-align: center; position: relative; width: 100%; height: 100%;}
+.steven-section .img-zone .steven-jobs {width: 45vw; display:inline-block; position:absolute; left:50%; z-index:1; margin-bottom:-7vw; bottom:0; margin-left:-31vw; z-index: 5;}
+.steven-section .img-zone .logo2 {width: 42vw; position: absolute; left: 50%; margin-left: -19.2vw; bottom: 0; z-index: 6; margin-bottom: -7vw; background: none; z-index: 6;}
+
+/* ���̾ƿ�3 �Ӵ� ���̾ƿ� */
+.money-section {width:100%; height: 100%; background-color: #d6d5d6; position: relative; z-index: 2; padding-top:7vw;}
+.money-section .money-mask {width: 100%; height: 17vw; position: absolute; top:0; left: 0; background-color: #e3e3dc;}
+.money-section .money-back {width:100%; height: 100%; display: table; position: relative;}
+.money-section .money-back .money-img {position: absolute; height: 80vh; margin-top : 40vh; z-index: 2; left:100%; margin-left:0;}
+.money-section .money-back .money-content {position:relative; z-index:2; width:100%; height: 100%; display: table-cell; vertical-align: middle;}
+.money-section .money-back .money-content .money-title {font-size: 3vw; line-height: 4.3vw; margin-left: 80px; margin-top:50px; min-height: 160px;}
+.money-section .money-back .money-content .money-view {font-size: 1.05vw; line-height: 2vw; margin-left: 80px; min-height: 103px;}
+
+/* ���̾ƿ�4 �⽺ �ö���� ���̾ƿ� */
+.info-section {width: 100%; height: 100%; background-color: #e3e3dc;}
+.info-section .info-container {width:100%; height: 100%; display: table; position: relative;}
+.info-section .info-container .info-box {position:relative; z-index:2; width:100%; height: 100%; display: table-cell; vertical-align: middle; }
+.info-section .info-container .info-box .info-title {font-size: 3vw; line-height: 4.3vw; margin-left: 80px; margin-top:50px; min-height: 160px;}
+.info-section .info-container .info-box .info-view {font-size: 1.05vw; line-height: 2vw; margin-left: 80px; min-height: 103px;}
+.info-section .info-container .MrParajooka {position: absolute; height: 45vw; z-index: 1; left:100%; margin-left: -50vw; top:100%; margin-top:-12vw;}
+
+/* ���̾ƿ�5 �޸� ���� ���̾ƿ� */
+.human-section {width: 100%; height: 100%; background-color: #211e22; position: relative; z-index: 5;}
+.human-section .human-container {width:100%; height: 100%; display: table; position: relative;}
+.human-section .human-container .human-box {position:relative; z-index:2; width:100%; height: 100%; display: table-cell; vertical-align: middle; opacity: 0; bottom:0;}
+.human-section .human-container .human-box .human-sh {position: relative; z-index: 3; float: right; margin-right:9vw; min-width: 45vw;}
+.human-section .human-container .human-box .human-sh .human-title {font-size: 3vw; line-height: 4.3vw; margin-left: 80px; margin-top:50px; min-height: 160px; color: white;}
+.human-section .human-container .human-box .human-sh .human-view {font-size: 1.05vw; line-height: 2vw; margin-left: 80px; min-height: 103px; color: white; margin-top:20px;}
+.human-section .human-container .human-img {position: absolute; z-index: 1; width:308%; left:0; bottom:0;}
+
+/* ���̾ƿ�6 �������� ���̾ƿ� */
+.choice-section {width: 100%; height: 100%; background-color: #e3e3dc; text-align: center; font-size: 52.5px; line-height: 80px;}
+.choice-section .choice-container {width:100%; height: 100%; display: table; position: relative;}
+.choice-section .choice-container .choice-box {position:relative; z-index:2; width:100%; height: 100%; display: table-cell; vertical-align: middle; font-size: 2.1vw; line-height: 3.25vw;}
+.choice-section .choice-container .YesNo {position: absolute; z-index:10; bottom: 0; left:0; width: 100%; display: table-cell; vertical-align: middle; background: white; height: 55px; opacity: 0.3;}
+.choice-section .choice-container .YesNo p a {display: inline-block;}
+.yes {width: 77px; margin-bottom:12px;}
+.no {width:77px; margin-left: 15px; margin-bottom:12px;}

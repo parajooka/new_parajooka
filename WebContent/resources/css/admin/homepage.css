@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.inputForm{width: 100%;}
+
+.info_table {width: 100%; border-spacing: 0;}
+
+.info_table tr td {padding: 0.5vw 0; border-bottom: 1px solid #8C8C8C;}
+.info_table tr td:first-child {width: 15%; background-color: #eaeaea; text-align: center;}
+.info_table tr td:nth-child(2) {width: 21%; padding-left: 2%;}
+
+.homepage_input_info {font-size: 0.7vw; color: #8C8C8C;}
+
+.submot_btn {padding: 0.3vw 1vw; display: inline-block; margin-top: 1vw; float: right;}

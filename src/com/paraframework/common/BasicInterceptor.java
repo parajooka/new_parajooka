@@ -1,0 +1,78 @@
+package com.paraframework.common;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.paraframework.object.AccessIp;
+import com.paraframework.object.Homepage;
+import com.paraframework.service.AccessIpService;
+import com.paraframework.service.HomepageService;
+import com.paraframework.service.MenuService;
+
+public class BasicInterceptor extends HandlerInterceptorAdapter {
+	@Autowired
+	private MenuService service;
+	
+	@Autowired
+	private AccessIpService acc_service;
+	
+	@Autowired
+	private HomepageService homepage_service;
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		/* 
+		 * 아이피로 홈페이지 접근시 차단 
+		 */
+		String url = request.getRequestURL().toString();
+		url.substring(0, url.indexOf("/"));
+		
+		/*if (url.indexOf("para-jooka") < 0) {
+			return BaseController.alertMessage("잘못된 페이지 접근 방식입니다.", request, response);
+		}*/
+		
+		/* 로직처리 */ 
+		String ip = request.getHeader("X-FORWARDED-FOR");
+        if (ip == null) {
+            ip = request.getRemoteAddr();
+        }
+        
+		List<AccessIp> access = acc_service.getAccessIp();
+		
+		if (ip.equals("0:0:0:0:0:0:0:1") || ip.equals("127.0.0.1")) {
+			request.getSession().setAttribute("admin", true);
+		}
+		
+		for (AccessIp a : access) {
+			if (ip.equals(a.getAccess_ip()) || ip.indexOf(a.getAccess_ip()) >= 0) {
+				if (!BaseController.isMobile(request)) {
+					request.getSession().setAttribute("admin", true);
+				}
+			}
+		}
+		
+		
+		 //홈페이지 메뉴 로딩
+		if (!BaseController.MenuUpload) {
+			BaseController.MenuUpload = true;
+			request.getServletContext().setAttribute("menu_list", service.getViewMenu());
+		}
+		
+		//홈페이지 정보 호출
+		if (!BaseController.HomePageUpload) {
+			Homepage homepage = homepage_service.getHomepage();
+			
+			if (homepage != null) {
+				BaseController.HomePageUpload = true;
+				request.getServletContext().setAttribute("homepage", homepage);
+			}
+		}
+		
+		return true;
+	}
+}

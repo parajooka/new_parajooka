@@ -1,0 +1,72 @@
+html, body {overflow-x: hidden; width: 100%; height: auto !important;}
+ul {list-style: none;}
+p, ul {margin: 0; padding: 0;}
+.container {overflow:hidden; width:100%; margin:auto;}
+.mobile_menu_open_btn {display: none;}
+
+/* 랜딩화면 */
+.landing_main {position: relative;}
+.landing-mask {width:100%; font-size:5vw; position: relative; top:0; left: 0; z-index: 9999; background-color: white; color: black; display: table;}
+.landing-mask div {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center;}
+.mask_last {display: none;}
+.mask_last .last_message {opacity: 0;}
+.mask2 {background-color: rgba( 255, 255, 255, 0); display: table; position: fixed; top: 0; left: 0; z-index: 9999;}
+.money-back-img {position: fixed; top:0; z-index: 1; display: none; z-index: 100;}
+
+
+.layout1 {position: relative; height: 3000px; margin-bottom:50vw;}
+.layout1 .jobs-layout{width`:100%; position: relative; z-index: 101;}
+.layout1 .jobs-layout .steven-jobs{width: 130vw; position: absolute; bottom: 0; left: -42vw; margin-bottom:-30vw;}
+.layout1 .jobs-layout .logo2{width: 80vw; position: absolute; bottom: 0; left: 9vw; margin-bottom:-28vw; display: none;}
+
+
+.layout2 {position: relative; height: 2400px; z-index: 10;}
+.layout2 .dollar-layout {width: 90%; padding: 0 5%;}
+.layout2 .dollar-layout .dollar-img-section {width: 100%; height: 40%; padding-top: 20%; text-align: center;}
+.layout2 .dollar-layout .dollar-img-section img {width: 32vw; position: relative; z-index: 1; left:100%;}
+.layout2 .dollar-layout .dollar-title-section {width: 100%; margin-top:6vw; margin-bottom:2.2vw; display: table; background: #e3e3dc; position:relative; z-index: 2;}
+.layout2 .dollar-layout .dollar-title-section p {width: 100%; height: 100%; display: table-cell; vertical-align: middle; font-size: 6.5vw;}
+.layout2 .dollar-layout .dollar-content-section {width: 100%; height: 28%; display: table; background: #e3e3dc; position:relative; z-index: 2;}
+.layout2 .dollar-layout .dollar-content-section p {width: 100%; height: 100%; font-size:4vw; line-height:6.5vw; font-family: 'Gothic NeoL' !important; opacity:0; position: relative; left: -150%;}
+
+
+.layout3 {position: relative; height: 2700px; z-index: 11; margin-bottom: 100px;}
+.layout3 .egg-layout {width: 90%; padding: 0 5%;}
+.layout3 .egg-layout .egg-img-section {width: 100%; height: 58%; text-align: center;}
+.layout3 .egg-layout .egg-img-section img {width:100%; position: relative; z-index: 1; top:100%; margin-top: 5vw;}
+.layout3 .egg-layout .egg-title-section {width: 100%; height: 15%; display: table; background: #e3e3dc; position:relative; z-index: 2;}
+.layout3 .egg-layout .egg-title-section p {width: 100%; height: 100%; display: table-cell; vertical-align: middle; font-size: 6.5vw;}
+.layout3 .egg-layout .egg-content-section {width: 100%; height: 60%; display: table; background: #e3e3dc; position:relative; z-index: 2;}
+.layout3 .egg-layout .egg-content-section p {width: 100%; height: 100%; font-size:4vw; line-height:6.5vw; font-family: 'Gothic NeoL' !important; opacity:0; position: relative; left: -150%;}
+
+
+.layout4 {position: relative; height: 4000px; width:90%; padding:0 5%; background-color: #211e22; z-index: 12;}
+.layout4 .human-layout {width: 100%; position: relative;}
+.layout4 .human-layout .human-text-section {width: 100%; height: 100%; display: table; position: absolute; top:0; opacity: 0; z-index: 1;}
+.layout4 .human-layout .human-text-section .human-text-box {width: 100%; height: 100%; display: table-cell; color: #eaeaea; vertical-align: middle; padding-top: 18vw;}
+.layout4 .human-layout .human-text-section .human-text-box .human-title {font-size: 6.5vw; margin-bottom: 5vw;}
+.layout4 .human-layout .human-text-section .human-text-box .human-content{font-size: 4vw; line-height: 6.5vw; font-family: 'Gothic NeoL' !important;}
+.layout4 .human-layout .human-img-section {width: 100%; height: 100%; display: table;}
+.layout4 .human-layout .human-img-section p {width: 100%; height: 100%; display: table-cell; vertical-align: middle;}
+.layout4 .human-layout .human-img-section p img {width: 700%; left: 90%; position: relative;}
+
+.yes_no{width: 100%; position: fixed; z-index: 500; background: #e3e3dc; display: table; top:0; text-align: center; font-size: 6.3vw; line-height: 10vw; opacity: 0; height: 100vh !important;}
+.yes_no_cell {width: 100%; height: 100%; display: table-cell; vertical-align: middle;}
+.yes_no_btn_section {width: 100%; height: 50px; background: white; position: fixed; bottom:-100px; z-index: 501; display: table; opacity: 0;}
+.yes_no_btn {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center;}
+.yes_no_btn a {
+    display: inline-block;
+    width: 8vw;
+    background: #ff7151;
+    padding: 1vw 4vw;
+    border-radius: 15px;
+    color : black !important;
+    text-decoration:none;
+    font-size: 4vw;
+    border: 1px solid #f76544;
+    font-family: 'Gothic NeoB' !important;
+}
+
+.yes_no_btn a:first-child {
+	margin-right: 5vw;
+}

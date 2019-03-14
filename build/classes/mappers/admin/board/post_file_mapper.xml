@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.board.PostFileDao">
+<insert id="InsertPostFile" useGeneratedKeys="true" keyProperty="post_file_id" parameterType="com.paraframework.object.board.PostFile">
+	INSERT INTO postfile
+		( 
+			post_id,
+			file
+		)
+	VALUES 
+		(
+			${post_id}, #{file}
+		)
+</insert>
+
+
+<delete id="DeletePostFile" parameterType="int">
+	DELETE FROM
+		postfile
+	WHERE
+		post_file_id = #{id}
+</delete>
+
+<update id="UpdatePostFile">
+	UPDATE 
+   		postfile
+	SET 
+		file = #{file}
+	WHERE
+		post_file_id = ${post_file_id}
+</update>
+
+<select id="getPostFilesByPostId" parameterType="int" resultType="com.paraframework.object.board.PostFile">
+    	SELECT 
+    		post_file_id,
+    		post_id,
+			file
+		FROM 
+			postfile
+		WHERE
+			post_id = #{id}
+</select>
+<select id="getPostFileById" parameterType="int" resultType="com.paraframework.object.board.PostFile">
+    	SELECT 
+    		post_file_id,
+    		post_id,
+			file
+		FROM 
+			postfile
+		WHERE
+			post_file_id = #{id}
+</select>
+</mapper>

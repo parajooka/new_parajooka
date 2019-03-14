@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.acc_container {margin-top: 1vw; width: 100%;}
+.acc_container .acc_count {font-size: 1vw;}
+.acc_container .acc_view {margin-top: 1vw; width: 100%; border-bottom: 1px solid #8C8C8C;}
+.not_found {text-align: center; border-top: 1px solid #8C8C8C; background-color:white !important; color:black !important; padding-top:1vw; vertical-align: middle !important;}
+
+
+.acc_view {border-spacing: 0;}
+.acc_view tr td {vertical-align: top; padding:0.5vw 0; text-align: center; border-bottom: 1px solid #8C8C8C;}
+.acc_view tr:last-child td {border-bottom: none !important;}
+
+.acc_view tr:first-child td {background-color: #5D5D5D; color: white; border-right: 1px solid white !important;}
+.acc_view tr:first-child td:last-child {border-right: none !important;}
+
+.acc_view tr td:first-child {width: 10%;}
+.acc_view tr td:nth-child(2) {width: 35%;}
+.acc_view tr td:nth-child(3) {width: 20%;}
+.acc_view tr td:nth-child(4) {width: 35%;}
+
+.btn_section {width: 100%; margin-top: 1vw; text-align: right;}
+.btn_section .open_modal {display: inline-block; font-size: 1vw; cursor:pointer;  background-color: #EAEAEA; padding: 0.8vw 1vw; border: 0.5px solid #BDBDBD; font-family: 'Gothic NeoL' !important;}
+.btn_section .show_more {display: inline-block; font-size: 1vw; cursor:pointer;  background-color: #EAEAEA; padding: 0.5vw 3vw; border: 0.5px solid #BDBDBD; font-family: 'Gothic NeoL' !important;}
+
+.acc_edit {cursor: pointer;}

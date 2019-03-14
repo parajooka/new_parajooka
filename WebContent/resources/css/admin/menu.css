@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.menu_editor {width: 72%; display: inline-block; position: relative;}
+.menu_editor_form {position: relative;}
+.menu_editor .white-mask {width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: white; opacity: 0.5; cursor: no-drop; z-index: 999;}
+.menu_btn {font-size: 0.8vw; float: right; display: inline-block; margin-top: 1vw; padding:0.5vw 0.8vw;}
+
+.info_title {font-size: 0.6vw; color: red;}
+.insert_submit, .edit_submit {display: none;}
+
+.deleteMenu {float: left !important;}
+
+
+/* html 편집기 등 */
+.html_text {width:99%; margin-top: 2vw; padding-bottom: 100px; display: none;}
+#editor, #mobile_editor {
+	width: 100%;
+	height: 500px;
+}
+
+
+.html_save, .mobile_html_save {padding: 0.5vw 1.5vw; font-size: 1.5vw;}

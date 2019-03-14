@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.landing.LandingAnswerDao">
+<insert id="InsertAnswer" useGeneratedKeys="true" keyProperty="answer_id" parameterType="com.para.object.landing.LandingAnswer">
+	INSERT INTO LANDINGANSWER 
+		( 
+			question_id,
+			pring_seq,
+			answer_title,
+			answer_img,
+			event_function,
+			event_img
+		)
+	VALUES 
+		(
+			${question_id},
+			${pring_seq},
+			#{answer_title},
+			#{answer_img},
+			#{event_function},
+			#{event_img}
+		)
+</insert>
+
+<update id="UpdateAnswer">
+	UPDATE 
+   		LANDINGANSWER
+	SET 
+		pring_seq = ${pring_seq},
+		answer_title = #{answer_title},
+		answer_img = #{answer_img},
+		event_function = #{event_function},
+		event_img = #{event_img}
+	WHERE
+		answer_id = ${answer_id}
+</update>
+
+
+<delete id="DeleteAnswer" parameterType="int">
+	DELETE FROM
+		LANDINGANSWER
+	WHERE
+		answer_id = #{id}
+</delete>
+
+<select id="getAnswerByQuestionId" resultType="com.para.object.landing.LandingAnswer" parameterType="int">
+	SELECT  
+		answer_id,
+		question_id,
+		pring_seq,
+		answer_title,
+		answer_img,
+		event_function,
+		event_img
+	FROM
+		LANDINGANSWER
+	WHERE
+		question_id = #{id}
+</select>
+
+<select id="getAnswerByChain" resultType="com.para.object.landing.LandingAnswer" parameterType="int">
+	SELECT  
+		a.answer_title, a.answer_img
+	FROM
+		LANDINGANSWER as a
+	JOIN
+		LANDINGQUESTIONCHAIN as c
+	ON
+		a.answer_id = c.answer_id
+	WHERE
+		c.question_id = #{id}
+	AND
+		c.answer_id > 0
+</select>
+<select id="ValidtaionAnswerId" resultType="int" parameterType="int">
+	SELECT
+		COUNT(ANSWER_ID)
+	FROM
+		LANDINGANSWER
+	WHERE
+		ANSWER_ID = #{id}
+</select>
+<select id="getAnswerById" resultType="com.para.object.landing.LandingAnswer">
+	SELECT  
+		answer_id,
+		question_id,
+		pring_seq,
+		answer_title,
+		answer_img,
+		event_function,
+		event_img
+	FROM
+		LANDINGANSWER
+	WHERE
+		answer_id = #{id}
+</select>
+</mapper>

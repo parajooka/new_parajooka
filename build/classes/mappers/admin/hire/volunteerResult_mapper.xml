@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.VolunteerResultDao">
+<insert id="InsertVolunteerResult" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.VolunteerResult">
+	INSERT INTO VolunteerResult 
+		( 
+			hire_id, volunteer_id, file, result,
+			insert_date, modify_date
+		)
+	VALUES 
+		(
+			${hire_id}, ${volunteer_id}, #{file}, ${result},
+			#{insert_date}, #{modify_date}
+		)
+</insert>
+
+<update id="UpdateVolunteerResult">
+	UPDATE 
+   		VolunteerResult
+	SET 
+		file = #{file}, result = ${result},
+		modify_date = #{modify_date}
+	WHERE
+		id = ${id}
+</update>
+
+
+<delete id="DeleteVolunteerResult" parameterType="int">
+	DELETE FROM
+		VolunteerResult
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getVolunteerRerultsByVolunteerId" resultType="com.para.object.hire.VolunteerResult" parameterType="int">
+	SELECT
+		id, hire_id, volunteer_id, file, result,
+		insert_date, modify_date
+	FROM 
+		VolunteerResult
+	WHERE
+		volunteer_id = #{id}
+</select>
+
+<select id="getVolunteerResultById" resultType="com.para.object.hire.VolunteerResult" parameterType="int">
+	SELECT
+		id, hire_id, volunteer_id, file, result,
+		insert_date, modify_date
+	FROM 
+		VolunteerResult
+	WHERE
+		id = #{id}
+</select>
+
+<select id="getVolunteerResultByHireAndVolunteeer" resultType="com.para.object.hire.VolunteerResult" parameterType="com.para.object.hire.VolunteerResult">
+	SELECT
+		id, hire_id, volunteer_id, result, file,
+		insert_date, modify_date
+	FROM 
+		VolunteerResult
+	WHERE
+		volunteer_id = ${volunteer_id}
+	ANd
+		hire_id = ${hire_id}
+</select>
+
+<select id="CountResultByVolunteerResult" resultType="int" parameterType="com.para.object.hire.VolunteerResult">
+	SELECT
+		count(id)
+	FROM 
+		VolunteerResult
+	WHERE
+		volunteer_id = ${volunteer_id}
+	AND
+		hire_id = ${hire_id}
+</select>
+
+<select id="CountVolunteer" resultType="int" parameterType="int">
+	SELECT
+		COUNT(ID)
+	FROM
+		VolunteerResult
+	WHERE
+		hire_id = #{hire_id}
+</select>
+
+<select id="getVolunteerByHireId" resultType="com.para.object.hire.Volunteer" parameterType="int">
+	SELECT
+		v1.id, v1.name, v1.phone
+	FROM 
+		volunteer AS v1
+		JOIN VolunteerResult AS v2
+		ON v1.id = v2.volunteer_id
+	WHERE
+		hire_id = #{id}
+		order by v1.id ASC
+</select>
+</mapper>

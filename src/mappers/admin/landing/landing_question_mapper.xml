@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.landing.LandingQuestionDao">
+<insert id="InsertQuestion" useGeneratedKeys="true" keyProperty="question_id" parameterType="com.para.object.landing.LandingQuestion">
+	INSERT INTO LANDINGQUESTION 
+		( 
+			question_title,
+			question_contents
+		)
+	VALUES 
+		(
+			#{question_title},
+			#{question_contents}
+		)
+</insert>
+
+<update id="UpdateQuestion">
+	UPDATE 
+   		LANDINGQUESTION
+	SET 
+		question_title = #{question_title},
+		question_contents = #{question_contents}
+	WHERE
+		question_id = ${question_id}
+</update>
+
+
+<delete id="DeleteQuestion" parameterType="int">
+	DELETE FROM
+		LANDINGQUESTION
+	WHERE
+		question_id = #{id}
+</delete>
+
+<select id="CountQuestion" resultType="int">
+	SELECT  
+		count(question_id)
+    FROM    
+    	LANDINGQUESTION
+   	WHERE
+   		question_id > 0
+</select>
+
+<select id="getQuestionByAnswerId" resultType="com.para.object.landing.LandingQuestion" parameterType="int">
+	SELECT  
+		q.question_id, q.question_title, q.question_contents
+    FROM  
+    	LANDINGQUESTIONCHAIN AS c
+   	JOIN
+   		LANDINGQUESTION AS q
+   	ON
+   		c.question_id = q.question_id
+   	WHERE 
+   		c.answer_id = #{id}
+</select>
+
+<select id="getQuestionByPaging" resultType="com.para.object.landing.LandingQuestion">
+	SELECT  
+		question_id, question_title, question_contents
+    FROM  
+   		LANDINGQUESTION
+   	WHERE
+   		question_id > 0
+   		order by question_id desc limit ${limit_count}, ${limit};
+</select>
+
+<select id="getQuestionById" resultType="com.para.object.landing.LandingQuestion">
+	SELECT  
+		question_id, question_title, question_contents
+    FROM  
+   		LANDINGQUESTION
+   	WHERE
+   		question_id = #{id}
+</select>
+<select id="getParentQuestionById" resultType="com.para.object.landing.LandingQuestion" parameterType="int">
+	SELECT
+		q.question_id, q.question_title, q.question_contents
+	FROM
+		LANDINGQUESTION as q
+	JOIN
+		(
+			SELECT
+				a.question_id
+			FROM
+				LANDINGANSWER as a
+			JOIN
+				(
+					SELECT
+						c.answer_id
+					FROM
+						LANDINGQUESTIONCHAIN as c
+					WHERE
+						c.question_id = #{question_id}
+				) as b
+			ON
+				a.answer_id = b.answer_id
+		) as j
+	ON
+		q.question_id = j.question_id
+	WHERE
+		q.question_id > 0
+</select>
+<select id="ValidationQuestion" resultType="int" parameterType="int">
+	SELECT  
+		count(question_id)
+    FROM  
+   		LANDINGQUESTION
+   	WHERE
+   		question_id = #{id}
+   	AND
+   		question_id > 0
+</select>
+</mapper>

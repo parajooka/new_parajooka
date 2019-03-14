@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.CategoryDao">
+<insert id="insertCategory" useGeneratedKeys="true" keyProperty="category_idx" parameterType="com.paraframework.object.Category">
+	INSERT INTO category 
+		( 
+			add_date, 
+			group_idx, 
+			category_name, 
+			modify_date, 
+			parent_category_idx, 
+			print_seq, 
+			view_yn,
+			use_yn,
+			category_url
+		)
+	VALUES 
+		(
+			#{add_date}, ${group_idx}, #{category_name},
+			 #{modify_date}, ${parent_category_idx},
+			${print_seq}, ${view_yn}, ${use_yn}, #{category_url}
+		)
+</insert>
+
+<update id="moveCategory">
+	UPDATE 
+   		category
+	SET 
+		group_idx = ${group_idx}, 
+		modify_date = #{modify_date}, 
+		parent_category_idx = ${parent_category_idx}
+	WHERE
+		category_idx = ${category_idx}
+</update>
+
+
+<update id="updateCategory">
+	UPDATE 
+   		category
+	SET 
+		category_name = #{category_name}, 
+		modify_date = #{modify_date}, 
+		print_seq = ${print_seq}, 
+		view_yn = ${view_yn},
+		use_yn = ${use_yn},
+		category_url = #{category_url}
+	WHERE
+		category_idx = ${category_idx}
+</update>
+
+<delete id="deleteCategory" parameterType="int">
+	DELETE FROM
+		category
+	WHERE
+		category_idx = #{id}
+</delete>
+
+<select id="getAllCategory" resultType="com.paraframework.object.Category">
+	SELECT  
+			category_idx,
+            add_date, 
+			group_idx, 
+			category_name, 
+			modify_date, 
+			parent_category_idx, 
+			print_seq, 
+			view_yn,
+			use_yn,
+			category_url
+    FROM    
+    		(select * from category
+             order by parent_category_idx, print_seq) products_sorted,
+            (select @pv := '0') initialisation
+    WHERE   
+    		find_in_set(parent_category_idx, @pv) and length(@pv := concat(@pv, ',', category_idx));
+</select>
+
+<select id="getViewCategory" resultType="com.paraframework.object.Category">
+	SELECT  
+			category_idx,
+            add_date, 
+			group_idx, 
+			category_name, 
+			modify_date, 
+			parent_category_idx, 
+			print_seq, 
+			view_yn,
+			use_yn,
+			category_url
+    FROM    
+    		(select * from category where view_yn = 0
+             order by parent_category_idx, print_seq) products_sorted,
+            (select @pv := '0') initialisation
+    WHERE   
+    		find_in_set(parent_category_idx, @pv) and length(@pv := concat(@pv, ',', category_idx));
+</select>
+
+<select id="getCategoryByParentId" parameterType="int" resultType="com.paraframework.object.Category">
+	SELECT  
+			category_idx,
+            add_date, 
+			group_idx, 
+			category_name, 
+			modify_date, 
+			parent_category_idx, 
+			print_seq, 
+			view_yn,
+			use_yn,
+			category_url
+    FROM    
+    		(select * from category
+             order by parent_category_idx, print_seq) products_sorted,
+            (select @pv := #{id}) initialisation
+    WHERE   
+    		find_in_set(parent_category_idx, @pv) and length(@pv := concat(@pv, ',', category_idx));
+</select>
+<select id="getCategoryById" parameterType="int" resultType="com.paraframework.object.Category">
+	SELECT  
+		category_idx,
+        add_date, 
+		group_idx, 
+		category_name, 
+		modify_date, 
+		parent_category_idx, 
+		print_seq, 
+		view_yn,
+		use_yn,
+		category_url
+    FROM
+    	category
+    WHERE
+    	category_idx = #{id}
+</select>
+<select id="getCategoryByStep" parameterType="int" resultType="com.paraframework.object.Category">
+	SELECT  
+		category_idx,
+        add_date, 
+		group_idx, 
+		category_name, 
+		modify_date, 
+		parent_category_idx, 
+		print_seq, 
+		view_yn,
+		use_yn,
+		category_url
+    FROM
+    	category
+    WHERE
+    	parent_category_idx = #{id}
+    	ORDER BY PRINT_SEQ ASC
+</select>
+</mapper>

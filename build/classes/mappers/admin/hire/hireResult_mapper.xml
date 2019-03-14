@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.HireResultDao">
+<insert id="InsertHireResult" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.HireResult">
+	INSERT INTO HireResult 
+		( 
+			volunteer_result_id, question_id,
+			answer_id, open_answer
+		)
+	VALUES 
+		(
+			${volunteer_result_id}, ${question_id},
+			${answer_id}, #{open_answer}
+		)
+</insert>
+
+<update id="UpdateHireResult">
+	UPDATE 
+   		HireResult
+	SET 
+		answer_id = ${answer_id}, open_answer = #{open_answer}
+	WHERE
+		id = ${id}
+</update>
+
+
+<delete id="DeleteHireResult" parameterType="int">
+	DELETE FROM
+		HireResult
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getHireResultByVolunteerResult" resultType="com.para.object.hire.HireResult" parameterType="com.para.object.hire.HireResult">
+	SELECT
+		id, volunteer_result_id,
+		answer_id, open_answer, question_id
+	FROM 
+		HireResult
+	WHERE
+		volunteer_result_id = #{volunteer_result_id}
+</select>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.QnHJoinDao">
+<insert id="InsertQnH" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.QnHJoin">
+	INSERT INTO qnhjoin 
+		( 
+			question_id,
+			hire_id
+		)
+	VALUES 
+		(
+			${question_id},
+			${hire_id}
+		)
+</insert>
+
+<update id="UpdateQnH">
+	UPDATE 
+   		qnhjoin
+	SET 
+		question_id,
+		hire_id
+	WHERE
+		id = ${id}
+</update>
+
+<delete id="DeleteQnH" parameterType="map">
+	DELETE FROM
+		qnhjoin
+	WHERE
+		hire_id = #{hire_id}
+	AND
+		question_id = #{question_id}
+</delete>
+
+<select id="countQnH" parameterType="map" resultType="int">
+	SELECT
+		count(id)
+	FROM
+		qnhjoin
+	WHERE
+		hire_id = #{hire_id}
+	AND
+		question_id = #{question_id}
+</select>
+
+<select id="getQuestionByQnH" parameterType="int" resultType="com.para.object.hire.Question">
+	SELECT
+		q.id,
+		q.type,
+		q.content,
+		q.example
+	FROM
+		question AS q
+		JOIN qnhjoin AS j
+		ON q.id = j.question_id
+	WHERE
+		hire_id = #{id}
+		order by q.id asc
+</select>
+</mapper>

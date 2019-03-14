@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.paraframework.dao.MenuHtmlDao">
+<insert id="insertHTML" useGeneratedKeys="true" keyProperty="id" parameterType="com.paraframework.object.MenuHtml">
+	INSERT INTO menuhtml
+		( 
+			menu_idx,
+			menu_html,
+			mobile_menu_html
+		)
+	VALUES 
+		(
+			${menu_idx}, #{menu_html}, #{mobile_menu_html}
+		)
+</insert>
+<update id="updateHTML">
+	UPDATE 
+   		menuhtml
+	SET 
+		menu_html = #{menu_html}
+	WHERE
+		menu_idx = ${menu_idx}
+</update>
+
+
+<update id="updateMobileHTML">
+	UPDATE 
+   		menuhtml
+	SET 
+		mobile_menu_html = #{mobile_menu_html}
+	WHERE
+		menu_idx = ${menu_idx}
+</update>
+
+<select id="getHTMLById" parameterType="int" resultType="com.paraframework.object.MenuHtml">
+	SELECT
+		id, menu_idx, menu_html, mobile_menu_html
+	FROM
+		menuhtml
+	WHERE
+		id = #{id}
+</select>
+
+<select id="getHTMLByMenuId" parameterType="int" resultType="com.paraframework.object.MenuHtml">
+	SELECT
+		id, menu_idx, menu_html, mobile_menu_html
+	FROM
+		menuhtml
+	WHERE
+		menu_idx = #{id}
+</select>
+</mapper>

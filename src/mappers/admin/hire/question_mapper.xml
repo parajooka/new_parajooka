@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.para.dao.hire.QuestionDao">
+<insert id="InsertQuestion" useGeneratedKeys="true" keyProperty="id" parameterType="com.para.object.hire.Question">
+	INSERT INTO question 
+		( 
+			type,
+			content,
+			example
+		)
+	VALUES 
+		(
+			${type},
+			#{content},
+			#{example}
+		)
+</insert>
+
+<update id="UpdateQuestion">
+	UPDATE 
+   		question
+	SET 
+		type = ${type},
+		content = #{content},
+		example = #{example}
+	WHERE
+		id = ${id}
+</update>
+
+
+<delete id="DeleteQuestion" parameterType="int">
+	DELETE FROM
+		question
+	WHERE
+		id = #{id}
+</delete>
+
+<select id="getCount" resultType="int">
+	SELECT
+		COUNT(id)
+	FROM
+		question
+</select>
+
+<select id="getQuestionByPage" resultType="com.para.object.hire.Question">
+	SELECT  
+		id,
+		type,
+		content,
+		example
+    FROM    
+    	question
+  		order by id asc limit ${limit_count}, ${limit};
+</select>
+
+<select id="getQuestionById" resultType="com.para.object.hire.Question" parameterType="int">
+	SELECT  
+		id,
+		type,
+		content,
+		example
+    FROM    
+    	question
+  	WHERE
+  		id = #{id}
+</select>
+</mapper>

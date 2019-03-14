@@ -1,0 +1,16 @@
+﻿/* 여러 페이지에서 비슷한 버튼을 사용할 때 class명만으로 적용하기위해 button.css로 분리 */
+
+/* 오렌지색 버튼 */
+.btn-orange {border-radius: 3px; background: #FF9436; cursor: pointer;  color: white; text-decoration: none;}
+
+/* 남색계열 버튼 */
+.btn-darkblue {background: #3f5370; border-radius: 5px; color: white; border: 0.5px solid #364760; cursor:pointer; text-decoration: none;}
+
+/* 흰색 버튼 */
+.btn-white {background: #f5f5f5; border-radius: 5px; color: black;; border: 0.5px solid #BDBDBD; cursor:pointer; text-decoration: none;}
+
+/* 회색 버튼 */
+.btn-gray {color:white; background: #959ca4; border: 0.1px solid #5D5D5D; border-radius: 3px; cursor: pointer; text-decoration: none;}
+
+/* 초록 버튼 */
+.btn-green {background: #82b440; border-radius: 5px; cursor:pointer; color: white; text-align: center; text-decoration: none;}

@@ -1,0 +1,104 @@
+html, body {overflow-x: hidden; width: 100%; height: auto; background: #eaeaea;}
+
+.copy {position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; color: #868686; z-index: 9999;}
+.copy span {display: inline-block;  margin-bottom: 15px; font-size: 2.8vw;}
+
+.nick-container {width: 100%; display: table; position: relative; top:0; left: 0;}
+.nick-container .nick-section {width: 100%; height: 100%; text-align: center; display: table-cell; vertical-align: middle;}
+.nick-container .nick-section ul li:first-child {font-size: 6vw; margin-bottom: 2.5vw;}
+.nick-container .nick-section ul li:nth-child(2) {font-size: 4vw; margin-bottom: 5vw;}
+
+.next_btn, .btn_begin {cursor: pointer; width: 18vw;}
+.next_btn2 {opacity: 0.2;}
+
+.popup-container {width: 100%; top:0; left:100%; position: fixed; z-index: 1000; background: #eaeaea;}
+.close_btn {position: absolute; top:0; right: 0; margin: 15px 6vw 0 0; cursor: pointer; z-index: 9999; width: 5vw}
+
+.layout1 {width: 100%; height: 100%; display: table; position: absolute; z-index: 1001;}
+.layout1 .layout1-section {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center; font-size: 4vw;}
+.layout1 .layout1-section .field-long {background: none; width: 65vw !important; border: 1.5px solid black; margin: 4vw 0 8vw 0; font-size: 3vw;}
+
+.layout2 {width: 100%; height: 100%; display: table; position: absolute; z-index: 1500; left: 100%;}
+.layout2 .layout2-section {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center; font-size: 4vw;}
+.next_btn3 {margin-top:5vw;}
+
+.layout3 {width: 100%; height: 100%; display: table; position: absolute; z-index: 2000; left: 100%;}
+.layout3 .layout3-section {width: 100%; height: 100%; display: table-cell; vertical-align: middle; text-align: center; font-size: 23px;}
+.layout3 .point-zone {display: none;}
+.layout3 .point-zone p:nth-child(1) {font-size: 6vw; margin-bottom: 2vw;}
+.layout3 .point-zone p:nth-child(2) {font-size: 6vw; margin-bottom: 2vw;}
+.layout3 .point-zone p:nth-child(3) {font-size: 3vw; margin-bottom: 6vw;}
+.point {display: inline-block; text-align: left; font-size: 0.8vw; text-align: center;}
+.point .point_btn {
+    display: inline-block;
+    border: 1px solid black;
+    width: 18.5vw;
+    height: 15vw;
+    font-size: 10vw;
+    cursor: pointer;
+    text-align: center;
+    margin: 4vw;
+    padding-top: 2.5vw;
+}
+.point .point_btn:last-child {margin-right: 0px !important;}
+
+.point .point_btn:nth-child(5), .point .point_btn:nth-child(4), .point .point_btn:nth-child(3) {margin-top: 0 !important;}
+.point .point_btn:nth-child(11), .point .point_btn:nth-child(10), .point .point_btn:nth-child(9) {margin-bottom: 0 !important;}
+
+
+.layout3 .img-zone img {margin-bottom: 15px; }
+.complete {background: #eaeaea; fixed; z-index: 9998; width: 100%; text-align: center; position:absolute; top:0; display: none;}
+
+.complete_message_box {width: 100%; position: relative; margin-top: 30px; background: #eaeaea; display: none; z-index: 99999;}
+.complete_message_box .your_result {font-size: 3vw; margin-bottom: 1vw;}
+.complete_message_box .random_code {
+    padding: 5.05vw 0.4vw;
+    border: 1.3px solid black;
+    width: 16vw;
+    border-radius: 100%;
+    text-align: center;
+    display: inline-block;
+    font-size: 4.5vw;
+    margin: 0vw 0 6vw 0;
+}
+
+.complete_message_box .long_text_box {
+	font-size: 2.9vw;
+	line-height: 4.2vw;
+    margin-bottom: 6vw;
+}
+.complete_message_box .theEnd {
+    font-size: 6vw;
+    letter-spacing: -0.5vw;
+    margin-bottom: 1vw;
+    font-weight: bold;
+}
+.complete_message_box .howto {
+    font-size: 3.1vw;
+    margin-bottom: 1vw;
+}
+.complete_message_box .company_info {
+    display: inline-block;
+    line-height: 3.5vw;
+    font-size: 2.9vw;
+    padding: 1.5vw 2vw;
+    border: 2px solid black;
+    margin-bottom: 7vw;
+}
+.complete_message_box .last_logo img {width: 21vw;}
+
+.egg img {width: 20vw;}
+.egg_message {
+    margin: 0 0 0.8vw;
+    font-size: 6vw;
+}
+.show_complete {width: 15vw; cursor: pointer; margin-top: 3vw;}
+
+.noooo {
+	display:inline-block;
+	width:100%;
+    text-align: left;
+    margin-bottom: 1vw;
+    font-size: 3vw;
+    padding-left: 14vw;
+}

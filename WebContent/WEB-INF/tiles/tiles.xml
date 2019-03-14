@@ -1,0 +1,79 @@
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+ 
+    <!-- 사용자 메뉴 표시 -->
+    <definition name="base" template="/WEB-INF/tiles/custom/template.jsp">
+        <put-attribute name="left"   value="/WEB-INF/tiles/custom/user_left.jsp" />
+        <put-attribute name="pages" value="/WEB-INF/views/layer/paging_layer.jsp" />
+        <put-attribute name="search" value="/WEB-INF/views/layer/search_layer.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/custom/user_header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/custom/user_footer.jsp" />
+    </definition>
+    
+    <!-- 관리자 메뉴 표시 -->
+    <definition name="admin" template="/WEB-INF/tiles/admin_template.jsp">
+        <put-attribute name="left"   value="/WEB-INF/tiles/admin_left.jsp"/>
+        <put-attribute name="pages" value="/WEB-INF/views/layer/paging_layer.jsp" />
+        <put-attribute name="search" value="/WEB-INF/views/layer/search_layer.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/admin_header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/admin_footer.jsp" />
+    </definition>
+ 
+ 	
+	<!-- 관리자 페이지 --> 
+    <definition name="jooka/admin/*" extends="admin">
+        <put-attribute name="body" value="/WEB-INF/views/jooka/admin/{1}.jsp" />
+    </definition>
+    <definition name="jooka/admin/*/*" extends="admin">
+        <put-attribute name="body" value="/WEB-INF/views/jooka/admin/{1}/{2}.jsp" />
+    </definition>
+    <definition name="jooka/admin/*/*/*" extends="admin">
+        <put-attribute name="body" value="/WEB-INF/views/jooka/admin/{1}/{2}/{3}.jsp" />
+    </definition>
+    <definition name="jooka/admin/*/*/*/*" extends="admin">
+        <put-attribute name="body" value="/WEB-INF/views/jooka/admin/{1}/{2}/{3}.jsp" />
+    </definition>  
+ 
+ 
+	<!-- 일반 사용자 페이지 --> 
+    <definition name="custom/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}.jsp" />
+    </definition>
+    <definition name="custom/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}.jsp" />
+    </definition>
+    <definition name="custom/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}.jsp" />
+    </definition>       
+    <definition name="custom/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}.jsp" />
+    </definition>          
+    <definition name="custom/*/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}/{5}.jsp" />
+    </definition>            
+    <definition name="custom/*/*/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}/{5}/{6}.jsp" />
+    </definition>       
+    
+     <definition name="/custom/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}.jsp" />
+    </definition>
+    <definition name="/custom/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}.jsp" />
+    </definition>
+    <definition name="/custom/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}.jsp" />
+    </definition>       
+    <definition name="/custom/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}.jsp" />
+    </definition>       
+    <definition name="custom/*/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}/{5}.jsp" />
+    </definition>     
+    <definition name="custom/*/*/*/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/custom/{1}/{2}/{3}/{4}/{5}/{6}.jsp" />
+    </definition>     
+</tiles-definitions>
