@@ -20,7 +20,7 @@
 	<!-- 위에서 돈이 떨어지는 레이아웃 -->
 	<div class="steven-section">
 		<div class="img-zone">
-			<img class="steven-jobs" alt="steven" src="/resources/img/landing/01.png">
+			<img class="steven-jobs" alt="steven" src="/resources/img/landing/pc_01.png">
 			<img class="logo2" alt="white_logo" src= "/resources/img/landing/logo2.png">
 		</div>
 	</div>
@@ -119,13 +119,13 @@ $('.steven-section').sequencer({
     remainder : 100,
     else_func : function() {
     	if (img_format($(".steven-jobs")) != "gif" && up) {
-    		$(".steven-jobs").attr('src', '/resources/img/landing/main.gif');
+    		$(".steven-jobs").attr('src', '/resources/img/landing/pc_main.gif');
     	}
     	
     	if (img_format($(".money-back-img")) != "gif" && up) {
     		if (timer) clearInterval(timer);
 			timer = setTimeout(function (){$(".money-back-img").fadeOut(500);}, 2500);
-    		$(".money-back-img").css("height", "105%").attr("src", "/resources/img/landing/rain.gif").show();
+    		$(".money-back-img").css("width", "100%").attr("src", "/resources/img/landing/rain.gif").show();
     	} else if (!up && img_format($(".money-back-img")) == "gif") {
     		$(".money-back-img").attr("src", "").hide();
     	}

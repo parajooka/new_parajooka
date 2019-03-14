@@ -21,7 +21,7 @@ if (path.substr(-1) === "/") {
 }
 
 for (var i = 1; i <= count; i++) {
-	paths.push(path + "/" + pad(i, 2) + "." + ext);
+	paths.push(path + "/pc_" + pad(i, 2) + "." + ext);
 }
 
 $("<div class='jquery-sequencer-preload'></div>").appendTo("body");
