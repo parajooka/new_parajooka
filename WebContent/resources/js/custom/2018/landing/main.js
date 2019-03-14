@@ -370,5 +370,12 @@ $(document).ready(function () {
 			}, 500);
     	}
     	
+    	
+    	if (scrollTop >= $(".human-section").offset().top && scrollTop <= $(".human-section").offset().top + $(".human-section").height() - 50) {
+    		$("#logo_img").attr("src", "/resources/common/img/renewal/white_logo.png");
+    	} else {
+    		$("#logo_img").attr("src", "/resources/common/img/renewal/logo.png");
+    	}
+    	
     });
 });

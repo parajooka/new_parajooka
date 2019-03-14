@@ -124,13 +124,14 @@ $('.steven-section').sequencer({
     	
     	if (img_format($(".money-back-img")) != "gif" && up) {
     		if (timer) clearInterval(timer);
-			timer = setTimeout(function (){$(".money-back-img").fadeOut(500);}, 2500);
+			timer = setTimeout(function (){$(".money-back-img").fadeOut(500, function() {
+	    		$(".money-back-img").attr("src", "").hide();
+			});}, 2500);
     		$(".money-back-img").css("width", "100%").attr("src", "/resources/img/landing/rain.gif").show();
-    	} else if (!up && img_format($(".money-back-img")) == "gif") {
-    		$(".money-back-img").attr("src", "").hide();
     	}
     },
     func : function() {
+		$(".money-back-img").attr("src", "").hide();
     	$('.steven-jobs').attr("src", paths[index]);
     	if (index > 0) {
     		$(".scroll_down").hide();

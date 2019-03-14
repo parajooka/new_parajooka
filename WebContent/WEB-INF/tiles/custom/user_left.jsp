@@ -7,7 +7,7 @@
 	<div class="logo_section">
 		<a class="logo_img_box" href="/">
 			<span class="deco_round"></span>
-			<img src="/resources/common/img/renewal/logo.png">
+			<img id="logo_img" src="/resources/common/img/renewal/logo.png">
 		</a>
 		
 		<span class="mobile_menu_open_btn"><img src="/resources/common/img/mobile_menu.png"></span>

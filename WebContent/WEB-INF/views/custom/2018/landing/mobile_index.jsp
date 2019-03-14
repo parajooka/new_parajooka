@@ -161,8 +161,8 @@ $('.mask-test').sequencer({
 			"background-color" : b_color_array[b_color_array.length - 1],
 			"opacity" : b_op_array[b_op_array.length - 1]
 		});
-    	
     	if (!show_check4) {
+    		$("#logo_img").attr("src", "/resources/common/img/renewal/logo.png");
     		$('.yes_no').stop().animate({
     			opacity : 1
     		}, 500);

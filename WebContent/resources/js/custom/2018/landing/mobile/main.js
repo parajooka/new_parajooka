@@ -447,14 +447,11 @@ $(document).ready(function() {
 			human_img.stop().css('left', '90%');
 		}
 		
-		if (scrollTop > layout4.offset().top - 50 && scrollTop < layout4.offset().top + layout4.height() - win_height - 50) {
-			if (menu_icon.attr('src') != '/resources/common/img/white_mobile_menu.png' && menu_icon.attr('src') != '/resources/img/landing/menu/white-02.png') {
-				white_logo();
-			}
+		
+		if (scrollTop >= layout4.offset().top - 50 && scrollTop < $(".mask-test").offset().top - 50) {
+    		$("#logo_img").attr("src", "/resources/common/img/renewal/white_logo.png");
 		} else {
-			if (menu_icon.attr('src') != '/resources/common/img/mobile_menu.png' && menu_icon.attr('src') != '/resources/img/landing/menu/02.png') {
-				black_logo();
-			}
+    		$("#logo_img").attr("src", "/resources/common/img/renewal/logo.png");
 		}
 	});
 });
