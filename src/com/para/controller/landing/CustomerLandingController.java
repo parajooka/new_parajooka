@@ -47,18 +47,14 @@ public class CustomerLandingController extends BaseController {
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String Index(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.getSession().removeAttribute("target_menu");
-		request.getSession().setAttribute("menu_move_cmd", true);
-		
 		String contact = (String) request.getSession().getAttribute("contact");
 		
 		Menu target_menu = (Menu) request.getSession().getAttribute("target_menu");
 		
-		request.getSession().setAttribute("target_menu", menu_service.getMenuByName("Contact"));
 		if (target_menu == null) {
-			request.getSession().setAttribute("menu_move_cmd", true);
-		} else {
-			request.getSession().setAttribute("menu_move_cmd", false);
+			request.getSession().setAttribute("target_menu", menu_service.getMenuByName("Contact"));
 		}
+		request.getSession().setAttribute("menu_move_cmd", false);
 		
 		//이미 랜딩에 참여한사람
 		if (participant_service.ValidParticipant(getIpAddress(request)) > 0) {

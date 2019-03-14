@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .container {margin-top:0;}
-.landing_landing_container {width:100%; height:100vh; background-color:#000; position: absolute; z-index: 99999; display: table; top:0; left: 0;}
+.landing_landing_container {width:100%; height:100vh; background-color:#000; position: absolute; z-index: 99999; display: table; top:0; left: 0; opacity: 0;}
 .landing_landing_section {width:100%; height:100%; display: table-cell; vertical-align: middle; text-align: center; color: #424347; font-size:17px;}
 
 .question_contianer {width:100%; min-height:100vh; position: relative; display: table; opacity: 0; font-size:15px;}
@@ -183,7 +183,7 @@ $(window).on("load", function() {
 		"bottom" : "-"+ ($(".message_box").height() * 2) + "px"
 	});
 	
-	var landing_landing_timer = 4000;
+	var landing_landing_timer = 1;
 	
 	setTimeout(function() {
 		//랜딩의 랜딩 감추기
@@ -222,7 +222,7 @@ $(window).on("load", function() {
 			});
 		});
 		
-		$("body").css("background-color", "#fff");
+		//$("body").css("background-color", "#fff");
 	}, landing_landing_timer);
 });
 
