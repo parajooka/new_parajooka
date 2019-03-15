@@ -48,6 +48,12 @@ $(document).ready(function() {
 	
 	var toTop_interval;
 	
+	$(".fotter_toTop").on("click", function() {
+		$('html, body').animate({
+		    scrollTop: 0
+		}, 800); // for all browsers
+	});
+	
 	$(window).on("scroll", function () {
         if ($(window).scrollTop() >= ($(".container").height() - $(window).height() - 20) && !toTop_interval) {
         	toTop_interval = setInterval(function() {
