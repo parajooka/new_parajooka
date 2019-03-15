@@ -2,7 +2,7 @@ html, body {overflow-x: hidden; width: 100%; height: auto !important;}
 ul {list-style: none;}
 p, ul {margin: 0; padding: 0;}
 .container {overflow:hidden; width:100%; margin:auto;}
-.mobile_menu_open_btn {display: none;}
+.mobile_menu_open_btn, .fotter_copy {display: none;}
 
 /* 랜딩화면 */
 .landing_main {position: relative;}

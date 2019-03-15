@@ -54,6 +54,10 @@ $(document).ready(function() {
 		}, 800); // for all browsers
 	});
 	
+	$("body").contextmenu( function() {
+		return false;
+	});
+	
 	$(window).on("scroll", function () {
         if ($(window).scrollTop() >= ($(".container").height() - $(window).height() - 20) && !toTop_interval) {
         	toTop_interval = setInterval(function() {

@@ -3,7 +3,7 @@ html, body {overflow-x: hidden; width: 100%; height: auto; background-color: #e3
 ul {list-style: none;}
 p, ul {margin: 0; padding: 0;}
 .container {width:100%;}
-.left_menu_container {display: none;}
+.left_menu_container, .fotter_copy {display: none;}
 
 /* 랜딩화면 */
 .landing-mask {width:100%; font-size:1.8vw; position: fixed; top:0; left: 0; z-index: 9999; background-color: white; color: black; display: table;}
