@@ -65,6 +65,7 @@
 	}
 	
 	@media (max-width:1200px) {
+		#calendar tr:nth-child(2) td {font-size:3vw;}
 		.chart_title {font-size:5vw; padding: 5vw 0 5vw;}
 		.chart_hello, .injection_section, #reservation_memo, #reservation_pw, #edit_pw {font-size:3.5vw; padding:0;}
 	
@@ -655,7 +656,7 @@ $(window).on("resize", function() {
 		Contact
 	</div>
 	<div class="chart_hello">
-		${participant.name}님 안녕하세요? 실희라고 합니다.<br>
+		${participant.name}님 안녕하세요? 최첨단 A.I 실히라고 합니다.<br>
 		우선 날짜를 선택해주세요.
 	</div>
 	<form class="injection_section" method="post">

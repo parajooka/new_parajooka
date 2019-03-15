@@ -124,8 +124,8 @@ $('.layout1').sequencer({
     	
     	if (img_format($(".money-back-img")) != "gif" && up) {
     		if (money_timer) clearInterval(money_timer);
-    		money_timer = setTimeout(function (){$(".money-back-img").fadeOut(500);}, 2500);
-    		$(".money-back-img").attr("src", "/resources/img/landing/rain.gif").show();
+    		money_timer = setTimeout(function (){$(".money-back-img").fadeOut(500);}, 3000);
+    		$(".money-back-img").attr("src", "/resources/img/landing/mobile_rain.gif").show();
     		$('.logo2').show();
     	} else if (!up && img_format($(".money-back-img")) == "gif") {
     		$(".money-back-img").attr("src", "").hide();

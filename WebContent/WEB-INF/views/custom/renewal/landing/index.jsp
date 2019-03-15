@@ -84,6 +84,13 @@ input::placeholder {
 	.mobile_point_btn {font-size: 5vw; border: 1px solid #292020; width: 21vw; padding: 7vw 0; display: inline-block; margin: 1vw 1vw;}
 	.mobile_umyes {text-align: right; display: block;}
 	.mobile_umno {text-align: left; display: block;}
+	
+	.contact_clear {display: none; width:100%; margin:auto; color:#d87646;}
+	.clear_title {font-size: 8vw; margin-bottom: 3vw;}
+	.clear_content {height: 48vw; text-align: center; line-height: 7.5vw;}
+	.clear_btn {margin-top:2vw;}
+	.go_contact_btn {border: 1px solid #575757; padding: 1vw 5vw; font-size: 3.5vw;}
+	.contact_clear {margin-top:7vw;}
 }
 </style>
 <script src="/resources/common/js/jQuery_mechanical_typing.js"></script>

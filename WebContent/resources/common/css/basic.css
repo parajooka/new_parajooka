@@ -29,9 +29,9 @@ a {text-decoration: none; font-weight: normal;}
 
 .mobile_menu_open_btn {float: right; width: 30px; margin: 30px 20px 0 0; display: none;}
 .mobile_menu_open_btn img {width:100%;}
-.mobile_menu_container {display: none; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; background: #3e3c3d; background: -moz-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e3c3d), color-stop(100%, #2d2c2d)); background: -webkit-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -o-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: -ms-linear-gradient(top, #3e3c3d 0%, #2d2c2d 100%); background: linear-gradient(to bottom, #3e3c3d 0%, #2d2c2d 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3e3c3d', endColorstr='#2d2c2d', GradientType=0);}
+.mobile_menu_container {display: none; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; background: #e3e3dc;}
 .mobile_menu_container ul {list-style: none; margin: 0; width: 100%; padding: 0;}
-.mobile_menu_container ul li {position: relative; font-size: 3vw; font-weight: bold; border-bottom: 1px solid #222222; border-top: 1px solid #444444; padding: 3vw 2vw;}
+.mobile_menu_container ul li {position: relative; font-size: 6vw; font-weight: bold; padding: 3vw 2vw;}
 .mobile_menu_mask {display:none;}
 
 .follw_me_container {position: absolute; bottom: 0; margin-left: 30px; width: 70px; margin-bottom: 7px;}
@@ -54,7 +54,9 @@ h2 {display: inline-block; font-size: 1vw; color: #575757; margin: 0; padding: 0
 @media (max-width:1200px) {
 	.container {width:90%; margin:auto; margin-top:120px;}
 	.left_menu_container {display: none;}
-	.mobile_menu_container {box-shadow: 2vw 2vw 2vw 2vw #2c2c2c; display: block; position: absolute; top: 0; right: -55vw; min-height: 100vh; z-index: 9999; width: 50vw;}
+	.mobile_menu_container {display: block; position: absolute; top: 0; right: -55vw; min-height: 100vh; padding-top: 30vh; z-index: 9999; width: 50vw;}
 	.mobile_menu_mask {position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9998; background-color: #000; opacity: 0; display: none;}
 	.mobile_menu_open_btn {display: inline-block; cursor: pointer;}
+	.fotter_toTop {display: none !important;}
+	.fotter_copy {display: none !important;}
 }

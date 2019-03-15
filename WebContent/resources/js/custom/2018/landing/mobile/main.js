@@ -133,8 +133,7 @@ $(document).ready(function() {
 	$('.landing-mask').css('height', $(window).height());
 	//$('.landing_main').hide();
 	$('.money-back-img').css({
-		'width' : '400vw',
-		'left' : '-65%'
+		'width' : '150%'
 	});
 	$('.yes_no').height($(window).height());
 	

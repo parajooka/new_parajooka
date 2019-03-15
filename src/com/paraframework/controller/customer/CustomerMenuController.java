@@ -46,8 +46,8 @@ public class CustomerMenuController extends BaseController {
 			if (isMobile(request)) {
 				return getMobileRequestURI(homepage.getMain_url());
 			} else {
-				return getMobileRequestURI(homepage.getMain_url());
-				//return homepage.getMain_url().substring(1, homepage.getMain_url().length()).replaceAll(".do", "");
+				//return getMobileRequestURI(homepage.getMain_url());
+				return homepage.getMain_url().substring(1, homepage.getMain_url().length()).replaceAll(".do", "");
 			}
 		}
 	}

@@ -20,12 +20,9 @@
 		<div class="mobile_menu_mask"></div>
 		<div class="mobile_menu_container">
 			<ul>
-				<li style="padding:4vw 2vw;">
-					<span style="text-align: center; display: inline-block; width: 100%; color: white; font-weight: bold; font-size: 4vw;">Navigation</span>
-				</li>
 				<c:forEach items="${menu_list}" var="menu">
 					<li>
-						<a style="color:white; display: inline-block; width:100%; height: 100%; text-align: center;" href="/custom/menu/index?menu_idx=${menu.menu_idx}">${menu.menu_name}</a>
+						<a style="color:black; display: inline-block; width:100%; height: 100%; text-align: center;" href="/custom/menu/index?menu_idx=${menu.menu_idx}">${menu.menu_name}</a>
 					</li>
 				</c:forEach>
 			</ul>
