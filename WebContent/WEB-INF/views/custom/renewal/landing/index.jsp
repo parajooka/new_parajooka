@@ -32,10 +32,6 @@
 
 .question_title img {max-height: 50vh; max-width:100%;}
 .contents_img_box {text-align: center; margin-top:20px;}
-.contact_clear {display: none; width:800px; margin:auto;}
-.clear_content {height: 167px; text-align: left;}
-.clear_btn {text-align: center; margin-top: 19px;}
-.go_contact_btn {display: inline-block; border: 1px solid #575757; padding: 2px 15px; cursor: pointer; color: black; font-size: 13px;}
 
 input::placeholder {
 	color :#bbbab6;
@@ -53,7 +49,11 @@ input::placeholder {
 .ui-widget.ui-widget-content {border:none !important;}
 .ui-widget-header {background:#D87646;}
 
-.clear_title {text-align: center; font-family: 'Gothic NeoSB' !important; font-weight: bold; font-size: 27px; margin-bottom: 15px;}
+.contact_clear {display: none; width:800px; margin:auto; color:#d87646;}
+.clear_content {height: 193px; text-align: center; line-height:27px;}
+.clear_btn {text-align: center; margin-top: 8px; visibility: hidden; opacity: 0;}
+.go_contact_btn {display: inline-block; border: 1px solid #575757; padding: 2px 15px; cursor: pointer; color: black; font-size: 13px;}
+.clear_title {text-align: center; font-family: 'Gothic NeoSB' !important; font-weight: bold; font-size: 27px; margin-bottom: 12px;}
 
 @media (max-width:1200px) {
 	#progressbar1 {width: 100%;}
@@ -594,31 +594,16 @@ $(document).ready(function() {
 				var next_url = data['next_url'];
 				
 				$(".question_section_box").fadeOut(hide_speed, function() {
-					$(".contact_clear").fadeIn(hide_speed, function() {
-						var msg = 'Congratulations!\\\\'+
-								  '휴,이제 모든 것이 끝났어요.\\'+
-								  '당신이 원하는 것과 디자인적 취향도 알게되었군요.\\'+
-								  '이제 당신의 선택만이 남았습니다.\\'+
-								  '우리와 함께 하길 원한다면 아래의 버튼을 눌러 우리의 \\'+
-								  '최첨단 인공지능 비서 시스템 실히를 통해 스케줄을 잡아주세요.\\'+
-								  '오늘 미팅 즐거웠습니다. 조심히 가세요.';
-						
-						$(".clear_content").typing({
-							typing_speed: 0.1,
-							del_speed : 0.1,
-							text : msg,
-							color : '#d87646',
-							font_size : '15px',
-							line_height : '28px',
-							min_height: '45px',
-							background : "none",
-							cursor_width : '0.5',
-							cursor_color : '#d87646',
-							load_end_callback : null,
-							typing_start_callback : null,
-							typing_end_callback : null
+					setTimeout(function() {
+						$(".contact_clear").fadeIn(1500, function() {
+							console.log(next_url);
+							$(".clear_btn").css("visibility", "visible").stop().animate({
+								opacity: 1
+							}, 1000);
+							
+							$(".go_contact_btn").attr("href", next_url);
 						});
-					});
+					}, 500);
 				});
 				
 				return;
@@ -823,7 +808,16 @@ $(document).ready(function() {
 <div class="question_contianer">
 	<div class="question_section">
 		<div class="contact_clear">
+			<div class="clear_title">
+				Congratulations!
+			</div>
 			<div class="clear_content">
+				휴,이제 모든 것이 끝났어요.<br>
+				당신이 원하는 것과 디자인적 취향도 알게되었군요.<br>
+				이제 당신의 선택만이 남았습니다.<br>
+				우리와 함께 하길 원한다면 아래의 버튼을 눌러 우리의<br> 
+				인공지능 비서 시스템 실히를 통해 스케줄을 잡아주세요.<br>
+				오늘 미팅 즐거웠습니다. 조심히 가세요.
 			</div>
 			<div class="clear_btn">
 				<a class="go_contact_btn">
