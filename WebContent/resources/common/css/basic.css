@@ -40,6 +40,8 @@ a {text-decoration: none; font-weight: normal;}
 .heart_logo {width: 10px; vertical-align: top; margin-top: 4px;}
 
 .fotter_copy {position: fixed; bottom: 11px; right: 16px; font-size: 13px;}
+.fotter_toTop {position: fixed; right:10px; bottom:-25px;}
+.fotter_toTop img {width:25px;}
 
 h1 {display: inline-block; font-size: 1.5vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}
 h2 {display: inline-block; font-size: 1vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}

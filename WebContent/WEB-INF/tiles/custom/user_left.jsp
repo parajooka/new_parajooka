@@ -7,6 +7,9 @@
 	<div class="fotter_copy">
 		Daegu, Korea.
 	</div>
+	<div class="fotter_toTop">
+		<img src="/resources/common/img/toTop.png">
+	</div>
 	<div class="logo_section">
 		<a class="logo_img_box" href="/">
 			<span class="deco_round"></span>

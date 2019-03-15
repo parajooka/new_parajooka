@@ -45,4 +45,28 @@ $(document).ready(function() {
 	}, function(){
 		$(this).trigger('stopRumble');
 	});
+	
+	var toTop_interval;
+	
+	$(window).on("scroll", function () {
+        if ($(window).scrollTop() >= ($(".container").height() - $(window).height() - 20) && !toTop_interval) {
+        	toTop_interval = setInterval(function() {
+				if (parseInt($(".fotter_toTop").css("bottom")) >= 39) {
+					$(".fotter_toTop").stop().animate({
+		        		bottom : "25px"
+					}, 500);
+				} else {
+					$(".fotter_toTop").stop().animate({
+		        		bottom : "40px"
+					}, 500);
+				}
+    		}, 500);
+        	
+        	toTop_flag = true;
+        } else if ($(window).scrollTop() < ($(".container").height() - $(window).height() - 20) && toTop_interval) {
+    		clearInterval(toTop_interval);
+    		toTop_interval = false;
+    		$(".fotter_toTop").stop().css("bottom", "-25px");
+        }
+    });
 });
