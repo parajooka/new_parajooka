@@ -116,6 +116,19 @@ var logo_left = 0;
 var logo_top = 0;
 var logo_width = 0;
 
+var img_preloading_list = [
+	"01.png", "02.png", "03.png", "04.png", "05.png", "06.png", "07.png", "08.png", "09.png", "10.png", "11.png", "12.png",
+	"MrParajooka.gif", "menu/01.png", "BLACK2.png", "rain.gif", "main.gif"
+];
+
+var img_pre_array = [];
+
+for (var i = 0; i < img_preloading_list.length; i++) {
+	img_pre_array.push("/resources/img/landing/" + img_preloading_list[i]);
+}
+
+preloading(img_pre_array);
+
 $(document).ready(function() {
 	$('.landing-mask').css('height', $(window).height());
 	//$('.landing_main').hide();

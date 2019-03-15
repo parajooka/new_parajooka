@@ -5,6 +5,20 @@ var max_left = 0;
 
 var mask_checked = true;
 
+var img_preloading_list = [
+	"pc_01.png", "pc_02.png", "pc_03.png", "pc_04.png", "pc_05.png", "pc_06.png",
+	"pc_07.png","pc_08.png", "pc_09.png", "pc_10.png", "pc_11.png", "pc_12.png",
+	"MrParajooka.gif", "menu/01.png", "BLACK.png", "rain.gif", "main.gif"
+];
+
+var img_pre_array = [];
+
+for (var i = 0; i < img_preloading_list.length; i++) {
+	img_pre_array.push("/resources/img/landing/" + img_preloading_list[i]);
+}
+
+preloading(img_pre_array);
+
 
 function swing() {
     $('.last_message').animate({marginBottom:'10vw'},600).animate({marginBottom:'6vw'},600, swing);

@@ -187,11 +187,11 @@ $(window).on("load", function() {
 	
 	setTimeout(function() {
 		//랜딩의 랜딩 감추기
-		$(".landing_landing_container").fadeOut(fade_speed, function() {
+		$(".landing_landing_container").fadeOut(1, function() {
 			//랜딩 감춘후 body색 원래색으로 변경
-			$("body").stop().animate({
+			/* $("body").stop().animate({
 				backgroundColor:background
-			}, fade_speed);
+			}, fade_speed); */
 			
 			$(".message_box").stop().animate({
 				bottom: "10px" 
@@ -200,7 +200,7 @@ $(window).on("load", function() {
 			//동시에 문항 출력부분 투명도 삭제
 			$(".question_contianer").stop().animate({
 				opacity : 1
-			}, fade_speed, function() {
+			}, 1, function() {
 				write($(".question_title"), "조금 늦으셨네요!\\방문 예약하셨던 Mr.P님 이시죠?", function(){
 				}, function() {
 					$(".answer_title").css("visibility", "visible").stop().animate({

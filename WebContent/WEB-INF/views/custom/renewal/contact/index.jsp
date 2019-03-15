@@ -25,7 +25,7 @@
 	.contact_chart {width: 22%; padding:0 2%; border: 1px solid #a5a5a5; margin-top: 5vh; position: absolute; right:0; top:50%;}
 	
 	.chart_title {text-align: center; padding: 5%; font-size: 2.5vh;}
-	.chart_hello {padding: 2vh 0; font-size: 1.3vh;}
+	.chart_hello {padding: 1vh 0; font-size: 1.3vh;}
 	
 	.injection_section {font-size:1.3vh;}
 	#reservation_memo {width: 98%; background: none; font-size: 1.3vh; font-family: "Gothic NeoUL" !important; line-height: 2.2vh; resize:none; height: 24vh;}
@@ -655,7 +655,8 @@ $(window).on("resize", function() {
 		Contact
 	</div>
 	<div class="chart_hello">
-		${participant.name}님 안녕하세요? 우선 날짜를 선택해주세요.
+		${participant.name}님 안녕하세요? 실희라고 합니다.<br>
+		우선 날짜를 선택해주세요.
 	</div>
 	<form class="injection_section" method="post">
 		<input type="hidden" value="${participant.participant_id}" id="participant_id" name="participant_id">
