@@ -190,8 +190,9 @@ public class CustomerLandingController extends BaseController {
 
 			//세션 초기화
 			request.getSession().invalidate();
-			return res.returnResponse("", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
-		//Skip 실행
+			res.setMessage("ClearContact");
+			res.setNext_url("/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+			return res;
 		} else if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() < 3) {
 			res.setProcessing_result(true);
 			Menu menu = menu_service.getMenuByName("About");
