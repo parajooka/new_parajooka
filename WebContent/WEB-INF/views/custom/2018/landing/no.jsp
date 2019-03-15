@@ -12,9 +12,7 @@ $(document).ready(function() {
 		setTimeout(function() {
 			var text = 'NOOOOOOOOOOO NO GOD PLEASE ';
 			
-			for (var i = 0; i < 50; i++) {
-				$('.wave').html($('.wave').html() + text);
-			}	
+			$('.wave').html($('.wave').html() + text);
 			
 			var height = $('.wave').height();
 			//$('.wave').css('margin-top', -(height/2));
@@ -24,11 +22,9 @@ $(document).ready(function() {
 				$('.wave').css('left', left - 2);
 			} 
 			
-			setTimeout(function() {
-				$(".fuck_you").stop().animate({
-					bottom:"16vh"
-				}, 1500);
-			}, 1000);
+			$(".fuck_you").stop().animate({
+				bottom:"16vh"
+			}, 13000);
 			
 			setInterval(function() {
 				var left = parseInt($('.wave').css('left').replace('px', ''));
@@ -74,8 +70,10 @@ $(document).ready(function() {
 		if (counting == text_arr.length) {
 			clearInterval(typing);
 			
-			$('.yellow-bg').fadeIn(500);
-			play_ment();
+			$('.yellow-bg').fadeIn(500, function() {
+				$(".fuck_you").css("opacity", 1);
+				play_ment();
+			});
 		}
 		
 	}, 1);
@@ -101,6 +99,6 @@ $(document).ready(function() {
 				</a>
 			</div>
 		</div>
-		<p class="fuck_you" style="position: fixed; bottom: -80vh; text-align: center; width: 100%; z-index: 0;">
+		<p class="fuck_you" style="position: fixed; bottom: -51vh; text-align: center; width: 100%; z-index: 0; opacity: 0;">
 			<img style="height: 75vh;" src="/resources/common/img/fuck-you.gif">
 		</p>

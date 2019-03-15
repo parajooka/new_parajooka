@@ -21,6 +21,7 @@ a {text-decoration: none; font-weight: normal;}
 .left_menu_layout {position: absolute; top: 0; left: 0; height: 100vh; width: 15px; border-right: 1px solid #737373; display: table;}
 .left_menu_layout_cell {width:100%; height: 100%; display: table-cell; vertical-align: middle;}
 
+.left_menu_container {top:-4px;}
 .menu_line {display: inline-block; width: 5px; height: 1px; border-top: 1px solid #737373; vertical-align: top; margin-top: 8px; margin-right:11px;}
 .menu_btn {cursor: pointer; letter-spacing: 0.5px;}
 .menu_select_arrow {width: 10.5px; float: right; margin-right: -11px; position: relative; z-index: 10;}
@@ -33,10 +34,12 @@ a {text-decoration: none; font-weight: normal;}
 .mobile_menu_container ul li {position: relative; font-size: 3vw; font-weight: bold; border-bottom: 1px solid #222222; border-top: 1px solid #444444; padding: 3vw 2vw;}
 .mobile_menu_mask {display:none;}
 
-.follw_me_container {position: absolute; bottom: 0; margin-left: 22px; width: 70px; margin-bottom: 7px;}
+.follw_me_container {position: absolute; bottom: 0; margin-left: 30px; width: 70px; margin-bottom: 7px;}
 .behance_logo {width: 14px; vertical-align: top; margin-top: 3px;}
 .instagram_logo {width: 12px; margin-left: 5px;}
-.heart_logo {width: 13px;}
+.heart_logo {width: 10px; vertical-align: top; margin-top: 4px;}
+
+.fotter_copy {position: fixed; bottom: 11px; right: 16px; font-size: 13px;}
 
 h1 {display: inline-block; font-size: 1.5vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}
 h2 {display: inline-block; font-size: 1vw; color: #575757; margin: 0; padding: 0 0.3vw; border-bottom: 3px solid #ed5f5f; margin-bottom:20px;}

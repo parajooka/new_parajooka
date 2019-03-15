@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="menubar">
 	<!-- 로고 및 좌측 메뉴바 -->
+	<div class="fotter_copy">
+		Daegu, Korea.
+	</div>
 	<div class="logo_section">
 		<a class="logo_img_box" href="/">
 			<span class="deco_round"></span>

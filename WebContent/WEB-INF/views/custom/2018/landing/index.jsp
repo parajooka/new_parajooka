@@ -98,7 +98,9 @@
 		</div>
 	</div>
 </div>
-<p class="scroll_down" style="position: fixed; z-index: 9998; bottom: 0; margin-bottom: 10px; width: 100%; text-align: center;"><img src="/resources/common/img/scroll_down.png" style="width: 50px;"></p>
+<p class="scroll_down" style="position: fixed; z-index: 9998; bottom: 0; margin-bottom: 10px; width: 100%; text-align: center;">
+	<img src="/resources/common/img/scroll_down.png" style="width: 50px; margin-left:2vw;">
+</p>
 <script>
 function move_scroll_down() {
 	$(".scroll_down").stop().animate({
