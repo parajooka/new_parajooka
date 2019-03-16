@@ -1,5 +1,15 @@
 package com.paraframework.controller.customer;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,12 +30,13 @@ public class CustomerMenuController extends BaseController {
 	private MenuService service;
 	@Autowired
 	private MenuHtmlService html_service;
-	
-	@Override
-	public String Index(HttpServletRequest request) {
-		return null;
-	}
-	
+
+	/**
+	 * 홈페이지 인덱스 페이지로 이동
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String main(HttpServletRequest request) throws Exception {
 		Homepage homepage = (Homepage) request.getServletContext().getAttribute("homepage");

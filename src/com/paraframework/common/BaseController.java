@@ -29,7 +29,6 @@ public class BaseController {
 	protected static boolean HomePageUpload = false;
 	protected static boolean MenuUpload = false;
 	protected static boolean AdminCategoryUpload = false;
-	
 	@Autowired
 	private SqlUtilService search_service;
 	@Autowired
