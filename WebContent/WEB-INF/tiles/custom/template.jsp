@@ -28,7 +28,6 @@
 				<!-- 하단 :: START -->
 				<tiles:insertAttribute name="footer" />
 				<!-- 하단 :: END -->
-				<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
 </body>
