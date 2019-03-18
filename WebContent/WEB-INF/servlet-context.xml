@@ -14,6 +14,7 @@
     		<exclude-mapping path="/resources/**"/>
     		<exclude-mapping path="/res/**"/>
     		<exclude-mapping path="/video/**"/>
+    		<exclude-mapping path="/jooka/admin/**"/>
     		<beans:bean class="com.paraframework.common.BasicInterceptor"></beans:bean> 
     	</interceptor>
     	<interceptor> 
@@ -21,6 +22,7 @@
     		<exclude-mapping path="/resources/**"/>
     		<exclude-mapping path="/res/**"/>
     		<exclude-mapping path="/video/**"/>
+    		<exclude-mapping path="/jooka/admin/**"/>
 			<beans:bean class="com.para.common.HireIpInterceptor"></beans:bean> 
     	</interceptor>
     	<interceptor> 
