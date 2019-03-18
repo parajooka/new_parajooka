@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -89,7 +90,19 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
        	 	bufferedWriter.newLine();
 		}
 		
-		bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +"|| 시간 : "+ formatTime2.format(new Date()));
+	   	Enumeration<String> param = request.getParameterNames();
+	    String strParam = ""; 
+	    while(param.hasMoreElements()) { 
+	        String name = (String)param.nextElement(); 
+	        String value = request.getParameter(name); 
+	        strParam += name + "=" + value + "&"; 
+	    }
+	     
+	    if (strParam.length() > 0) {
+	    	strParam = "?"+ strParam.substring(0, strParam.length() - 1);
+	    }
+		 
+	    bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
 		bufferedWriter.close();
 		
 		return;
