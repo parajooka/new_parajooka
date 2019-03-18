@@ -219,7 +219,7 @@ public class ContactController extends BaseController {
 		if (contact_id == null || contact_id.length() == 0) {
 			res.setProcessing_result(true);
 			return res.returnResponse("잘못된 접근입니다.", "/custom/renewal/contact/index");
-		} else if (password == null || password.length() < 4) {
+		} else if (password == null || password.length() == 0) {
 			res.setProcessing_result(true);
 			return res.returnResponse("미팅예약을 삭제하려면 암호를 입력해주세요.\r\n암호는 1자리에서 10자리 이하입니다.", null);
 		}
@@ -253,7 +253,7 @@ public class ContactController extends BaseController {
 		
 		if (participant_id == null || participant_id.length() == 0) {
 			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
-		} else if (password == null || password.length() < 4) {
+		} else if (password == null || password.length() == 0) {
 			return res.returnResponse("예약시에 작성한 암호를 입력해주세요.\r\n암호는 1자리에서 10자리 이하입니다.", null);
 		}
 		

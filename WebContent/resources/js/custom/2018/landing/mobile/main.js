@@ -37,7 +37,7 @@ $(paths).each(function() {
 /* dollar section */
 var show_check2 = false;
 var show_time2;
-var dollar_ment = " 우리는 끝내주는 웹을 만들고,：당신은 돈을 챙기면 됩니다.";
+var dollar_ment = "우리는 끝내주는 웹을 만들고,：당신은 돈을 챙기면 됩니다.";
 var dollar_ment_array = dollar_ment.split("");
 var dollar_title = [];// 우리는 끝내주는 웹을 만들고,：당신은 돈을 챙기면 됩니다.
 var before_ment;
@@ -60,7 +60,7 @@ for (var i = 0; i < dollar_ment_array.length; i++) {
 /* egg section */
 var show_check = false;
 var show_time;
-var egg_ment = " 당신의 기업이 대기업이거나：소기업이거나 아이돈케얼입니다.";
+var egg_ment = "당신의 기업이 대기업이거나：소기업이나 아이 돈 케어입니다.";
 var egg_ment_array = egg_ment.split("");
 var egg_title = [];// 우리는 끝내주는 웹을 만들고,：당신은 돈을 챙기면 됩니다.
 var before_ment;

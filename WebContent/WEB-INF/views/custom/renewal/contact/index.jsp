@@ -440,7 +440,7 @@ $(document).ready(function() {
     
     $(document).on("keyup", "#reservation_pw", function() {
     	var self = $(this);
-    	if (self.val().length >= 4) {
+    	if (self.val().length >= 1) {
     		$(".insert_contact_chart").find(".injection_submit_btn").css({
     			"opacity" : 1,
     			"cursor" : "pointer"
@@ -456,7 +456,7 @@ $(document).ready(function() {
     $(document).on("keyup", "#edit_pw", function() {
     	var self = $(this);
     	
-    	if (self.val().length >= 4) {
+    	if (self.val().length >= 1) {
     		$(".edit_section").find(".check_pw_btn").css({
     			"opacity" : 1,
     			"cursor" : "pointer"
@@ -471,7 +471,7 @@ $(document).ready(function() {
     
     $(document).on("focusout", "#reservation_pw", function() {
     	var self = $(this);
-    	if (self.val().length >= 4) {
+    	if (self.val().length >= 1) {
     		$(".insert_contact_chart").find(".injection_submit_btn").css({
     			"opacity" : 1,
     			"cursor" : "pointer"
@@ -487,7 +487,7 @@ $(document).ready(function() {
     $(document).on("focusout", "#edit_pw", function() {
     	var self = $(this);
     	
-    	if (self.val().length >= 4) {
+    	if (self.val().length >= 1) {
     		$(".edit_section").find(".check_pw_btn").css({
     			"opacity" : 1,
     			"cursor" : "pointer"

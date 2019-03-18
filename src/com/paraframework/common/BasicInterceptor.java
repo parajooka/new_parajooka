@@ -104,7 +104,5 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		 
 	    bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
 		bufferedWriter.close();
-		
-		return;
 	}
 }
