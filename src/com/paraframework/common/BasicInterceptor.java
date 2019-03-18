@@ -1,14 +1,11 @@
 package com.paraframework.common;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +29,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private HomepageService homepage_service;
 	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREAN);
+	private static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
 	private static BufferedWriter bufferedWriter= null;
 	
 	@Override
@@ -83,53 +81,17 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	}
 	
 	public void WriteLogged(HttpServletRequest request) throws IOException {
-		File temp = new File("C:\\res\\logged\\para-jooka");
-
-		// 생성한 File객체의 서브 디렉토리와 파일 목록을 가져와서
-		// File형 배열로 선언된 a에 담는다.
-		File[] a = temp.listFiles();
+		File temp = new File("C:\\res\\logged\\para-jooka\\logged_"+ formatTime.format(new Date()) + ".txt");
+		bufferedWriter = new BufferedWriter(new FileWriter(temp, true));
 		
-		//로그파일이 없다면 신규 로그파일 생성후 기록입력
-		if (a.length == 0) {
-			File new_logged_file = new File("C:\\res\\logged\\para-jooka\\visited_log.txt");
-			bufferedWriter = new BufferedWriter(new FileWriter(new_logged_file, true));
-			bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +"|| 시간 : "+ formatTime2.format(new Date()));
-			bufferedWriter.close();
-			return;
+		//이미 오늘의 로그파일이 만들어진경우 한줄바꿈
+		if (temp != null && temp.isFile() && temp.canWrite()) {
+       	 	bufferedWriter.newLine();
 		}
-
-		//마지막에있는 로그파일 호출
-		File logged_file = a[a.length - 1];
-	    @SuppressWarnings("resource")
-	    BufferedReader in = new BufferedReader(new FileReader(logged_file));
-
-         if(logged_file.isFile() && logged_file.canWrite()){
-        	 int lineCnt = 0;
-        	 while(in.readLine() != null) lineCnt++;
-        	 
-        	 //한파일당 로그가 100줄 이상일경우 새로운 로그파일을 만들어서 입력한다.
-        	 if (lineCnt >= 100) {
-        		 File new_logged_file = new File("C:\\res\\logged\\para-jooka\\visited_log" + (a.length + 1) + ".txt");
-        		 bufferedWriter = new BufferedWriter(new FileWriter(new_logged_file, true));
-        	 } else {
-        		bufferedWriter = new BufferedWriter(new FileWriter(logged_file, true));
-           	 	bufferedWriter.newLine();
-        	 }
-        	 
-        	 Enumeration<String> param = request.getParameterNames();
-             String strParam = ""; 
-             while(param.hasMoreElements()) { 
-                 String name = (String)param.nextElement(); 
-                 String value = request.getParameter(name); 
-                 strParam += name + "=" + value + "&"; 
-             }
-             
-             if (strParam.length() > 0) {
-            	 strParam = "?"+ strParam.substring(0, strParam.length() - 1);
-             }
-        	 
-             bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
-             bufferedWriter.close();
-         }
+		
+		bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +"|| 시간 : "+ formatTime2.format(new Date()));
+		bufferedWriter.close();
+		
+		return;
 	}
 }
