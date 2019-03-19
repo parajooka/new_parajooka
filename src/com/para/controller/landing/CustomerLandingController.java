@@ -81,7 +81,7 @@ public class CustomerLandingController extends BaseController {
 			return res.returnResponse("이름과 소속을 반드시 입력해주세요.", null);
 		}
 		
-		if (participant_service.ValidParticipant(getIpAddress(request)) == 0 || isAdmin(request)) {
+		if (participant_service.ValidParticipant(getIpAddress(request)) == 0) {
 			//개인정보를 서버에 기억해둔다.
 			request.getSession().setAttribute("user_name", user_name);
 			request.getSession().setAttribute("user_company", user_company);
@@ -170,9 +170,14 @@ public class CustomerLandingController extends BaseController {
 			//사용자 랜딩설문 참여결과 암호화
 			//정보 삽입
 			participant.setRecord(StringCryPto.encrypt(cry_pto_key, record));
-			
-			//db에 기록
-			participant_service.InsertParticipant(participant);
+
+			//참여 기록이 없다면 db에 기록
+			if (participant_service.ValidParticipant(getIpAddress(request)) == 0) {
+				participant_service.InsertParticipant(participant);
+			} else {
+				Menu menu = menu_service.getMenuByName("About");
+				return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+			}
 			
 			res.setProcessing_result(true);
 			

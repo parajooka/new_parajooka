@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +31,8 @@ public class BaseController {
 	protected static boolean HomePageUpload = false;
 	protected static boolean MenuUpload = false;
 	protected static boolean AdminCategoryUpload = false;
+	private static Timer timer = new Timer();
+	
 	@Autowired
 	private SqlUtilService search_service;
 	@Autowired
@@ -73,7 +77,7 @@ public class BaseController {
         String userAgent = request.getHeader("User-Agent").toUpperCase();
         
         String IS_MOBILE = "MOBILE";
-        if(userAgent.indexOf(IS_MOBILE) > -1) {
+        if(userAgent != null && userAgent.indexOf(IS_MOBILE) > -1) {
             return true;
         } else {
         	return false;
@@ -477,6 +481,31 @@ public class BaseController {
 		 * 사용자가 검색하지 않은 상태일경우를 처리하는 함수
 		 */
 		public abstract void SearchFalse();
+	}
+
+	/**
+	 * 타이머 가상클래스 사용자 직접구현
+	 * @author DaeYeop
+	 *
+	 */
+	public abstract class CustomizingTimer  {
+		public abstract void actionFunc();
+	}
+	
+	/**
+	 * 타이머 가상클래스를 직접적으로 구현하는 함수
+	 */
+	public void CustomTimer(CustomizingTimer customizing, int schedule_time) {
+		TimerTask task = new TimerTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				customizing.actionFunc();
+			}
+		};
+		
+		timer.schedule(task, schedule_time);
 	}
 	
 	/**

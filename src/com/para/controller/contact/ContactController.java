@@ -69,7 +69,13 @@ public class ContactController extends BaseController {
 				request.getSession().setAttribute("contact", "already");
 				return RedirectPage(request, "/custom/renewal/landing/index");
 			} else {
-				request.setAttribute("participant", landing_service.getParticipantByIp(getIpAddress(request)));
+				try {
+					request.setAttribute("participant", landing_service.getParticipantByIp(getIpAddress(request)));
+				} catch (Exception e) {
+					// TODO: handle exception
+					alertMessage("잘못된 접근입니다.", request, response);
+					return null;
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

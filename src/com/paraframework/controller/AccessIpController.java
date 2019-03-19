@@ -29,8 +29,6 @@ import com.paraframework.service.MenuService;
 public class AccessIpController extends BaseController {
 	@Autowired
 	private AccessIpService service;
-	@Autowired
-	private MenuService m_service;
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String Landing(HttpServletRequest request, HttpServletResponse response, PageUtil page) {
