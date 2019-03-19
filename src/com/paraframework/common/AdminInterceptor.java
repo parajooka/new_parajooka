@@ -29,7 +29,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		String ip = request.getHeader("X-FORWARDED-FOR");
         if (ip == null) {
             ip = request.getRemoteAddr();
-        }
+        } 
         
 		List<AccessIp> access = service.getAccessIp();
 		
