@@ -55,7 +55,7 @@ public class TempAminAccessIpInjectionController extends BaseController {
 					service.deleteAccessIp(access_ip.getId());
 					smtp.SendMail("kdyshj700@gmail.com", "[Para & Jooka] 임시 아이피가 만료 되었습니다.", "등록자 IP : "+ ip_add + "<br>허용 아이피 : " + access_ip.getAccess_ip() + "<br>만료일시 : " + formatTime2.format(new Date()));
 				}
-			}, 1000 * 10);
+			}, 1000 * 60 * 30);
 		}
 		
 		
