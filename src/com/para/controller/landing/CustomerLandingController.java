@@ -95,7 +95,7 @@ public class CustomerLandingController extends BaseController {
 
 		} else {
 			Menu menu = menu_service.getMenuByName("About");
-			return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+			return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
 		}
 			res.setProcessing_result(true);
 			return res;
@@ -138,70 +138,74 @@ public class CustomerLandingController extends BaseController {
 		
 		user_answers.add(answer_id);
 		
-		
-		//더이상 문항이 존재하지 않고 3문제 이상 푼경우 랜딩 종료
-		if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() >= 3) {
-			LandingParticipant participant = new LandingParticipant();
-			
-			//사용자 정보 암호화
-			String cry_pto_key = "CustomerLandingResult";
-			String user_company = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_company"));
-			String user_ip = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_ip"));
-			String user_name = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_name"));
-			String user_time = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_time"));
-			
-			String record = "";
-			
-			//정보 객체에 삽입
-			participant.setCompany(user_company);
-			participant.setIp_address(user_ip);
-			participant.setName(user_name);
-			participant.setStart_time(user_time);
-			participant.setEnd_time(StringCryPto.encrypt(cry_pto_key, formatTime.format(new Date())));
-
-			for (int i = 0; i < user_answers.size(); i++) {
-				if (i == user_answers.size() - 1) {
-					record += user_answers.get(i) + "";
-				} else {
-					record += user_answers.get(i) + ",";
+		try {
+			//더이상 문항이 존재하지 않고 3문제 이상 푼경우 랜딩 종료
+			if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() >= 3) {
+				LandingParticipant participant = new LandingParticipant();
+				
+				//사용자 정보 암호화
+				String cry_pto_key = "CustomerLandingResult";
+				String user_company = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_company"));
+				String user_ip = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_ip"));
+				String user_name = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_name"));
+				String user_time = StringCryPto.encrypt(cry_pto_key, (String) request.getSession().getAttribute("user_time"));
+				
+				String record = "";
+				
+				//정보 객체에 삽입
+				participant.setCompany(user_company);
+				participant.setIp_address(user_ip);
+				participant.setName(user_name);
+				participant.setStart_time(user_time);
+				participant.setEnd_time(StringCryPto.encrypt(cry_pto_key, formatTime.format(new Date())));
+	
+				for (int i = 0; i < user_answers.size(); i++) {
+					if (i == user_answers.size() - 1) {
+						record += user_answers.get(i) + "";
+					} else {
+						record += user_answers.get(i) + ",";
+					}
 				}
-			}
-			
-			//사용자 랜딩설문 참여결과 암호화
-			//정보 삽입
-			participant.setRecord(StringCryPto.encrypt(cry_pto_key, record));
-
-			//참여 기록이 없다면 db에 기록
-			if (participant_service.ValidParticipant(getIpAddress(request)) == 0) {
-				participant_service.InsertParticipant(participant);
-			} else {
+				
+				//사용자 랜딩설문 참여결과 암호화
+				//정보 삽입
+				participant.setRecord(StringCryPto.encrypt(cry_pto_key, record));
+	
+				//참여 기록이 없다면 db에 기록
+				if (participant_service.ValidParticipant(getIpAddress(request)) == 0) {
+					participant_service.InsertParticipant(participant);
+				} else {
+					Menu menu = menu_service.getMenuByName("About");
+					return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+				}
+				
+				res.setProcessing_result(true);
+				
+				String contact = (String) request.getSession().getAttribute("contact");
+				
+				Menu menu = null;
+				
+				//컨텍트에서 넘어온 경우에는 컨텍트 페이지로 보낸다
+				if (contact != null && contact.length() > 0) {
+					menu = menu_service.getMenuByName("Contact");
+				} else {
+				//그외에는 메인페이지로 보낸다
+					menu = menu_service.getMenuByName("About");
+				}
+	
+				//세션 초기화
+				request.getSession().invalidate();
+				res.setMessage("ClearContact");
+				res.setNext_url("/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+				return res;
+			} else if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() < 3) {
+				res.setProcessing_result(true);
 				Menu menu = menu_service.getMenuByName("About");
-				return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+				return res.returnResponse("", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
 			}
-			
-			res.setProcessing_result(true);
-			
-			String contact = (String) request.getSession().getAttribute("contact");
-			
-			Menu menu = null;
-			
-			//컨텍트에서 넘어온 경우에는 컨텍트 페이지로 보낸다
-			if (contact != null && contact.length() > 0) {
-				menu = menu_service.getMenuByName("Contact");
-			} else {
-			//그외에는 메인페이지로 보낸다
-				menu = menu_service.getMenuByName("About");
-			}
-
-			//세션 초기화
-			request.getSession().invalidate();
-			res.setMessage("ClearContact");
-			res.setNext_url("/custom/menu/index?menu_idx="+ menu.getMenu_idx());
-			return res;
-		} else if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() < 3) {
-			res.setProcessing_result(true);
-			Menu menu = menu_service.getMenuByName("About");
-			return res.returnResponse("", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+		} catch (Exception e) {
+			// TODO: handle exception
+			return res.returnResponse("세션이 만료되었습니다. 처음부터 다시 시동해주세요.", "http://localhost/custom/renewal/landing/index");
 		}
 		
 		res.setProcessing_result(true);
