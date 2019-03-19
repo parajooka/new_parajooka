@@ -549,7 +549,11 @@ $(document).ready(function() {
 				form.find("#meeting_time").val(target_contact['reservation_date'].split(" ")[1]);
 				form.find("#reservation_type").val(target_contact['reservation_type']);
 				form.find("#reservation_memo").val(target_contact['reservation_memo']);
+<<<<<<< HEAD
 				form.find("#reservation_pw").attr("placeholder", "예약하신 연락처를 입력 해주세요.");
+=======
+				form.find("#reservation_pw").attr("placeholder", "예약하신 연락처를 입력해주세요.");
+>>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 				form.find(".chart_title").append("<a class='trash_icon' data-contact-id='"+ target_contact['contact_id'] +"'><img src='/resources/common/img/trash.png'></a>");
 			}
 		}
@@ -644,7 +648,11 @@ $(window).on("resize", function() {
 	<form class="edit_section" method="post">
 		<div class="contact_pw edit_contact_pw">
 			<p class="contact_section_title">연락처</p>
+<<<<<<< HEAD
 			<input type="text" id="edit_pw" name="edit_pw" placeholder="예약하신 연락처를 입력 해주세요.">
+=======
+			<input type="text" id="edit_pw" name="edit_pw" placeholder="예약하신 연락처를 입력해주세요.">
+>>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 			<input type="text" style="display:none;">
 		</div>
 		<div class="submit_section" style="margin-top:3vh;">
@@ -683,11 +691,19 @@ $(window).on("resize", function() {
 		</div>
 		<div class="last_memo">
 			<p class="contact_section_title contact_memo">${participant.name}님 마지막으로 더 하실 말씀 있으신가요?</p>
+<<<<<<< HEAD
 			<textarea id="reservation_memo" name="reservation_memo" placeholder="자유롭게 작성 해주세요."></textarea>
+=======
+			<textarea id="reservation_memo" name="reservation_memo" placeholder="자유롭게 하고 싶은 말을 작성해주세요."></textarea>
+>>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 		</div>
 		<div class="contact_pw">
 			<p class="contact_section_title">연락처</p>
+<<<<<<< HEAD
 			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="예약하실 연락처를 입력 해주세요.">
+=======
+			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="연락처를  반드시 입력해주세요.">
+>>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 			<input type="text" style="display:none;">
 		</div>
 		<div class="submit_section" style="margin-top:3vh;">
