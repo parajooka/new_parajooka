@@ -213,11 +213,7 @@ public class ContactController extends BaseController {
 				contact_service.UpdateContact(contact);
 			} else {
 				res.setProcessing_result(true);
-<<<<<<< HEAD
-				return res.returnResponse("연락처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
-=======
 				return res.returnResponse("연럭처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
->>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 			}
 			
 		}
@@ -233,12 +229,7 @@ public class ContactController extends BaseController {
 		String contact_id = request.getParameter("contact_id");
 		String password = request.getParameter("password");
 		
-<<<<<<< HEAD
 		Matcher m = phone_pattern.matcher(password);
-=======
-		Pattern p = Pattern.compile("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$");
-		Matcher m = p.matcher(password);
->>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 		
 		if (contact_id == null || contact_id.length() == 0) {
 			res.setProcessing_result(true);
@@ -256,11 +247,7 @@ public class ContactController extends BaseController {
 				res.setMessage("예약이 정상적으로 취소 되었습니다.");
 				res.setNext_url("/custom/renewal/contact/index");
 			} else {
-<<<<<<< HEAD
 				return res.returnResponse("연락처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
-=======
-				return res.returnResponse("연럭처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
->>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -279,12 +266,7 @@ public class ContactController extends BaseController {
 		String participant_id = request.getParameter("participant_id");
 		String password = request.getParameter("password");
 		
-<<<<<<< HEAD
 		Matcher m = phone_pattern.matcher(password);
-=======
-		Pattern p = Pattern.compile("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$");
-		Matcher m = p.matcher(password);
->>>>>>> branch 'master' of https://github.com/parajooka/new_parajooka
 		
 		if (participant_id == null || participant_id.length() == 0) {
 			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
