@@ -13,7 +13,7 @@
 <h3>임시 관리자 아이피 생성 (임시 관리자 아이피는 30분후에 자동 삭제처리됩니다.)</h3>
 <form id="frm" method="post">
 	<input type="text" name="access_ip" id ="access_ip" placeholder="IP입력">
-	<input type="text" name="authorizationer" id ="authorizationer" placeholder="등록자 입력">
+	<input type="hidden" name="authorizationer" id ="authorizationer" value="임시아이피">
 	<button type="button" class="temp_acc_injection">등록</button>
 </form>
 <script>
