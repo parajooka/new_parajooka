@@ -17,8 +17,8 @@
 		<tr>
 			<td><input type="checkbox" class="select_all"/></td>
 			<td>순번</td>
-			<td>소속</td>
 			<td>이름</td>
+			<td>소속</td>
 			<td>IP</td>
 			<td>설문 시작시간</td>
 			<td>설문 종료시간</td>
@@ -33,10 +33,10 @@
 				${paging.numberic + status.index}
 			</td>
 			<td>
-				${participant.company}
+				${participant.name}
 			</td>
 			<td>
-				${participant.name}
+				${participant.company}
 			</td>
 			<td>
 				${participant.ip_address}

@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.para.object.landing.LandingParticipant;
@@ -25,8 +26,8 @@ public class Contact {
 	@Max(value=2, message="미팅 방식에 잘못된 값이 입력되었습니다.")
 	private int reservation_type;
 	private String reservation_memo;
-	@NotNull(message="암호를 입력해주세요.\r\n암호는 최소 1자리에서 최대 10자리까지 입력 가능합니다.")
-	@Size(min=1, max=10, message="암호는 최소 1자리에서 최대 10자리까지 입력 가능합니다.")
+	@NotNull(message="연락처를 반드시 입력해주세요.")
+	@Pattern(regexp="^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", message="잘못된 연락처 형식입니다.\r\n연락처를 반드시 입력해주세요.")
 	private String reservation_pw;
 	private String contact_Date = formatTime.format(new Date());
 	private LandingParticipant participant;

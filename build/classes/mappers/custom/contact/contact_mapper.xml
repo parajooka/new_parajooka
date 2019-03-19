@@ -165,6 +165,7 @@
 		c.RESERVATION_DATE,
 		c.RESERVATION_TYPE,
 		c.CONTACT_DATE,
+		c.RESERVATION_PW,
 		p.name,
 		p.company
 	FROM 

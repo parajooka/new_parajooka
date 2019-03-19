@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -206,7 +208,7 @@ public class ContactController extends BaseController {
 				contact_service.UpdateContact(contact);
 			} else {
 				res.setProcessing_result(true);
-				return res.returnResponse("암호가 일치하지 않습니다.\r\n예약시에 작성한 암호를 입력해주세요.", null);
+				return res.returnResponse("연럭처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
 			}
 			
 		}
@@ -222,12 +224,15 @@ public class ContactController extends BaseController {
 		String contact_id = request.getParameter("contact_id");
 		String password = request.getParameter("password");
 		
+		Pattern p = Pattern.compile("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$");
+		Matcher m = p.matcher(password);
+		
 		if (contact_id == null || contact_id.length() == 0) {
 			res.setProcessing_result(true);
 			return res.returnResponse("잘못된 접근입니다.", "/custom/renewal/contact/index");
-		} else if (password == null || password.length() == 0) {
+		} else if (password == null || password.length() == 0 || !m.find()) {
 			res.setProcessing_result(true);
-			return res.returnResponse("미팅예약을 삭제하려면 암호를 입력해주세요.\r\n암호는 1자리에서 10자리 이하입니다.", null);
+			return res.returnResponse("미팅예약을 삭제하려면 연락처를 입력해주세요.", null);
 		}
 		
 		try {
@@ -238,7 +243,7 @@ public class ContactController extends BaseController {
 				res.setMessage("예약이 정상적으로 취소 되었습니다.");
 				res.setNext_url("/custom/renewal/contact/index");
 			} else {
-				return res.returnResponse("암호가 일치하지 않습니다.\r\n미팅예약을 삭제하려면 암호를 입력해주세요.", null);
+				return res.returnResponse("연럭처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -257,10 +262,13 @@ public class ContactController extends BaseController {
 		String participant_id = request.getParameter("participant_id");
 		String password = request.getParameter("password");
 		
+		Pattern p = Pattern.compile("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$");
+		Matcher m = p.matcher(password);
+		
 		if (participant_id == null || participant_id.length() == 0) {
 			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
-		} else if (password == null || password.length() == 0) {
-			return res.returnResponse("예약시에 작성한 암호를 입력해주세요.\r\n암호는 1자리에서 10자리 이하입니다.", null);
+		} else if (password == null || password.length() == 0 || !m.find()) {
+			return res.returnResponse("예약시에 작성한 연락처를 입력해주세요.", null);
 		}
 		
 		try {

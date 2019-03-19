@@ -17,8 +17,9 @@
 			<td>순번</td>
 			<td>신청자 명</td>
 			<td>소속</td>
-			<td>미팅 요청 일시</td>
+			<td>연락처</td>
 			<td>미팅 수단</td>
+			<td>미팅 요청 일시</td>
 			<td>참여 일시</td>
 			<td>메모</td>
 		</tr>
@@ -37,7 +38,7 @@
 				${participant_list.get(status.index).company}
 			</td>
 			<td>
-				${contact.reservation_date}
+				${contact.reservation_pw}
 			</td>
 			<td>
 				<c:choose>
@@ -51,6 +52,9 @@
 						메일
 					</c:otherwise>				
 				</c:choose>
+			</td>
+			<td>
+				${contact.reservation_date}
 			</td>
 			<td>
 				${contact.contact_Date}

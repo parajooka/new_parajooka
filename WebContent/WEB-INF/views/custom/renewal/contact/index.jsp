@@ -430,7 +430,7 @@ $(document).ready(function() {
 				orign_participant_id = obj['participant_id'];
 				
 				$(".insert_contact_chart").hide();
-				$(".eidt_contact_chart").empty().append(eidt_contact_chart).find(".chart_hello").html(obj['name'] +"님 맞으신가요?<br>그렇다면 암호를 입력해주세요.");
+				$(".eidt_contact_chart").empty().append(eidt_contact_chart).find(".chart_hello").html(obj['name'] +"님 맞으신가요?<br>그렇다면 연락처를 입력해주세요.");
 				$(".eidt_contact_chart").show();
 			}
 		}
@@ -532,7 +532,7 @@ $(document).ready(function() {
 			var obj = data['object'];
 			
 			if (obj == null) {
-				alert("암호가 일치하지 않습니다.");
+				alert("연락처가 일치하지 않습니다.");
 			} else {
 				$(".eidt_contact_chart").hide();
 				$(".injection_section").empty().append(injection_layout).find("#reservation_date").val(call_date);
@@ -549,6 +549,7 @@ $(document).ready(function() {
 				form.find("#meeting_time").val(target_contact['reservation_date'].split(" ")[1]);
 				form.find("#reservation_type").val(target_contact['reservation_type']);
 				form.find("#reservation_memo").val(target_contact['reservation_memo']);
+				form.find("#reservation_pw").attr("placeholder", "예약하신 연락처를 입력해주세요.");
 				form.find(".chart_title").append("<a class='trash_icon' data-contact-id='"+ target_contact['contact_id'] +"'><img src='/resources/common/img/trash.png'></a>");
 			}
 		}
@@ -638,12 +639,12 @@ $(window).on("resize", function() {
 	</div>
 	<div class="chart_hello">
 		${participant.name}님 맞으시간요?<br>
-		그렇다면 암호를 입력 해주세요.
+		그렇다면 연락처를 입력 해주세요.
 	</div>
 	<form class="edit_section" method="post">
 		<div class="contact_pw edit_contact_pw">
-			<p class="contact_section_title">본인확인 암호</p>
-			<input type="text" id="edit_pw" name="edit_pw" placeholder="암호를 입력해주세요.">
+			<p class="contact_section_title">연락처</p>
+			<input type="text" id="edit_pw" name="edit_pw" placeholder="예약하신 연락처를 입력해주세요.">
 			<input type="text" style="display:none;">
 		</div>
 		<div class="submit_section" style="margin-top:3vh;">
@@ -682,11 +683,11 @@ $(window).on("resize", function() {
 		</div>
 		<div class="last_memo">
 			<p class="contact_section_title contact_memo">${participant.name}님 마지막으로 더 하실 말씀 있으신가요?</p>
-			<textarea id="reservation_memo" name="reservation_memo" placeholder="우리와 연락할 수단을 남겨주세요.&#13;&#10; ex)연락처, 메일 등"></textarea>
+			<textarea id="reservation_memo" name="reservation_memo" placeholder="자유롭게 하고 싶은 말을 작성해주세요."></textarea>
 		</div>
 		<div class="contact_pw">
-			<p class="contact_section_title">본인확인 암호</p>
-			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="암호를 입력해주세요.">
+			<p class="contact_section_title">연락처</p>
+			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="연락처를  반드시 입력해주세요.">
 			<input type="text" style="display:none;">
 		</div>
 		<div class="submit_section" style="margin-top:3vh;">
