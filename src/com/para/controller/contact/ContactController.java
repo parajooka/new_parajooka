@@ -293,4 +293,19 @@ public class ContactController extends BaseController {
 		
 		return res;
 	}
+	
+	@RequestMapping(value="/immediately", method=RequestMethod.POST)
+	public @ResponseBody AjaxResponse Immediately(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		AjaxResponse res = new AjaxResponse();
+		
+		LandingParticipant participant = landing_service.getParticipantByIp(getIpAddress(request));
+		
+		if (participant == null) {
+			return res.returnResponse("Contact 질문 참여 기록이 존재하지않습니다.\r\n문의를 위해서는 먼저 질문에 모두 답변해야합니다.", "/custom/renewal/contact/index");
+		}
+
+		String contents = request.getParameter("");
+		
+		return res;
+	}
 }
