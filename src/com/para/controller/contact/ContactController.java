@@ -304,8 +304,22 @@ public class ContactController extends BaseController {
 			return res.returnResponse("Contact 질문 참여 기록이 존재하지않습니다.\r\n문의를 위해서는 먼저 질문에 모두 답변해야합니다.", "/custom/renewal/contact/index");
 		}
 
-		String contents = request.getParameter("");
+		String contents = request.getParameter("immediately_contents");
 		
-		return res;
+		if (contents == null || contents.replaceAll(" ", "").length() == 0) {
+			return res.returnResponse("내용은 공백을 제외하고 1글자 이상 입력되어야합니다.", null);
+		}
+		
+		String mail_title = "[Para&Jooka] 새로운 '즉시 미팅'이 예약되었습니다.";
+		String msg = "신청자 : " + participant.getName() + "<br>"+
+					 "소속 : " + participant.getCompany() + "<br><br>"+
+					 "<신청자 메모><br>"+
+					 ""+ contents;
+		
+		SMTP smtp = new SMTP();
+		smtp.SendMail("mt9665@naver.com", mail_title, msg);
+		
+		
+		return res.returnResponse("즉시 미팅신청 메일이 발송되었습니다.\r\n담당자가 확인후 남겨주신 연락처로 직접 연락드리겠습니다.", "/custom/renewal/contact/index");
 	}
 }

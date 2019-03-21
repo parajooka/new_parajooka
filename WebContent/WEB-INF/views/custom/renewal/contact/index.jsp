@@ -40,6 +40,15 @@
 	
 	.date_click_btn {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; cursor: pointer;}
 	
+	.dialog_mask {position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9998; background-color: #000; opacity: 0; display: none;}
+	
+	.ui-dialog {z-index: 9999;}
+	.immediately_popup_memo {width: 500px; height: 310px; padding: 10px;}
+	.immediately_section {position: absolute; font-size: 12px; margin-top: 10px;}
+	.immediately_popup {cursor:pointer;}
+	.immediately_popup_section {text-align: center; margin-bottom:10px;}
+	.immediately_popup_section a {display: inline-block; width: 99%; padding: 1vw 0; border: 1px solid #A9A9A9; cursor: pointer;}
+	
 	select {
 		-webkit-appearance: none;
 	    -moz-appearance: none;
@@ -64,7 +73,20 @@
 		color :#bbbab6;
 	}
 	
+	textarea {resize: none; border: 1px solid #A9A9A9;}
+	textarea::placeholder {
+		color :#bbbab6;
+	    font-weight: lighter;
+	}
+	
 	@media (max-width:1200px) {
+		.ui-dialog {z-index: 9999;}
+		.immediately_popup_memo {width:66vw; height: 310px; padding:2vw; font-size:4vw;}
+		.immediately_section {position: absolute; font-size: 12px; margin-top: 10px;}
+		.immediately_popup {cursor:pointer;}
+		.immediately_popup_section {text-align: center; margin-bottom:4vw;}
+		.immediately_popup_section a {display: inline-block; width: 99%; padding: 1vw 0; border: 1px solid #A9A9A9; cursor: pointer;}
+		
 		#calendar tr:nth-child(2) td {font-size:3vw;}
 		.chart_title {font-size:5vw; padding: 5vw 0 5vw;}
 		.chart_hello, .injection_section, #reservation_memo, #reservation_pw, #edit_pw {font-size:3.5vw; padding:0;}
@@ -297,7 +319,6 @@
 				$(value).find(".today_round").css("margin-top", "10px");
 			}
 		});
-		
 		
 		if (typeof callback === "function") {
 			callback();
@@ -583,6 +604,54 @@ $(document).ready(function() {
     	$(".eidt_contact_chart").insertBefore(".contact_containter");
     	$(".insert_contact_chart").insertBefore(".contact_containter");
     }
+    
+    $('.immediately_popup_form').dialog({
+		autoOpen: false,
+		appendTo : "body",
+		show: { effect: "blind", duration: 300 },
+		hide: { effect: "blind", duration: 300 }
+	});
+    
+    $('.immediately_popup').on("click", function() {
+    	$(".dialog_mask").css({
+    		"display" : "block",
+    		"opacity" : "0.5"
+    	});
+    	
+    	$('.immediately_popup_form').dialog("open");
+	 	$('.immediately_popup_form').on('dialogclose', function(event) {
+	 		$(".dialog_mask").css({
+	    		"display" : "none",
+	    		"opacity" : "0"
+	    	});
+	 	});
+    });
+    
+    $(".dialog_mask").on("click", function() {
+    	$('.immediately_popup_form').dialog("close");
+    });
+    
+    $(".immediately_popup_section > a").on("click", function() {
+    	var func = function(data) {
+			//잘모된 페이지 요청시
+			if (data['message'] != null) {
+				if (typeof data['message'] != "undefined" && data['message'].length > 0) {
+					alert(data['message']);
+				}
+				
+				if (data['next_url'] != null) {
+					location.href = data['next_url'];
+				}
+				return;
+			}
+			
+		}
+		
+    	var contents_value = $(".immediately_popup_memo").val();
+    	contents_value = contents_value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+    	
+   		get_item_info("/custom/renewal/contact/immediately", func, {"immediately_contents":contents_value}, $('body'));
+    });
 });
 
 $(window).on("resize", function() {
@@ -631,6 +700,9 @@ $(window).on("resize", function() {
 		        <td align="center">Sat</td>
 		    </tr> 
 		</table>
+		<div class="immediately_section">
+			<a class="immediately_popup">예약하시고 싶은 날짜에 이미 예약이 되어있다구요?</a>
+		</div>
 	</div>
 </div>
 <div class="contact_chart eidt_contact_chart" style="display: none;">
@@ -694,4 +766,9 @@ $(window).on("resize", function() {
 			<a class="injection_submit_btn">Confirm</a>
 		</div>
 	</form>
+</div>
+<div class="dialog_mask"></div>
+<div class="immediately_popup_form" title="미팅 즉시 신청">
+	<textarea class="immediately_popup_memo" placeholder="연락받으실 연락처 혹은 메일을 반드시 입력해주세요. 문의 접수가 완료되면 담당자가 이전 미팅 처리 후 남겨주신 연락처로 직접 연락드립니다."></textarea>
+	<div class="immediately_popup_section"><a>접수</a></div>
 </div>

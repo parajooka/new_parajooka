@@ -59,4 +59,6 @@ h2 {display: inline-block; font-size: 1vw; color: #575757; margin: 0; padding: 0
 	.mobile_menu_open_btn {display: inline-block; cursor: pointer;}
 	.fotter_toTop {display: none !important;}
 	.fotter_copy {display: none !important;}
+	
+	.logo_section {height: 70px;} 
 }
