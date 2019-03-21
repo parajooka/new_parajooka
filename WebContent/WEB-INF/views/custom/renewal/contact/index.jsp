@@ -41,7 +41,8 @@
 	.date_click_btn {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; cursor: pointer;}
 	
 	.dialog_mask {position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9998; background-color: #000; opacity: 0; display: none;}
-	
+
+	.red_sun {width:10px; margin-right:10px;}	
 	.ui-dialog {z-index: 9999;}
 	.immediately_popup_memo {width: 500px; height: 310px; padding: 10px;}
 	.immediately_section {position: absolute; font-size: 12px; margin-top: 10px;}
@@ -80,6 +81,7 @@
 	}
 	
 	@media (max-width:1200px) {
+		.red_sun {width:2.5vw; margin-right:2.5vw;}
 		.ui-dialog {z-index: 9999;}
 		.immediately_popup_memo {width:66vw; height: 310px; padding:2vw; font-size:4vw;}
 		.immediately_section {position: absolute; font-size: 12px; margin-top: 10px;}
@@ -701,7 +703,7 @@ $(window).on("resize", function() {
 		    </tr> 
 		</table>
 		<div class="immediately_section">
-			<a class="immediately_popup">예약하시고 싶은 날짜에 이미 예약이 되어있다구요?</a>
+			<a class="immediately_popup"><img class="red_sun" src="/resources/img/renewal/contact/redsun.png">예약하시고 싶은 날짜에 이미 예약이 되어있다구요?</a>
 		</div>
 	</div>
 </div>
