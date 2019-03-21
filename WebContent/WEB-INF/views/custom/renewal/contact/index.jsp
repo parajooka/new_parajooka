@@ -48,7 +48,7 @@
 	.immediately_section {position: absolute; font-size: 12px; margin-top: 10px;}
 	.immediately_popup {cursor:pointer;}
 	.immediately_popup_section {text-align: center; margin-bottom:10px;}
-	.immediately_popup_section a {display: inline-block; width: 99%; padding: 1vw 0; border: 1px solid #A9A9A9; cursor: pointer;}
+	.immediately_popup_section a {display: inline-block; width: 99%; padding: 5px 0; border: 1px solid #A9A9A9; cursor: pointer;}
 	
 	select {
 		-webkit-appearance: none;
@@ -611,7 +611,8 @@ $(document).ready(function() {
 		autoOpen: false,
 		appendTo : "body",
 		show: { effect: "blind", duration: 300 },
-		hide: { effect: "blind", duration: 300 }
+		hide: { effect: "blind", duration: 300 },
+		resizable: false
 	});
     
     $('.immediately_popup').on("click", function() {
