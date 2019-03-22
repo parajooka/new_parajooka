@@ -11,6 +11,9 @@
 	.important {font-size: 0.8vw; line-height: 1.3vw; display: inline-block; margin: 1vw 0; color: red;}
 </style>
 <div class="contact_container">
+	<div style="text-align: right; margin-top:1vw;">
+		${paging_limit_layout}
+	</div>
 	<table class="dark_table">
 		<tr>
 			<td><input type="checkbox" class="select_all"/></td>
