@@ -17,11 +17,11 @@ import com.para.object.contact.Contact;
 import com.para.object.landing.LandingParticipant;
 import com.para.service.contact.ContactService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
 @RequestMapping(value="/jooka/admin/contact")
-public class AdminContactConroller extends BaseController {
+public class AdminContactConroller extends ControllerCommonMethod {
 	@Autowired
 	private ContactService contact_service;
 	

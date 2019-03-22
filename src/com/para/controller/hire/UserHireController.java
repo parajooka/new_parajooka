@@ -38,13 +38,13 @@ import com.para.service.hire.VolunteerResultService;
 import com.para.service.hire.VolunteerService;
 import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.AuthSMSHandler;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.CustomMultipartResolver;
 import com.paraframework.common.SMTP;
 
 @Controller
 @RequestMapping(value="/custom/hire")
-public class UserHireController extends BaseController {
+public class UserHireController extends ControllerCommonMethod {
 	@Autowired
 	HireService hire_service;
 	
@@ -90,7 +90,7 @@ public class UserHireController extends BaseController {
 		
 		try {
 			if (!CheckHire(hire) || hire.getActivation() == 1) {
-				BaseController.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
+				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
 			} else {
 				
 				Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
@@ -126,7 +126,7 @@ public class UserHireController extends BaseController {
 			Hire hire = hire_service.getHireById(id);
 			
 			if (!CheckHire(hire) || hire.getActivation() == 1) {
-				BaseController.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
+				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
 			} else {
 				List<Question> questions = qn_service.getQuestionByQnH(hire.getId());
 				

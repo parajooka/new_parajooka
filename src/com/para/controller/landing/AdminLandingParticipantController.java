@@ -23,11 +23,11 @@ import com.para.service.landing.LandingAnswerService;
 import com.para.service.landing.LandingParticipantService;
 import com.para.service.landing.LandingQuestionService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
 @RequestMapping(value="/jooka/admin/landing")
-public class AdminLandingParticipantController extends BaseController {
+public class AdminLandingParticipantController extends ControllerCommonMethod {
 	
 	@Autowired
 	private LandingParticipantService participant_serivce;

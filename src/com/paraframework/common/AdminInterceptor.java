@@ -40,23 +40,23 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		
 		for (AccessIp a : access) {
 			if (ip.equals(a.getAccess_ip()) || ip.indexOf(a.getAccess_ip()) >= 0) {
-				if (!BaseController.isMobile(request)) {
+				if (!ControllerCommonMethod.isMobile(request)) {
 					initAdminCategory(request);
 					return true;
 				} else {
-					return BaseController.alertMessage("모바일에서는 관리자 페이지 접근이 불가능합니다.", request, response);
+					return ControllerCommonMethod.alertMessage("모바일에서는 관리자 페이지 접근이 불가능합니다.", request, response);
 				}
 			}
 		}
 		
-		return BaseController.alertMessage("허용되지않은 접근입니다.", request, response);
+		return ControllerCommonMethod.alertMessage("허용되지않은 접근입니다.", request, response);
 	}
 	
 	public void initAdminCategory(HttpServletRequest request) {
-		if (!BaseController.AdminCategoryUpload) {
+		if (!ControllerCommonMethod.AdminCategoryUpload) {
 			request.getServletContext().removeAttribute("admin_Category_list");
 			
-			BaseController.AdminCategoryUpload = true;
+			ControllerCommonMethod.AdminCategoryUpload = true;
 			List<Category> category_list = category_service.getViewCategory();
 			Map<Integer, List<Category>> category_tree = new LinkedHashMap<>();
 			

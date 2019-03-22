@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.board.PostComment;
 import com.paraframework.service.board.PostCommentService;
 
 @Controller
 @RequestMapping(value="/jooka/admin/board")
-public class BoardController extends BaseController {
+public class BoardController extends ControllerCommonMethod {
 	@Autowired
 	private PostCommentService service;
 	

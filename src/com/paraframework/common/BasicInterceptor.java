@@ -52,7 +52,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		
 		for (AccessIp a : access) {
 			if (ip.equals(a.getAccess_ip()) || ip.indexOf(a.getAccess_ip()) >= 0) {
-				if (!BaseController.isMobile(request)) {
+				if (!ControllerCommonMethod.isMobile(request)) {
 					request.getSession().setAttribute("admin", true);
 				}
 			}
@@ -60,17 +60,17 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		
 		
 		 //홈페이지 메뉴 로딩
-		if (!BaseController.MenuUpload) {
-			BaseController.MenuUpload = true;
+		if (!ControllerCommonMethod.MenuUpload) {
+			ControllerCommonMethod.MenuUpload = true;
 			request.getServletContext().setAttribute("menu_list", service.getViewMenu());
 		}
 		
 		//홈페이지 정보 호출
-		if (!BaseController.HomePageUpload) {
+		if (!ControllerCommonMethod.HomePageUpload) {
 			Homepage homepage = homepage_service.getHomepage();
 			
 			if (homepage != null) {
-				BaseController.HomePageUpload = true;
+				ControllerCommonMethod.HomePageUpload = true;
 				request.getServletContext().setAttribute("homepage", homepage);
 			}
 		}
@@ -102,7 +102,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	    	strParam = "?"+ strParam.substring(0, strParam.length() - 1);
 	    }
 		 
-	    bufferedWriter.write("방문자 아이피 : "+ BaseController.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
+	    bufferedWriter.write("방문자 아이피 : "+ ControllerCommonMethod.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
 		bufferedWriter.close();
 	}
 }

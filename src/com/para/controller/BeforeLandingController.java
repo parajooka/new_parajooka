@@ -5,11 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
 @RequestMapping(value="/custom/2018/landing")
-public class BeforeLandingController extends BaseController {
+public class BeforeLandingController extends ControllerCommonMethod {
 	
 	@RequestMapping(value="/no")
 	public String NoPage(HttpServletRequest request) {

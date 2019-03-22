@@ -27,12 +27,12 @@ import com.para.service.hire.QnHJoinService;
 import com.para.service.hire.VolunteerResultService;
 import com.para.service.hire.VolunteerService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.SendSMS;
 
 @Controller
 @RequestMapping(value="/jooka/admin/manage_hire_volunteer")
-public class VolunteerManageController extends BaseController {
+public class VolunteerManageController extends ControllerCommonMethod {
 	@Autowired
 	private HireService hire_service;
 	

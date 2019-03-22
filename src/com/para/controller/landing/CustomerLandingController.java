@@ -25,14 +25,14 @@ import com.para.service.landing.LandingAnswerService;
 import com.para.service.landing.LandingParticipantService;
 import com.para.service.landing.LandingQuestionService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.StringCryPto;
 import com.paraframework.object.Menu;
 import com.paraframework.service.MenuService;
 
 @Controller
 @RequestMapping(value="/custom/renewal/landing")
-public class CustomerLandingController extends BaseController {
+public class CustomerLandingController extends ControllerCommonMethod {
 	@Autowired
 	private LandingQuestionService question_service;
 	@Autowired

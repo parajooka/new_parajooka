@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Homepage;
 import com.paraframework.object.Menu;
 import com.paraframework.service.MenuHtmlService;
 import com.paraframework.service.MenuService;
 
 @Controller
-public class CustomerMenuController extends BaseController {
+public class CustomerMenuController extends ControllerCommonMethod {
 	@Autowired
 	private MenuService service;
 	@Autowired
@@ -69,7 +69,7 @@ public class CustomerMenuController extends BaseController {
 		
 		//해당 메뉴가 존재하지 않거나 사용여부가 미사용으로 설정해둔 경우
 		if (menu == null || menu.getUse_yn() == 1) {
-			return BaseController.alertMessageByString("현재 페이지는 접근이 불가능한 페이지입니다.", "/custom/ready", request, response);
+			return ControllerCommonMethod.alertMessageByString("현재 페이지는 접근이 불가능한 페이지입니다.", "/custom/ready", request, response);
 		//메뉴가 내부 url 이동인 경우
 		} else if (menu.getMenu_type() == 1) {
 			return RedirectPage(request, menu.getMenu_url());

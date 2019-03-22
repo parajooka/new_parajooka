@@ -28,14 +28,14 @@ import com.para.service.landing.LandingAnswerService;
 import com.para.service.landing.LandingQuestionChainService;
 import com.para.service.landing.LandingQuestionService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
 @RequestMapping(value="/jooka/admin/landing")
-public class AdminLandingController extends BaseController {
+public class AdminLandingController extends ControllerCommonMethod {
 	@Autowired
 	private LandingQuestionService question_service;
 	@Autowired

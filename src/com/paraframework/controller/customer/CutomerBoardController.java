@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Menu;
 import com.paraframework.object.board.Post;
 import com.paraframework.object.board.PostComment;
@@ -35,7 +35,7 @@ import com.paraframework.service.board.PostService;
 
 @Controller
 @RequestMapping(value="/custom/board")
-public class CutomerBoardController extends BaseController {
+public class CutomerBoardController extends ControllerCommonMethod {
 	@Autowired 
 	private PostCommentService service;
 	@Autowired

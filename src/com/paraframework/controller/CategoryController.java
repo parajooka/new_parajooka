@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Category;
 import com.paraframework.service.CategoryService;
 
 @Controller
 @RequestMapping(value="/jooka/admin/category")
-public class CategoryController extends BaseController {
+public class CategoryController extends ControllerCommonMethod {
 	
 	private static int CategoryMaxDepth = 4;
 	
@@ -113,7 +113,7 @@ public class CategoryController extends BaseController {
 			
 
 			if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-				BaseController.AdminCategoryUpload = false;
+				ControllerCommonMethod.AdminCategoryUpload = false;
 			}
 
 		res.setNext_url("/jooka/admin/category/index");
@@ -143,7 +143,7 @@ public class CategoryController extends BaseController {
 					}
 					
 					if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-						BaseController.AdminCategoryUpload = false;
+						ControllerCommonMethod.AdminCategoryUpload = false;
 					}
 			} else {
 				res.setMessage("잘못된 접근입니다.");
@@ -171,7 +171,7 @@ public class CategoryController extends BaseController {
 					service.updateCategory(Category);
 		
 					if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-						BaseController.AdminCategoryUpload = false;
+						ControllerCommonMethod.AdminCategoryUpload = false;
 					}
 			} else {
 				res.setMessage("잘못된 접근입니다.");
@@ -216,7 +216,7 @@ public class CategoryController extends BaseController {
 			
 
 			if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-				BaseController.AdminCategoryUpload = false;
+				ControllerCommonMethod.AdminCategoryUpload = false;
 			}
 		}
 		

@@ -17,13 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Homepage;
 import com.paraframework.service.HomepageService;
 
 @Controller
 @RequestMapping(value= {"/jooka", "/jooka/admin/homepage"})
-public class HomepageController extends BaseController {
+public class HomepageController extends ControllerCommonMethod {
 	@Autowired
 	private HomepageService service;
 

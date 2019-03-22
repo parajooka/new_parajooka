@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
 @RequestMapping(value="/video")
-public class VideoController extends BaseController {
+public class VideoController extends ControllerCommonMethod {
 
 	/*@RequestMapping(value="/{video}.{file_type}", method=RequestMethod.GET)
 	public void index(HttpServletRequest request, HttpServletResponse response, @PathVariable String video, @PathVariable String file_type) {

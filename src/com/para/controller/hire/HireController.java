@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.para.object.hire.Hire;
 import com.para.service.hire.HireService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
 @RequestMapping(value= {"/jooka/admin/hire"})
-public class HireController extends BaseController {
+public class HireController extends ControllerCommonMethod {
 	
 	@Autowired
 	HireService service;

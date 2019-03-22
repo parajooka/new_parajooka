@@ -19,12 +19,12 @@ import com.para.service.hire.HireService;
 import com.para.service.hire.QnHJoinService;
 import com.para.service.hire.QuestionService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 
 @Controller
 @RequestMapping(value= {"/jooka/admin/hirejoin"})
-public class HireJoinController extends BaseController {
+public class HireJoinController extends ControllerCommonMethod {
 	@Autowired
 	private HireService hire_service;
 	@Autowired

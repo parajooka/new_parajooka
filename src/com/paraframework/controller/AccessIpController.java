@@ -17,23 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 import com.paraframework.object.AccessIp;
-import com.paraframework.object.Menu;
 import com.paraframework.service.AccessIpService;
-import com.paraframework.service.MenuService;
 
 @Controller
 @RequestMapping(value="/jooka/admin/access_ip")
-public class AccessIpController extends BaseController {
+public class AccessIpController extends ControllerCommonMethod {
 	@Autowired
 	private AccessIpService service;
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String Landing(HttpServletRequest request, HttpServletResponse response, PageUtil page) {
 		request.setAttribute("menu", "접근 허용 아이피");
-		
+
 		//검색 조건 부여 -- 시작
 			//검색 옵션 지정
 			Map<String, String> search_items = new LinkedHashMap<String, String>();

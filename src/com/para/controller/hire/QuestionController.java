@@ -19,12 +19,12 @@ import com.para.object.hire.Question;
 import com.para.service.hire.AnswerService;
 import com.para.service.hire.QuestionService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 
 @Controller
 @RequestMapping(value="/jooka/admin/question")
-public class QuestionController extends BaseController {
+public class QuestionController extends ControllerCommonMethod {
 	
 	@Autowired
 	private QuestionService question_service;

@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.SMTP;
 import com.paraframework.object.AccessIp;
 import com.paraframework.service.AccessIpService;
 
 @Controller
 @RequestMapping(value="/temp_file")
-public class TempAminAccessIpInjectionController extends BaseController {
+public class TempAminAccessIpInjectionController extends ControllerCommonMethod {
 	
 	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREAN);
 

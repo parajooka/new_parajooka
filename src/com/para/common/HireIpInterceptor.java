@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.para.service.hire.HireService;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 
 public class HireIpInterceptor extends HandlerInterceptorAdapter {
 	
@@ -47,14 +47,14 @@ public class HireIpInterceptor extends HandlerInterceptorAdapter {
 		        	int count = service.CountHireByuser(new Date());
 		    		if (count > 0) {
 		    			request.setAttribute("now_hire_count", count);
-		    			request.setAttribute("browser", BaseController.isMobile(request));
+		    			request.setAttribute("browser", ControllerCommonMethod.isMobile(request));
 		    		}
 		        }
 		    } else {
 		    	int count = service.CountHireByuser(new Date());
 	    		if (count > 0) {
 	    			request.setAttribute("now_hire_count", count);
-	    			request.setAttribute("browser", BaseController.isMobile(request));
+	    			request.setAttribute("browser", ControllerCommonMethod.isMobile(request));
 	    		}
 		    }
 		}

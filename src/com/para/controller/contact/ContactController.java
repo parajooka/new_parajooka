@@ -27,14 +27,14 @@ import com.para.object.landing.LandingParticipant;
 import com.para.service.contact.ContactService;
 import com.para.service.landing.LandingParticipantService;
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.SMTP;
 import com.paraframework.object.Menu;
 import com.paraframework.service.MenuService;
 
 @Controller
 @RequestMapping(value="/custom/renewal/contact")
-public class ContactController extends BaseController {
+public class ContactController extends ControllerCommonMethod {
 	@Autowired
 	private ContactService contact_service;
 	@Autowired

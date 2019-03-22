@@ -91,5 +91,17 @@
 		
 		$(value).attr('href', encodeURI(tmp_href));
 	});
+	
+	//Paging Limit Change Event
+	$(".paging_limit_change").on("change", function() {
+		var limitCryPto = $(this).val();
+		
+		var func = function(data) {
+			location.href = data['next_url'];
+		}
+		
+		get_item_info("/paging/changeLimit", func, {"paging_limit":limitCryPto}, $('body'));
+	});
+	
 </script>
 </c:if>

@@ -27,7 +27,7 @@ import com.paraframework.object.Homepage;
 import com.paraframework.service.AccessIpService;
 import com.paraframework.service.SqlUtilService;
 
-public class BaseController {
+public class ControllerCommonMethod {
 	protected static boolean HomePageUpload = false;
 	protected static boolean MenuUpload = false;
 	protected static boolean AdminCategoryUpload = false;
@@ -252,7 +252,10 @@ public class BaseController {
 		return filelist;
 	}
 	
-	
+	public static String getBeforeURL(HttpServletRequest request) {
+		String before_url = (String)request.getHeader("Referer");
+		return before_url;
+	}
 
 	/**
 	 * @param request
@@ -260,6 +263,7 @@ public class BaseController {
 	 * @param total_item_count 페이징 처리해야할 아이템의 갯수
 	 * @param paging_target_url 페이징 처리중인 url
 	 * @return
+	 * @throws Exception 
 	 */
 	public static PageUtil AutoPaging(HttpServletRequest request, HttpServletResponse response, int total_item_count) {
 		HttpSession session = request.getSession();
@@ -275,17 +279,51 @@ public class BaseController {
 		if (custom_paging != null && custom_paging.length() >= 1 && Integer.parseInt(custom_paging) > 0) {
 			//페이지 번호를 사용자 요청 번호로 교체
 			page_number = Integer.parseInt(custom_paging);
-		}
+		} 
+		
+		int limit = 0; 
+		int[] limit_array = {5, 15, 30, 40, 45};
 		
 		//페이징 호출 혹은 생성
-		if (page_number == 1 || session.getAttribute("paging") == null) {
+		if (session.getAttribute("paging") == null) {
 			session.removeAttribute("paging");
 			page = new PageUtil();
-			page.setTotal_item_count(total_item_count);
-			page.setPaging();
+			
+			//새로운 페이징 갯수 변경 요청이 있다면, 그에 맞게 페이징 변경
+			if (session.getAttribute("paging_limit") != null && session.getAttribute("paging_limit_flag") != null) {
+				limit = (int) session.getAttribute("paging_limit");
+				page.setLimit(limit);
+				page_number = 1;
+				
+				session.removeAttribute("paging_limit_flag");
+			}
 		} else {
 			page = (PageUtil) session.getAttribute("paging");
+			
+			//새로운 페이징 갯수 변경 요청이 있다면, 그에 맞게 페이징 변경
+			if (session.getAttribute("paging_limit") != null && session.getAttribute("paging_limit_flag") != null) {
+				limit = (int) session.getAttribute("paging_limit");
+				page.setLimit(limit);
+				page_number = 1;
+				
+				session.removeAttribute("paging_limit_flag");
+			}
 		}
+		
+		//페이징 요청이 새로운 페이징 요청시(페이지 이동)
+		//필요없는 페이징 관련 session을 삭제한다.
+		if (page.getPaging_url() != null && page.getPaging_url().length() > 0 && !page.getPaging_url().equals(request.getRequestURI())) {
+			//Limit를 기본으로 되돌린다.
+			page.setLimit(limit_array[0]);
+			//페이징별 글 갯수 기록 삭제
+			session.removeAttribute("paging_limit");
+		}
+		
+
+		//글의 총갯수를 페이징 객체에 입력한다.
+		page.setTotal_item_count(total_item_count);
+		//페이징 처리 시작
+		page.setPaging();
 		
 		//페이징 처리중인 url을 기록
 		page.setPaging_url(request.getRequestURI());
@@ -321,6 +359,28 @@ public class BaseController {
 			   page_layout += "</div>";
 		
 		request.setAttribute("paging_layout", page_layout);
+		
+		//페이징의 limit을 변경할수있는 layout을 request에 담아준다
+		//원하는 위치에 사용 혹은 원하지 않을수 사용하지않게
+		String page_limit_layout = "";
+				page_limit_layout += "<select class='paging_limit_change'>";
+				try {
+					for (int l : limit_array) {
+						if (page.getLimit() == l) {
+							page_limit_layout += "<option selected='selected' value='"+ StringCryPto.encrypt("pagingLimit", ""+ l) +"'>게시물 "+ l +"개씩 보기</option>";
+						} else {
+							page_limit_layout += "<option value='"+ StringCryPto.encrypt("pagingLimit", ""+ l) +"'>게시물 "+ l +"개씩 보기</option>";
+						}
+					}
+					
+					page_limit_layout += "</select>";
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					alertMessage("Error during paging processing", request, response);
+				}
+		
+		request.setAttribute("paging_limit_layout", page_limit_layout);
 		
 		return page;
 		

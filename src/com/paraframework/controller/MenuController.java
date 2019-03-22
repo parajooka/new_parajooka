@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
-import com.paraframework.common.BaseController;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Menu;
 import com.paraframework.object.MenuHtml;
 import com.paraframework.service.MenuHtmlService;
@@ -23,7 +23,7 @@ import com.paraframework.service.MenuService;
 
 @Controller
 @RequestMapping(value="/jooka/admin/menu")
-public class MenuController extends BaseController {
+public class MenuController extends ControllerCommonMethod {
 	@Autowired
 	private MenuService service;
 	
