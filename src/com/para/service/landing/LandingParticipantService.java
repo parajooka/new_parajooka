@@ -46,16 +46,6 @@ public class LandingParticipantService implements LandingParticipantDao {
 			participant.setRecord(StringCryPto.decrypt("CustomerLandingResult", participant.getRecord()));
 			participant.setStart_time(StringCryPto.decrypt("CustomerLandingResult", participant.getStart_time()));
 			participant.setEnd_time(StringCryPto.decrypt("CustomerLandingResult", participant.getEnd_time()));
-			
-			String test = participant.toString();
-			byte[] euckrStringBuffer  = test.getBytes(Charset.forName("UTF-8"));
-			// euc-kr 로 변환된 byte 문자열을 다시 유니코드 String 으로 변환.
-			// String 생성자의 
-			// 첫 번째 인자로 문자열 byte 배열을  넣어주고, 
-			// 두 번째 인자로 byte 배열의 인코딩 값을 넣어준다.
-			String decodedHelloString = new String(euckrStringBuffer, "UTF-8");
-			
-			System.out.println(decodedHelloString);
 		}
 		
 		return participant;
