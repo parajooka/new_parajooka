@@ -31,4 +31,6 @@ public interface ContactDao {
 	public List<Contact> getContactByPaging(PageUtil page) throws Exception;
 	
 	public String getMemoByContactId(int id);
+	
+	public Contact getContactBySoonTimer() throws Exception;
 }

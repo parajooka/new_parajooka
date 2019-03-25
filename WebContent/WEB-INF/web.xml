@@ -11,10 +11,16 @@
         </listener-class>
     </listener>
     
+    <!-- Listner list ==START -->
     <listener>
     	<description>임시파일 삭제 리스너</description>
     	<listener-class>com.paraframework.listener.TempFileRemoveListener</listener-class>
     </listener>
+    <listener>
+    	<description>임시파일 삭제 리스너</description>
+    	<listener-class>com.para.listener.AlarmContactListner</listener-class>
+    </listener>
+    <!-- Listner list ==END -->
     
     <!-- LandingQuestio참여자 정보 암호화 필터 -->
     <filter>

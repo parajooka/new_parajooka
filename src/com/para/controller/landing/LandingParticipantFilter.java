@@ -16,7 +16,6 @@ import com.paraframework.common.StringCryPto;
 public class LandingParticipantFilter implements Filter {
 	public void destroy() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -54,8 +53,6 @@ public class LandingParticipantFilter implements Filter {
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		String testParam = filterConfig.getInitParameter("testParam");
-        System.out.println("URL Filter : "+testParam);
 	}
 
 }

@@ -117,4 +117,17 @@ public class ContactService implements ContactDao {
 		// TODO Auto-generated method stub
 		return dao.getMemoByContactId(id);
 	}
+
+	@Override
+	public Contact getContactBySoonTimer() throws Exception {
+		// TODO Auto-generated method stub
+		Contact c = dao.getContactBySoonTimer();
+		if (c != null) {
+			LandingParticipant participant = c.getParticipant();
+			participant.setCompany(StringCryPto.decrypt("CustomerLandingResult", participant.getCompany()));
+			participant.setName(StringCryPto.decrypt("CustomerLandingResult", participant.getName()));
+		}
+		
+		return c;
+	}
 }

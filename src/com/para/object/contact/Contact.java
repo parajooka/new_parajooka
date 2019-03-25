@@ -81,6 +81,11 @@ public class Contact {
 	public void setContact_Date(String contact_Date) {
 		this.contact_Date = contact_Date;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Contact [contact_id=" + contact_id + ", participant_id=" + participant_id + ", reservation_date="
+				+ reservation_date + ", reservation_type=" + reservation_type + ", reservation_memo=" + reservation_memo
+				+ ", reservation_pw=" + reservation_pw + ", contact_Date=" + contact_Date + ", participant="
+				+ participant + "]";
+	}
 }

@@ -184,4 +184,23 @@
 	WHERE
 		contact_id = #{contact_id}
 </select>
+<select id="getContactBySoonTimer" resultMap="Contact" parameterType="string">
+   	SELECT 
+		c.CONTACT_ID,
+		c.PARTICIPANT_ID,
+		c.RESERVATION_DATE,
+		c.RESERVATION_TYPE,
+		c.CONTACT_DATE,
+		c.RESERVATION_PW,
+		p.name,
+		p.company
+	FROM 
+		CONTACT AS c
+	JOIN
+		LANDINGPARTICIPANT AS p
+	ON
+		c.PARTICIPANT_ID = p.PARTICIPANT_ID
+	WHERE
+		date(c.RESERVATION_DATE) = date(now())
+</select>
 </mapper>
