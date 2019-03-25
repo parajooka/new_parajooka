@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
@@ -31,6 +35,7 @@ public class ControllerCommonMethod {
 	protected static boolean HomePageUpload = false;
 	protected static boolean MenuUpload = false;
 	protected static boolean AdminCategoryUpload = false;
+	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREAN);
 	private static Timer timer = new Timer();
 	
 	@Autowired
@@ -740,5 +745,29 @@ public class ControllerCommonMethod {
 
 		
 		return contents;
+	}
+	
+	/**
+	 * 현재시간과 특정시간까지의 차이(남은시간) 계산 메서드
+	 * @param tomorrow
+	 * @return
+	 */
+	public static long SleepTime(Date date) {
+		Date now = null;
+		try {
+			//원하는 포멧에 맞춰 현재 시간 가져온다 ex)2019-03-25 19:10:42
+			String now_str = formatTime2.format(new Date());
+			//다시 Date로 변환한다.
+			now = formatTime2.parse(now_str);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//두 날짜 사이에 남은 밀리세컨드를 구한다.
+		//스케줄 타이머에 사용됨
+		long diff = date.getTime() - now.getTime();
+		
+		return diff;
 	}
 }

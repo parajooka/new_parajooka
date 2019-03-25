@@ -18,6 +18,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.para.object.contact.Contact;
 import com.para.service.contact.ContactService;
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.SMTP;
 
 /**
@@ -53,25 +54,6 @@ public class AlarmContactListner implements ServletContextListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public long SleepTime(Date tomorrow) {
-		Date now = null;
-		try {
-			//원하는 포멧에 맞춰 현재 시간 가져온다 ex)2019-03-25 19:10:42
-			String now_str = formatTime2.format(new Date());
-			//다시 Date로 변환한다.
-			now = formatTime2.parse(now_str);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//두 날짜 사이에 남은 밀리세컨드를 구한다.
-		//스케줄 타이머에 사용됨
-		long diff = tomorrow.getTime() - now.getTime();
-		
-		return diff;
 	}
 	
 	public void work() throws InterruptedException {
@@ -171,7 +153,7 @@ public class AlarmContactListner implements ServletContextListener {
 								smtp.SendMail("kdyshj700@gmail.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
 								smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
 							}
-						}, SleepTime(meeting_time));
+						}, ControllerCommonMethod.SleepTime(meeting_time));
 					}
 					
 					//재귀문 실행 (발송후 또 다음날 00시 00분 30초에 미팅조회하여 그 날 미팅계획을 발송한다)
@@ -181,6 +163,6 @@ public class AlarmContactListner implements ServletContextListener {
 					e.printStackTrace();
 				}
 			}
-		}, SleepTime(tomorrow));
+		}, ControllerCommonMethod.SleepTime(tomorrow));
 	}
 }
