@@ -129,7 +129,7 @@ public class AlarmContactListner implements ServletContextListener {
 						SMTP smtp = new SMTP();
 						//메일 발송
 						smtp.SendMail("kdyshj700@gmail.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
-						//smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
+						smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
 						
 						//미팅 시간이되면 다시한번 메일을 발송하기위한 스케줄생성
 						Timer TimeAlarm = new Timer();
@@ -169,7 +169,7 @@ public class AlarmContactListner implements ServletContextListener {
 								SMTP smtp = new SMTP();
 								//메일 발송
 								smtp.SendMail("kdyshj700@gmail.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
-								//smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
+								smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
 							}
 						}, SleepTime(meeting_time));
 					}
