@@ -1,7 +1,6 @@
 package com.paraframework.listener;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -69,19 +68,13 @@ public class ServerRestartListener implements ServletContextListener {
 			public void run() {
 				// TODO Auto-generated method stub
 				System.out.println("==== Server Reboot ====");
-	            
+	            String [] commands = {"cmd.exe", "/c", "C:\\apache-tomcat-8.5.32\\restart.bat"};
 	            try {
-	                Process p = Runtime.getRuntime().exec("C:\\apache-tomcat-8.5.32\\restart.bat");
-	                
-	                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	                String line = null;
-	                
-	                while ((line = br.readLine()) != null) {
-	                  System.out.println(line);
-	                }
-	              } catch (Exception e) {
-	                System.err.println(e);
-	              }
+					Process proc = Runtime.getRuntime().exec(commands);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}, ControllerCommonMethod.SleepTime(tomorrow));
 	}
