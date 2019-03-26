@@ -59,16 +59,29 @@ public class AlarmContactListner implements ServletContextListener {
 	public void work() throws InterruptedException {
 		//내일 날짜를 가져온다 ex)2019-03-26 00:00:30 
 		Calendar cal = new GregorianCalendar();
-	    cal.add(Calendar.DATE, 1);
-		String tomorrow_year = cal.get(Calendar.YEAR) + "";
-		String tomorrow_month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
-		String tomorrow_date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
+		String year = cal.get(Calendar.YEAR) + "";
+		String month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
+		String date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
 		
 		//내일 날짜를 Date로 변환한다.
 		Date tomorrow = null;
 		
 		try {
-			tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "00:00:30");
+			//오늘 9시날짜 저장
+			tomorrow = formatTime2.parse(year + "-" + month + "-" + date + " " + "09:00:00");
+			
+			//이미 오전 9시가 지난경우 내일 오전 9시로 예약
+			if (ControllerCommonMethod.SleepTime(tomorrow) <= 0) {
+				cal.add(Calendar.DATE, 1);
+				String tomorrow_year = cal.get(Calendar.YEAR) + "";
+				String tomorrow_month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
+				String tomorrow_date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
+				
+				tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "09:00:00");
+			}
+			
+			System.out.println(tomorrow);
+			
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -142,7 +155,7 @@ public class AlarmContactListner implements ServletContextListener {
 								
 								//메일 내용 작성
 								String msg = ""+
-										 "" + meeting_target.getParticipant().getName() + "님과의 미팅이 예약된 시간입니다.<br>" +
+										 "" + meeting_target.getParticipant().getName() + "님이 미팅을 기다리고 계십니다.<br>" +
 										 "예약시간 : " + meeting_target.getReservation_date() + "<br>" +
 										 "미팅수단 : "+ reservation_type + "<br>" +
 										 "연락처 : " + meeting_target.getReservation_pw() + "<br><br>" +
