@@ -762,7 +762,7 @@ $(window).on("resize", function() {
 		</div>
 		<div class="contact_pw">
 			<p class="contact_section_title">연락처</p>
-			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="예약하실 연락처를 입력 해주세요.">
+			<input type="text" id="reservation_pw" name="reservation_pw" placeholder="연락처 형식 ex)01024110000">
 			<input type="text" style="display:none;">
 		</div>
 		<div class="submit_section" style="margin-top:3vh;">
