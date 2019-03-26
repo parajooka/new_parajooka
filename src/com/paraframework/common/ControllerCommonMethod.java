@@ -35,7 +35,7 @@ public class ControllerCommonMethod {
 	protected static boolean HomePageUpload = false;
 	protected static boolean MenuUpload = false;
 	protected static boolean AdminCategoryUpload = false;
-	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREAN);
+	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.KOREAN);
 	private static Timer timer = new Timer();
 	
 	@Autowired
@@ -767,7 +767,6 @@ public class ControllerCommonMethod {
 		//두 날짜 사이에 남은 밀리세컨드를 구한다.
 		//스케줄 타이머에 사용됨
 		long diff = date.getTime() - now.getTime();
-		
 		return diff;
 	}
 }

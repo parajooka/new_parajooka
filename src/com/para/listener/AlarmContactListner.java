@@ -32,7 +32,7 @@ public class AlarmContactListner implements ServletContextListener {
 	private ContactService service;
 
 	private SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
-	private SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREAN);
+	private SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.KOREAN);
 	private static Contact meeting_target = null;
 
 	@Override
@@ -68,7 +68,7 @@ public class AlarmContactListner implements ServletContextListener {
 		
 		try {
 			//오늘 9시날짜 저장
-			tomorrow = formatTime2.parse(year + "-" + month + "-" + date + " " + "09:00:00");
+			tomorrow = formatTime2.parse(year + "-" + month + "-" + date + " " + "09:00:00.000");
 			
 			//이미 오전 9시가 지난경우 내일 오전 9시로 예약
 			if (ControllerCommonMethod.SleepTime(tomorrow) <= 0) {
@@ -77,10 +77,8 @@ public class AlarmContactListner implements ServletContextListener {
 				String tomorrow_month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
 				String tomorrow_date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
 				
-				tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "09:00:00");
+				tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "09:00:00.000");
 			}
-			
-			System.out.println(tomorrow);
 			
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -131,7 +129,7 @@ public class AlarmContactListner implements ServletContextListener {
 						//DB에 데이트 시간이 yyyy-MM-dd HH:mm으로 저장되므로 뒤에 :00을 추가해준다.
 						Date meeting_time = null;
 						try {
-							meeting_time = formatTime2.parse(meeting_target.getReservation_date()+":00");
+							meeting_time = formatTime2.parse(meeting_target.getReservation_date()+":00.000");
 						} catch (ParseException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
