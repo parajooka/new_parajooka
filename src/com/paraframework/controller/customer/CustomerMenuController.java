@@ -31,9 +31,6 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		request.getSession().removeAttribute("target_menu");
 		request.getSession().setAttribute("menu_move_cmd", true);
 		
-		SMTP smtp = new SMTP();
-		smtp.SendMail("kdyshj700@gmail.com", "test", "test");
-		
 		//홈페이지 기본설정이 설정되지 않은경우
 		if (homepage == null) {
 			//설정 하라는알림이있는 페이지로 이동시킨다.
