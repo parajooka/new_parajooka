@@ -318,6 +318,7 @@
 			if ($(window).width() > 1200) {
 				$(value).css("padding-top", "10px");
 				$(value).find(".today_round").css("margin-top", "10px");
+				$(value).find(".today_square").css("margin-top", "10px");
 			}
 		});
 		
