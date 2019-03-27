@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.paraframework.common.ControllerCommonMethod;
+import com.paraframework.common.SMTP;
 import com.paraframework.object.Homepage;
 import com.paraframework.object.Menu;
 import com.paraframework.service.MenuService;
@@ -29,6 +30,9 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		Homepage homepage = (Homepage) request.getServletContext().getAttribute("homepage");
 		request.getSession().removeAttribute("target_menu");
 		request.getSession().setAttribute("menu_move_cmd", true);
+		
+		SMTP smtp = new SMTP();
+		smtp.SendMail("kdyshj700@gmail.com", "test", "test");
 		
 		//홈페이지 기본설정이 설정되지 않은경우
 		if (homepage == null) {

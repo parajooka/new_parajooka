@@ -16,7 +16,7 @@ import com.paraframework.common.SMTP;
  * @author DaeYeop
  *
  */
-public class SMTPListener implements ServletContextListener {
+public class SmtpSessionListener implements ServletContextListener {
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
