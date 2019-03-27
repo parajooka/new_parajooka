@@ -4,8 +4,6 @@ package com.paraframework.listener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 import com.paraframework.common.handler.TempJspHandler;
 
 /**

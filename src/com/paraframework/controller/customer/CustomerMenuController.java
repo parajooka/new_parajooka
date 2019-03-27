@@ -11,15 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.Homepage;
 import com.paraframework.object.Menu;
-import com.paraframework.service.MenuHtmlService;
 import com.paraframework.service.MenuService;
 
 @Controller
 public class CustomerMenuController extends ControllerCommonMethod {
 	@Autowired
 	private MenuService service;
-	@Autowired
-	private MenuHtmlService html_service;
 
 	/**
 	 * 홈페이지 인덱스 페이지로 이동

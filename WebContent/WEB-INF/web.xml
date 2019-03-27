@@ -24,6 +24,10 @@
     	<description>Menu 임시 JSP생성 리스너</description>
     	<listener-class>com.paraframework.listener.TempJspCreateListner</listener-class>
     </listener>
+    <listener>
+    	<description>SMTP 설정정보 저장 리스너</description>
+    	<listener-class>com.paraframework.listener.SMTPListener</listener-class>
+    </listener>
     <!-- Listner list ==END -->
     
     <!-- LandingQuestio참여자 정보 암호화 필터 -->
