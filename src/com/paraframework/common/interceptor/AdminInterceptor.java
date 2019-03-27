@@ -1,4 +1,4 @@
- package com.paraframework.common;
+ package com.paraframework.common.interceptor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -11,16 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.AccessIp;
 import com.paraframework.object.Category;
+import com.paraframework.object.Homepage;
 import com.paraframework.service.AccessIpService;
 import com.paraframework.service.CategoryService;
+import com.paraframework.service.HomepageService;
+import com.paraframework.service.MenuService;
 
 public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private AccessIpService service;
 	@Autowired
 	private CategoryService category_service;
+	@Autowired
+	private HomepageService homepage_service;
+	@Autowired
+	private MenuService menu_service;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -46,6 +54,22 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 				} else {
 					return ControllerCommonMethod.alertMessage("모바일에서는 관리자 페이지 접근이 불가능합니다.", request, response);
 				}
+			}
+		}
+		
+		//홈페이지 메뉴 로딩
+		if (!ControllerCommonMethod.MenuUpload) {
+			ControllerCommonMethod.MenuUpload = true;
+			request.getServletContext().setAttribute("menu_list", menu_service.getViewMenu());
+		}
+		
+		//홈페이지 정보 호출
+		if (!ControllerCommonMethod.HomePageUpload) {
+			Homepage homepage = homepage_service.getHomepage();
+			
+			if (homepage != null) {
+				ControllerCommonMethod.HomePageUpload = true;
+				request.getServletContext().setAttribute("homepage", homepage);
 			}
 		}
 		

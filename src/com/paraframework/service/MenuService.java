@@ -56,6 +56,12 @@ public class MenuService implements MenuDao {
 		// TODO Auto-generated method stub
 		return dao.getMenuByName(name);
 	}
+
+	@Override
+	public List<Menu> getMenuByType(int type) {
+		// TODO Auto-generated method stub
+		return dao.getMenuByType(type);
+	}
 	
 
 }

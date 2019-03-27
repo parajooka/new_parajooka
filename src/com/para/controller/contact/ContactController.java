@@ -317,7 +317,7 @@ public class ContactController extends ControllerCommonMethod {
 					 ""+ contents;
 		
 		SMTP smtp = new SMTP();
-		smtp.SendMail("mt9665@naver.com", mail_title, msg);
+		smtp.SendMail("kdcfv2@naver.com", mail_title, msg);
 		
 		
 		return res.returnResponse("'즉시 미팅'신청 메일이 발송되었습니다.\r\n담당자가 확인후 남겨주신 연락처로 직접 연락드리겠습니다.", "/custom/renewal/contact/index");

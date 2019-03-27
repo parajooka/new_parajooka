@@ -32,9 +32,9 @@ import com.paraframework.service.AccessIpService;
 import com.paraframework.service.SqlUtilService;
 
 public class ControllerCommonMethod {
-	protected static boolean HomePageUpload = false;
-	protected static boolean MenuUpload = false;
-	protected static boolean AdminCategoryUpload = false;
+	public static boolean HomePageUpload = false;
+	public static boolean MenuUpload = false;
+	public static boolean AdminCategoryUpload = false;
 	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.KOREAN);
 	private static Timer timer = new Timer();
 	

@@ -32,7 +32,7 @@
 				<div class="follw_me_container">
 					<p>
 						<img class="behance_logo" src="/resources/common/img/renewal/behance.png">
-						<img class="instagram_logo" src="/resources/common/img/renewal/instagram.png">
+						<a href="https://www.instagram.com/para_jooka/" target="_blank"><img class="instagram_logo" src="/resources/common/img/renewal/instagram.png"></a>
 					</p>
 					<p style="margin-top:-5px;">
 						<span style="display: inline-block; vertical-align: top; font-size: 12px;">follow us</span>

@@ -156,4 +156,14 @@
     WHERE
     	menu_name = #{name}
 </select>
+<select id="getMenuByType" parameterType="int" resultType="com.paraframework.object.Menu">
+	SELECT  
+		menu_idx,
+		view_yn,
+		use_yn
+    FROM
+    	menu
+    WHERE
+    	menu_type = #{type}
+</select>
 </mapper>

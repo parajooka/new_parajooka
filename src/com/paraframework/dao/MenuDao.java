@@ -23,4 +23,6 @@ public interface MenuDao {
 	public Menu getMenuById(int id);
 	
 	public List<Menu> getViewMenu();
+	
+	public List<Menu> getMenuByType(int type);
 }

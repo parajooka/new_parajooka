@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
+import com.paraframework.common.handler.TempJspHandler;
 import com.paraframework.object.Menu;
 import com.paraframework.object.MenuHtml;
 import com.paraframework.service.MenuHtmlService;
@@ -147,6 +148,11 @@ public class MenuController extends ControllerCommonMethod {
 					html.setMenu_idx(menu.getMenu_idx());
 					html_service.insertHTML(html);
 					
+					if (menu.getMenu_type() == 0) {
+						TempJspHandler handler = new TempJspHandler();
+						handler.ReCreateTempJsp(request.getServletContext(), menu);
+					}
+					
 					if (request.getServletContext().getAttribute("menu_list") != null) {
 						request.getServletContext().removeAttribute("menu_list");
 						request.getServletContext().setAttribute("menu_list", service.getViewMenu());
@@ -175,6 +181,11 @@ public class MenuController extends ControllerCommonMethod {
 			if ((menu.getParent_menu_idx() == 0 && menu.getGroup_idx() == target_menu.getGroup_idx()) ||
 					(menu.getParent_menu_idx() != 0 && parent_menu != null && menu.getGroup_idx() == parent_menu.getGroup_idx())) {
 					service.updateMenu(menu);
+					
+					if (menu.getMenu_type() == 0) {
+						TempJspHandler handler = new TempJspHandler();
+						handler.ReCreateTempJsp(request.getServletContext(), menu);
+					}
 		
 					if (request.getServletContext().getAttribute("menu_list") != null) {
 						request.getServletContext().removeAttribute("menu_list");
@@ -217,6 +228,9 @@ public class MenuController extends ControllerCommonMethod {
 			//메뉴 삭제
 			service.deleteMenu(menu_idx);
 			
+			TempJspHandler handler = new TempJspHandler();
+			handler.RemoveTempJsp(request.getServletContext(), menu_idx);
+			
 			res.setMessage("메뉴가 삭제되었습니다.");
 			res.setNext_url("/jooka/admin/menu/index");
 			res.setProcessing_result(true);
@@ -236,9 +250,14 @@ public class MenuController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse EditHTML(HttpServletRequest request, MenuHtml menu_html) {
 		AjaxResponse res = new AjaxResponse();
 		
-		if (service.getMenuById(menu_html.getMenu_idx()) != null) {
+		Menu menu = service.getMenuById(menu_html.getMenu_idx());
+		if (menu != null) {
 			html_service.updateHTML(menu_html);
 			res.setMessage("해당메뉴의 html이 성공적으로 수정되었습니다.");
+			if (menu.getMenu_type() == 0) {
+				TempJspHandler handler = new TempJspHandler();
+				handler.CustomazingTemoJsp(request.getServletContext(), "menu_"+ menu.getMenu_idx() +".jsp", menu_html.getMenu_html());
+			}
 		} else {
 			res.setMessage("잘못된 접근방법 입니다.");
 		}
@@ -252,10 +271,15 @@ public class MenuController extends ControllerCommonMethod {
 	@RequestMapping(value="/mobile_html/edit", method=RequestMethod.POST)
 	public @ResponseBody AjaxResponse EditMoileHTML(HttpServletRequest request, MenuHtml menu_html) {
 		AjaxResponse res = new AjaxResponse();
-		
-		if (service.getMenuById(menu_html.getMenu_idx()) != null) {
+
+		Menu menu = service.getMenuById(menu_html.getMenu_idx());
+		if (menu != null) {
 			html_service.updateMobileHTML(menu_html);
 			res.setMessage("해당메뉴의 모바일버전 html이 성공적으로 수정되었습니다.");
+			if (menu.getMenu_type() == 0) {
+				TempJspHandler handler = new TempJspHandler();
+				handler.CustomazingTemoJsp(request.getServletContext(), "mobile_menu_"+ menu.getMenu_idx() +".jsp", menu_html.getMobile_menu_html());
+			}
 		} else {
 			res.setMessage("잘못된 접근방법 입니다.");
 		}

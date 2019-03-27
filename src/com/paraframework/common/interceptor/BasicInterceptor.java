@@ -1,4 +1,4 @@
-package com.paraframework.common;
+package com.paraframework.common.interceptor;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.AccessIp;
 import com.paraframework.object.Homepage;
 import com.paraframework.service.AccessIpService;

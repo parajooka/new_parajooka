@@ -77,14 +77,12 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		} else if (menu.getMenu_type() > 1 && menu.getMenu_type() <= 4 || menu.getMenu_type() == 0) {
 			switch (menu.getMenu_type()) {
 				case 0: //html 작성
-					//모바일일 경우 -> mobile_html을 호출하여 보여준다.
-					if (isMobile(request) && homepage.getMobile_use() == 1) {
-						request.setAttribute("html", html_service.getHTMLByMenuId(menu_idx).getMobile_menu_html());
-					//PC일 경우 or mobile유저 이지만 홈페이지에서 따로 모바일버전을 사용하지않을경우 -> 일반 html을 호출하여 보여준다.
-					} else {
-						request.setAttribute("html", html_service.getHTMLByMenuId(menu_idx).getMenu_html());
-					}
-					return request.getRequestURI().substring(1, request.getRequestURI().length()).replaceAll(".do", "");
+				//모바일일 경우 -> mobile_html을 호출하여 보여준다.
+				if (isMobile(request) && homepage.getMobile_use() == 1) {
+					return "custom/temp_jsp/mobile_menu_"+ menu.getMenu_idx();
+				} else {
+					return "custom/temp_jsp/menu_"+ menu.getMenu_idx();
+				}
 				default:
 					return RedirectPage(request, "/custom/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ menu.getMenu_idx());
 			}
