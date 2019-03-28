@@ -13,6 +13,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -88,7 +89,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	
 	public void WriteLogged(HttpServletRequest request) throws IOException {
 		File temp = new File("C:\\res\\logged\\para-jooka\\logged_"+ formatTime.format(new Date()) + ".txt");
-		bufferedWriter = new BufferedWriter(new FileWriter(temp, true));
+		bufferedWriter = new BufferedWriter(new FileWriterWithEncoding(temp, "UTF-8", true));
 		
 		//이미 오늘의 로그파일이 만들어진경우 한줄바꿈
 		if (temp != null && temp.isFile() && temp.canWrite()) {

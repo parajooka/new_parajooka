@@ -19,7 +19,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/common/css/sirfont.css" />
 <link rel="stylesheet" type="text/css" href="/resources/common/css/table.css" />
 <link rel="stylesheet" type="text/css" href="/resources/common/css/button.css" />
-<link rel="stylesheet" type="text/css" href="/resources/common/css/common.css" />
 <!-- 공통 js -->
 <script  src="/resources/common/js/jquery.js"></script>
 <script  src="/resources/common/js/jquery-ui.js"></script>

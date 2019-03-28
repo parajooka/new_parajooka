@@ -7,9 +7,9 @@
 <head>
 <tiles:insertAttribute name="header" />
 </head>
-<body onload="end_loading();">
+<body onload="end_loading();" style="position: relative;">
 	<tiles:insertAttribute name="left" />
-	<div class="container">
+	<div class="container" style="position: absolute; right:0; height: 100%;">
 		<div class="section">
 			<div class="obj-title">
 				${menu}
