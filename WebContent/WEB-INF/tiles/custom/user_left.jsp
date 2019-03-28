@@ -148,7 +148,7 @@
 							//리사이징이 아니고 현재페이지와 같은 링크를 클릭했을경우
 							if (!resizing && menu == $(target).attr("data-menu-name")) {
 								var href = $(target).find(".menu_btn").attr("data-href");
-								location.href = href;
+								location.href = encodeURI(href);
 							} else {
 								$(".left_menu_section").stop().animate({
 									"top" : result_top + "px"

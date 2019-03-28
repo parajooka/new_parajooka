@@ -39,6 +39,10 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		String url = request.getRequestURL().toString();
 		url.substring(0, url.indexOf("/"));
 		
+		if(url.matches(".*([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}.*")) {
+			return ControllerCommonMethod.alertMessage("차단된 url로 접근 하였습니다.", request, response);
+		}
+			
 		/* 로직처리 */ 
 		String ip = request.getHeader("X-FORWARDED-FOR");
         if (ip == null) {
