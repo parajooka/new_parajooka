@@ -55,7 +55,7 @@
 ${paging_layout}
 ${search_layout}
 <div class="acc_editor" title="접근 허용 아이피 추가">
-	<form action="/jessica/admin/access_ip/insert" class="acc_insert_form">
+	<form action="${admin_root_path}/access_ip/insert" class="acc_insert_form">
 		<table class="modal_table">
 			<tr>
 				<td>
