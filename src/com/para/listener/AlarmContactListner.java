@@ -47,6 +47,8 @@ public class AlarmContactListner implements ServletContextListener {
 		//이유는 Listner가 스프링 관련 내용보다 먼저 읽히기떄문
 		//이럴떄는 강제로 Autowired를 호출하여 매핑시켜준다.
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+		SMTP smtp = new SMTP();
+		smtp.SendMail("kdyshj700@gmail.com", "[Para & Jooka] 서버가 재시작 되었습니다.", "아파치 톰캣이 정상적으로 재시작되었습니다.");
 		
 		try {
 			work();
@@ -121,10 +123,7 @@ public class AlarmContactListner implements ServletContextListener {
 						
 						SMTP smtp = new SMTP();
 						//메일 발송
-						smtp.SendMail("kdyshj700@gmail.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
 						smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
-						
-						System.out.println("미팅 메일 첫번째 발송");
 						
 						//미팅 시간이되면 다시한번 메일을 발송하기위한 스케줄생성
 						Timer TimeAlarm = new Timer();
@@ -162,11 +161,7 @@ public class AlarmContactListner implements ServletContextListener {
 										 "자세한 내용은 관리자 페이지에서 확인 바랍니다.";
 								
 								SMTP smtp = new SMTP();
-								//메일 발송
-								smtp.SendMail("kdyshj700@gmail.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
 								smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
-								
-								System.out.println("미팅 메일 두번째 발송");
 							}
 						}, ControllerCommonMethod.SleepTime(meeting_time));
 					}
