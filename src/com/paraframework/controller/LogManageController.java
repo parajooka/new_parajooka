@@ -18,7 +18,7 @@ import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
-@RequestMapping(value = "/jooka/admin/logManage", method = RequestMethod.GET)
+@RequestMapping(value = ControllerCommonMethod.admin_page_path + "/logManage", method = RequestMethod.GET)
 public class LogManageController extends ControllerCommonMethod {
 	private static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
 
@@ -50,14 +50,14 @@ public class LogManageController extends ControllerCommonMethod {
 		String date = request.getParameter("logged_date");
 		
 		if (date == null || date.length() == 0) {
-			return res.returnResponse("잘못된 로그 날짜입니다.", "/jooka/admin/logManage/visit_logged");
+			return res.returnResponse("잘못된 로그 날짜입니다.", ControllerCommonMethod.admin_page_path + "/logManage/visit_logged");
 		}
 		
 		int lineCnt = 0;
 		File file = new File("C:\\res\\logged\\para-jooka\\logged_"+ date +".txt");
 		
 		if (file == null || file.isFile() == false || file.exists() == false) {
-			return res.returnResponse("선택하신 날짜에 해당하는 로그파일이 존재하지 않습니다.", "/jooka/admin/logManage/visit_logged");
+			return res.returnResponse("선택하신 날짜에 해당하는 로그파일이 존재하지 않습니다.", ControllerCommonMethod.admin_page_path + "/logManage/visit_logged");
 		}
 		
 		try {

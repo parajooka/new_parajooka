@@ -23,7 +23,7 @@ import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 
 @Controller
-@RequestMapping(value= {"/jooka/admin/hirejoin"})
+@RequestMapping(value= {ControllerCommonMethod.admin_page_path + "/hirejoin"})
 public class HireJoinController extends ControllerCommonMethod {
 	@Autowired
 	private HireService hire_service;

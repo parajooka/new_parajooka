@@ -22,7 +22,7 @@ import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
-@RequestMapping(value= {"/jooka/admin/hire"})
+@RequestMapping(value= {ControllerCommonMethod.admin_page_path + "/hire"})
 public class HireController extends ControllerCommonMethod {
 	
 	@Autowired
@@ -62,7 +62,7 @@ public class HireController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse InsertHire(HttpServletRequest request, @Valid Hire hire, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/hire/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/hire/index";
 		String success_message = "공고를 정상적으로 등록 하였습니다.";
 		
 		Calendar cal = Calendar.getInstance();
@@ -90,7 +90,7 @@ public class HireController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse UpdateHire(HttpServletRequest request, @Valid Hire hire, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/hire/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/hire/index";
 		String success_message = "공고를 정상적으로 수정 하였습니다.";
 
 		Hire orign_hire = service.getHireById(hire.getId());
@@ -123,7 +123,7 @@ public class HireController extends ControllerCommonMethod {
 			res.setMessage("공고가 정상적으로 삭제 되었습니다.");
 		}
 		
-		res.setNext_url("/jooka/admin/hire/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/hire/index");
 		res.setProcessing_result(true);
 			
 		return res;

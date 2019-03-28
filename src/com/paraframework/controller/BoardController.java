@@ -16,7 +16,7 @@ import com.paraframework.object.board.PostComment;
 import com.paraframework.service.board.PostCommentService;
 
 @Controller
-@RequestMapping(value="/jooka/admin/board")
+@RequestMapping(value= ControllerCommonMethod.admin_page_path + "/board")
 public class BoardController extends ControllerCommonMethod {
 	@Autowired
 	private PostCommentService service;

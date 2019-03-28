@@ -31,7 +31,7 @@ import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.SendSMS;
 
 @Controller
-@RequestMapping(value="/jooka/admin/manage_hire_volunteer")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/manage_hire_volunteer")
 public class VolunteerManageController extends ControllerCommonMethod {
 	@Autowired
 	private HireService hire_service;

@@ -22,7 +22,7 @@ import com.paraframework.object.Homepage;
 import com.paraframework.service.HomepageService;
 
 @Controller
-@RequestMapping(value= {"/jooka", "/jooka/admin/homepage"})
+@RequestMapping(value= {"/jooka", ControllerCommonMethod.admin_page_path + "/homepage"})
 public class HomepageController extends ControllerCommonMethod {
 	@Autowired
 	private HomepageService service;
@@ -31,7 +31,7 @@ public class HomepageController extends ControllerCommonMethod {
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String Index(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		return RedirectPage(request, "/jooka/admin/homepage/index");
+		return RedirectPage(request, ControllerCommonMethod.admin_page_path + "/homepage/index");
 	}
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
@@ -53,7 +53,7 @@ public class HomepageController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse insertHompage(MultipartHttpServletRequest request, @Valid Homepage homepage, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/homepage/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/homepage/index";
 		String success_message = "홈페이지 기본정보를 등록하였습니다.";
 		
 		if (!res.validation_data(result, next_url, success_message, res)) {
@@ -95,7 +95,7 @@ public class HomepageController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse deidtHomepage(MultipartHttpServletRequest request, @Valid Homepage homepage, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/homepage/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/homepage/index";
 		String success_message = "홈페이지 기본정보를 수정하였습니다.";
 		
 		Homepage orign_homepage = service.getHomepage();

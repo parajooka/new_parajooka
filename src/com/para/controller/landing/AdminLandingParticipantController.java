@@ -26,7 +26,7 @@ import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
-@RequestMapping(value="/jooka/admin/landing")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/landing")
 public class AdminLandingParticipantController extends ControllerCommonMethod {
 	
 	@Autowired
@@ -140,7 +140,7 @@ public class AdminLandingParticipantController extends ControllerCommonMethod {
 			}
 			
 			res.setMessage("선택한 참여자들이 정상적으로 삭제되었습니다.");
-			res.setNext_url("/jooka/admin/landing/participant_index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/participant_index");
 		} catch (Exception e) {
 			alertMessage("잘못된 접근입니다.", request, response);
 		}

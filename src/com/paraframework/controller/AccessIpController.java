@@ -23,7 +23,7 @@ import com.paraframework.object.AccessIp;
 import com.paraframework.service.AccessIpService;
 
 @Controller
-@RequestMapping(value="/jooka/admin/access_ip")
+@RequestMapping(value= ControllerCommonMethod.admin_page_path + "/access_ip")
 public class AccessIpController extends ControllerCommonMethod {
 	@Autowired
 	private AccessIpService service;
@@ -113,7 +113,7 @@ public class AccessIpController extends ControllerCommonMethod {
 		AjaxResponse res = new AjaxResponse();
 		
 		
-		String next_url = "/jooka/admin/access_ip/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/access_ip/index";
 		String success_message = "허용 아이피를 등록 하였습니다.";
 		
 		if (!res.validation_data(result, next_url, success_message, res)) {

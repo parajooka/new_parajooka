@@ -31,7 +31,7 @@ import com.paraframework.object.Menu;
 import com.paraframework.service.MenuService;
 
 @Controller
-@RequestMapping(value="/custom/renewal/landing")
+@RequestMapping(value= ControllerCommonMethod.customer_page_path + "/renewal/landing")
 public class CustomerLandingController extends ControllerCommonMethod {
 	@Autowired
 	private LandingQuestionService question_service;
@@ -59,7 +59,7 @@ public class CustomerLandingController extends ControllerCommonMethod {
 		//이미 랜딩에 참여한사람
 		if (participant_service.ValidParticipant(getIpAddress(request)) > 0) {
 			Menu menu = menu_service.getMenuByName("About");
-			return RedirectPage(request, "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+			return RedirectPage(request, ControllerCommonMethod.admin_page_path + "/menu/index?menu_idx="+ menu.getMenu_idx());
 		}
 		
 		if (contact != null && contact.length() > 0) {
@@ -95,7 +95,7 @@ public class CustomerLandingController extends ControllerCommonMethod {
 
 		} else {
 			Menu menu = menu_service.getMenuByName("About");
-			return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+			return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", ControllerCommonMethod.admin_page_path + "/menu/index?menu_idx="+ menu.getMenu_idx());
 		}
 			res.setProcessing_result(true);
 			return res;
@@ -176,7 +176,7 @@ public class CustomerLandingController extends ControllerCommonMethod {
 					participant_service.InsertParticipant(participant);
 				} else {
 					Menu menu = menu_service.getMenuByName("About");
-					return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+					return res.returnResponse("랜딩 설문은 1인 1회만 참여가 가능합니다.\r\n공유기 환경은 서로 아이피가 공유됩니다.", ControllerCommonMethod.admin_page_path + "/menu/index?menu_idx="+ menu.getMenu_idx());
 				}
 				
 				res.setProcessing_result(true);
@@ -196,12 +196,12 @@ public class CustomerLandingController extends ControllerCommonMethod {
 				//세션 초기화
 				request.getSession().invalidate();
 				res.setMessage("ClearContact");
-				res.setNext_url("/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+				res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index?menu_idx="+ menu.getMenu_idx());
 				return res;
 			} else if (getQuestionAndAnswer(request, res, answer_id) == 0 && user_answers.size() < 3) {
 				res.setProcessing_result(true);
 				Menu menu = menu_service.getMenuByName("About");
-				return res.returnResponse("", "/custom/menu/index?menu_idx="+ menu.getMenu_idx());
+				return res.returnResponse("", ControllerCommonMethod.admin_page_path + "/menu/index?menu_idx="+ menu.getMenu_idx());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

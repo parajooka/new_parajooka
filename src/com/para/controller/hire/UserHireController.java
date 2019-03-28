@@ -43,7 +43,7 @@ import com.paraframework.common.CustomMultipartResolver;
 import com.paraframework.common.SMTP;
 
 @Controller
-@RequestMapping(value="/custom/hire")
+@RequestMapping(value=ControllerCommonMethod.customer_page_path + "/hire")
 public class UserHireController extends ControllerCommonMethod {
 	@Autowired
 	HireService hire_service;
@@ -90,7 +90,7 @@ public class UserHireController extends ControllerCommonMethod {
 		
 		try {
 			if (!CheckHire(hire) || hire.getActivation() == 1) {
-				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
+				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", ControllerCommonMethod.admin_page_path + "/hire/hire_list", request, response);
 			} else {
 				
 				Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
@@ -126,7 +126,7 @@ public class UserHireController extends ControllerCommonMethod {
 			Hire hire = hire_service.getHireById(id);
 			
 			if (!CheckHire(hire) || hire.getActivation() == 1) {
-				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", "/custom/hire/hire_list", request, response);
+				ControllerCommonMethod.alertMessageByString("이미 종료된 공고이거나 준비중인 공고입니다.", ControllerCommonMethod.admin_page_path + "/hire/hire_list", request, response);
 			} else {
 				List<Question> questions = qn_service.getQuestionByQnH(hire.getId());
 				
@@ -222,7 +222,7 @@ public class UserHireController extends ControllerCommonMethod {
 		AjaxResponse res = new AjaxResponse();
 		HttpSession session = request.getSession();
 		
-		if (!res.validation_data(result, "/custom/hire/hire_list", "공고에 정상적으로 지원하였습니다.\r\n결과는 지원서 검토후 합격자에게 문자로 개별 통보됩니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.admin_page_path + "/hire/hire_list", "공고에 정상적으로 지원하였습니다.\r\n결과는 지원서 검토후 합격자에게 문자로 개별 통보됩니다.", res)) {
 			
 			String hire_id = request.getParameter("hire_id");
 			String info_acc = request.getParameter("info_acc");
@@ -436,8 +436,8 @@ public class UserHireController extends ControllerCommonMethod {
 						  volunteer.getName() +"님이 공고에 참여하였습니다.", 
 						  "참여 공고명 : <font style='color:red; font-weight:bold'>"+ hire.getTitle() +"</font><br>"+
 						  "참여자 관리는 관리자페이지에서 진행할 수 있습니다.<br>" +
-						  "<a href='"+ request.getScheme() +"://"+request.getServerName() +"/jooka/admin/manage_hire_volunteer/survey?hire_id="+ hire.getId() +"&volunteer_id="+ volunteer.getId() +"'>"+
-						  ""+ request.getScheme() +"://"+request.getServerName() +"/jooka/admin/manage_hire_volunteer/survey?hire_id="+ hire.getId() +"&volunteer_id="+ volunteer.getId() +
+						  "<a href='"+ request.getScheme() +"://"+request.getServerName() +ControllerCommonMethod.admin_page_path + "/manage_hire_volunteer/survey?hire_id="+ hire.getId() +"&volunteer_id="+ volunteer.getId() +"'>"+
+						  ""+ request.getScheme() +"://"+request.getServerName() +ControllerCommonMethod.admin_page_path + "/manage_hire_volunteer/survey?hire_id="+ hire.getId() +"&volunteer_id="+ volunteer.getId() +
 						  "</a>");
 		}
 		

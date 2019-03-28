@@ -23,7 +23,7 @@ import com.paraframework.service.MenuHtmlService;
 import com.paraframework.service.MenuService;
 
 @Controller
-@RequestMapping(value="/jooka/admin/menu")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/menu")
 public class MenuController extends ControllerCommonMethod {
 	@Autowired
 	private MenuService service;
@@ -110,7 +110,7 @@ public class MenuController extends ControllerCommonMethod {
 		}
 		
 		res.setMessage("메뉴 이동이 완료되었습니다.");
-		res.setNext_url("/jooka/admin/menu/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 		
 
 		if (request.getServletContext().getAttribute("menu_list") != null) {
@@ -124,7 +124,7 @@ public class MenuController extends ControllerCommonMethod {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public @ResponseBody AjaxResponse insertMenu(HttpServletRequest request, @Valid Menu menu, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
-		String next_url = "/jooka/admin/menu/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/menu/index";
 		String success_message = "메뉴가 추가 되었습니다.";
 		
 		Menu parent_menu = service.getMenuById(menu.getParent_menu_idx());
@@ -171,7 +171,7 @@ public class MenuController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse editMenu(HttpServletRequest request, @Valid Menu menu, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/menu/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/menu/index";
 		String success_message = "메뉴가 수정 되었습니다.";
 		
 		Menu parent_menu = service.getMenuById(menu.getParent_menu_idx());
@@ -206,13 +206,13 @@ public class MenuController extends ControllerCommonMethod {
 		
 		if (menu_idx <= 0) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/menu/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 			res.setProcessing_result(true);
 			
 			return res;
 		} else if (service.getMenuById(menu_idx) == null) {
 			res.setMessage("존재하지않거나 삭제된 메뉴입니다.");
-			res.setNext_url("/jooka/admin/menu/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 			res.setProcessing_result(true);
 			
 			return res;
@@ -232,7 +232,7 @@ public class MenuController extends ControllerCommonMethod {
 			handler.RemoveTempJsp(request.getServletContext(), menu_idx);
 			
 			res.setMessage("메뉴가 삭제되었습니다.");
-			res.setNext_url("/jooka/admin/menu/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 			res.setProcessing_result(true);
 			
 
@@ -262,7 +262,7 @@ public class MenuController extends ControllerCommonMethod {
 			res.setMessage("잘못된 접근방법 입니다.");
 		}
 		
-		res.setNext_url("/jooka/admin/menu/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 		res.setProcessing_result(true);
 		
 		return res;
@@ -284,7 +284,7 @@ public class MenuController extends ControllerCommonMethod {
 			res.setMessage("잘못된 접근방법 입니다.");
 		}
 		
-		res.setNext_url("/jooka/admin/menu/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 		res.setProcessing_result(true);
 		
 		return res;

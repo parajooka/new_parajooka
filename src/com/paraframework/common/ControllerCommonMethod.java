@@ -37,6 +37,8 @@ public class ControllerCommonMethod {
 	public static boolean AdminCategoryUpload = false;
 	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.KOREAN);
 	private static Timer timer = new Timer();
+	public final static String admin_page_path = "/jooka/admin";
+	public final static String customer_page_path = "/custom";
 	
 	@Autowired
 	private SqlUtilService search_service;
@@ -57,7 +59,8 @@ public class ControllerCommonMethod {
 			return request.getRequestURI().substring(1, request.getRequestURI().length()).replaceAll(".do", "");
 		}
 	}
-	
+
+
 	/**
 	 * 모바일 버전 uri이동
 	 * @param uri

@@ -33,7 +33,7 @@ import com.paraframework.object.Menu;
 import com.paraframework.service.MenuService;
 
 @Controller
-@RequestMapping(value="/custom/renewal/contact")
+@RequestMapping(value=ControllerCommonMethod.customer_page_path + "/renewal/contact")
 public class ContactController extends ControllerCommonMethod {
 	@Autowired
 	private ContactService contact_service;
@@ -71,7 +71,7 @@ public class ContactController extends ControllerCommonMethod {
 		try {
 			if (landing_service.ValidParticipant(getIpAddress(request)) == 0) {
 				request.getSession().setAttribute("contact", "already");
-				return RedirectPage(request, "/custom/renewal/landing/index");
+				return RedirectPage(request, ControllerCommonMethod.customer_page_path + "/renewal/landing/index");
 			} else {
 				try {
 					request.setAttribute("participant", landing_service.getParticipantByIp(getIpAddress(request)));
@@ -96,13 +96,13 @@ public class ContactController extends ControllerCommonMethod {
 		String today = request.getParameter("moveDate");
 		
 		if (today == null || today.length() ==0) {
-			return res.returnResponse("잘못된 날짜입니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 날짜입니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		} else {
 			try {
 				formatTime.parse(today);
 			} catch (Exception e) {
 				// TODO: handle exception
-				return res.returnResponse("잘못된 날짜입니다.", "/custom/renewal/contact/index");
+				return res.returnResponse("잘못된 날짜입니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 			}
 		}
 		
@@ -127,14 +127,14 @@ public class ContactController extends ControllerCommonMethod {
 		String call_date = request.getParameter("call_date");
 		
 		if (call_date == null || call_date.length() == 0) {
-			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		}
 		
 		try {
 			formatTime.parse(call_date);
 		} catch (Exception e) {
 			// TODO: handle exception
-			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		}
 		
 		Contact contact = contact_service.getContactByDate(call_date);
@@ -152,7 +152,7 @@ public class ContactController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse InsertContact(HttpServletRequest request, HttpServletResponse response, @Valid Contact contact, BindingResult result) throws Exception {
 		AjaxResponse res = new AjaxResponse();
 		
-		if (!res.validation_data(result, "/custom/renewal/contact/index", "미팅이 정상적으로 예약되었습니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.customer_page_path + "/renewal/contact/index", "미팅이 정상적으로 예약되었습니다.", res)) {
 			if (contact_service.CountByParticipant(contact.getParticipant_id()) > 0) {
 				res.setProcessing_result(true);
 				return res.returnResponse("이미 예약하신 기록이 존재합니다.\r\n기간을 변경하시려면 기존의 예약을 수정해주세요.", null);
@@ -167,7 +167,7 @@ public class ContactController extends ControllerCommonMethod {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+				return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 			}
 			
 			if (today.compareTo(reservation_date) > 0) {
@@ -193,7 +193,7 @@ public class ContactController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse UpdateContact(HttpServletRequest request, HttpServletResponse response, @Valid Contact contact, BindingResult result) throws Exception {
 		AjaxResponse res = new AjaxResponse();
 		
-		if (!res.validation_data(result, "/custom/renewal/contact/index", "미팅예약이 정상적으로 수정되었습니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.customer_page_path + "/renewal/contact/index", "미팅예약이 정상적으로 수정되었습니다.", res)) {
 			Contact orign_conatct = contact_service.getContactByParticipant(contact.getParticipant_id());
 			
 			if (orign_conatct.getReservation_pw().equals(contact.getReservation_pw())) {
@@ -205,7 +205,7 @@ public class ContactController extends ControllerCommonMethod {
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+					return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 				}
 				
 				if (today.compareTo(reservation_date) > 0) {
@@ -236,7 +236,7 @@ public class ContactController extends ControllerCommonMethod {
 		
 		if (contact_id == null || contact_id.length() == 0) {
 			res.setProcessing_result(true);
-			return res.returnResponse("잘못된 접근입니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		} else if (password == null || password.length() == 0 || !m.find()) {
 			res.setProcessing_result(true);
 			return res.returnResponse("미팅예약을 삭제하려면 연락처를 입력해주세요.", null);
@@ -248,14 +248,14 @@ public class ContactController extends ControllerCommonMethod {
 			if (contact.getReservation_pw().equals(password)) {
 				contact_service.DeleteContact(contact.getContact_id());
 				res.setMessage("예약이 정상적으로 취소 되었습니다.");
-				res.setNext_url("/custom/renewal/contact/index");
+				res.setNext_url(ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 			} else {
 				return res.returnResponse("연락처가 일치하지 않습니다.\r\n예약시에 작성한 연락처를 입력해주세요.", null);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			res.setProcessing_result(true);
-			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		}
 		
 		res.setProcessing_result(true);
@@ -272,7 +272,7 @@ public class ContactController extends ControllerCommonMethod {
 		Matcher m = phone_pattern.matcher(password);
 		
 		if (participant_id == null || participant_id.length() == 0) {
-			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		} else if (password == null || password.length() == 0 || !m.find()) {
 			return res.returnResponse("예약시에 작성한 연락처를 입력해주세요.", null);
 		}
@@ -291,7 +291,7 @@ public class ContactController extends ControllerCommonMethod {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-			return res.returnResponse("잘못된 값이 입력되었습니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		}
 		
 		return res;
@@ -304,7 +304,7 @@ public class ContactController extends ControllerCommonMethod {
 		LandingParticipant participant = landing_service.getParticipantByIp(getIpAddress(request));
 		
 		if (participant == null) {
-			return res.returnResponse("Contact 질문 참여 기록이 존재하지않습니다.\r\n문의를 위해서는 먼저 질문에 모두 답변해야합니다.", "/custom/renewal/contact/index");
+			return res.returnResponse("Contact 질문 참여 기록이 존재하지않습니다.\r\n문의를 위해서는 먼저 질문에 모두 답변해야합니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 		}
 
 		String contents = request.getParameter("immediately_contents");
@@ -323,6 +323,6 @@ public class ContactController extends ControllerCommonMethod {
 		smtp.SendMail("mt9665@naver.com", mail_title, msg);
 		
 		
-		return res.returnResponse("'즉시 미팅'신청 메일이 발송되었습니다.\r\n담당자가 확인후 남겨주신 연락처로 직접 연락드리겠습니다.", "/custom/renewal/contact/index");
+		return res.returnResponse("'즉시 미팅'신청 메일이 발송되었습니다.\r\n담당자가 확인후 남겨주신 연락처로 직접 연락드리겠습니다.", ControllerCommonMethod.customer_page_path + "/renewal/contact/index");
 	}
 }

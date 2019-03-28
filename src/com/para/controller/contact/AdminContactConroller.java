@@ -20,7 +20,7 @@ import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
-@RequestMapping(value="/jooka/admin/contact")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/contact")
 public class AdminContactConroller extends ControllerCommonMethod {
 	@Autowired
 	private ContactService contact_service;
@@ -56,7 +56,7 @@ public class AdminContactConroller extends ControllerCommonMethod {
 			}
 			
 			res.setMessage("선택한 미팅들이 정상적으로 삭제되었습니다.");
-			res.setNext_url("/jooka/admin/contact/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/contact/index");
 		} catch (Exception e) {
 			alertMessage("잘못된 접근입니다.", request, response);
 		}
@@ -73,14 +73,14 @@ public class AdminContactConroller extends ControllerCommonMethod {
 		String contact_id = request.getParameter("contact_id");
 		
 		if (contact_id == null || contact_id.length() == 0) {
-			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", "/jooka/admin/contact/index");
+			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", ControllerCommonMethod.admin_page_path + "/contact/index");
 		}
 		
 		try {
 			res.setObject(contact_service.getMemoByContactId(Integer.parseInt(contact_id)));
 		} catch(Exception e) {
 			e.printStackTrace();
-			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", "/jooka/admin/contact/index");
+			return res.returnResponse("존재하지않거나 삭제된 미팅예약입니다.", ControllerCommonMethod.admin_page_path + "/contact/index");
 		}
 		
 		res.setProcessing_result(true);

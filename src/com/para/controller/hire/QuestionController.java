@@ -23,7 +23,7 @@ import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.common.PageUtil;
 
 @Controller
-@RequestMapping(value="/jooka/admin/question")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/question")
 public class QuestionController extends ControllerCommonMethod {
 	
 	@Autowired
@@ -57,7 +57,7 @@ public class QuestionController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse InsertQuestin(HttpServletRequest request, @Valid Question question, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/question/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/question/index";
 		String success_message = "질문(문제)이 정상적으로 등록 되었습니다.";
 		
 		if (!res.validation_data(result, next_url, success_message, res)) {
@@ -133,7 +133,7 @@ public class QuestionController extends ControllerCommonMethod {
 			res.setMessage("해당 답안이 삭제 되었습니다.");
 		}
 
-		res.setNext_url("/jooka/admin/question/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/question/index");
 		res.setProcessing_result(true);
 		
 		return res;
@@ -151,7 +151,7 @@ public class QuestionController extends ControllerCommonMethod {
 			res.setMessage("해당 문제가 삭제 되었습니다.");
 		}
 		
-		res.setNext_url("/jooka/admin/question/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/question/index");
 		res.setProcessing_result(true);
 		
 		return res;
@@ -161,7 +161,7 @@ public class QuestionController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse updateQuestion(HttpServletRequest request, @Valid Question question, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/question/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/question/index";
 		String success_message = "질문(문제)이 정상적으로 수정 되었습니다.";
 		
 		if (!res.validation_data(result, next_url, success_message, res)) {

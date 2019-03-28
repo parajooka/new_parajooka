@@ -20,7 +20,7 @@ import com.paraframework.object.Category;
 import com.paraframework.service.CategoryService;
 
 @Controller
-@RequestMapping(value="/jooka/admin/category")
+@RequestMapping(value= ControllerCommonMethod.admin_page_path + "/category")
 public class CategoryController extends ControllerCommonMethod {
 	
 	private static int CategoryMaxDepth = 4;
@@ -116,7 +116,7 @@ public class CategoryController extends ControllerCommonMethod {
 				ControllerCommonMethod.AdminCategoryUpload = false;
 			}
 
-		res.setNext_url("/jooka/admin/category/index");
+		res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 		res.setProcessing_result(true);
 		return res;
 	}
@@ -124,7 +124,7 @@ public class CategoryController extends ControllerCommonMethod {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public @ResponseBody AjaxResponse insertCategory(HttpServletRequest request, @Valid Category Category, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
-		String next_url = "/jooka/admin/category/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/category/index";
 		String success_message = "카테고리가 추가 되었습니다.";
 		
 		Category parent_Category = service.getCategoryById(Category.getParent_category_idx());
@@ -159,7 +159,7 @@ public class CategoryController extends ControllerCommonMethod {
 	public @ResponseBody AjaxResponse editCategory(HttpServletRequest request, @Valid Category Category, BindingResult result) {
 		AjaxResponse res = new AjaxResponse();
 		
-		String next_url = "/jooka/admin/category/index";
+		String next_url = ControllerCommonMethod.admin_page_path + "/category/index";
 		String success_message = "카테고리가 수정 되었습니다.";
 		
 		Category parent_Category = service.getCategoryById(Category.getParent_category_idx());
@@ -188,13 +188,13 @@ public class CategoryController extends ControllerCommonMethod {
 		
 		if (category_idx <= 0) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/category/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 			res.setProcessing_result(true);
 			
 			return res;
 		} else if (service.getCategoryById(category_idx) == null) {
 			res.setMessage("존재하지않거나 삭제된 카테고리입니다.");
-			res.setNext_url("/jooka/admin/category/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 			res.setProcessing_result(true);
 			
 			return res;
@@ -211,7 +211,7 @@ public class CategoryController extends ControllerCommonMethod {
 			service.deleteCategory(category_idx);
 			
 			res.setMessage("카테고리가 삭제되었습니다.");
-			res.setNext_url("/jooka/admin/category/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 			res.setProcessing_result(true);
 			
 

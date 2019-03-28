@@ -34,7 +34,7 @@ import com.paraframework.service.board.PostFileService;
 import com.paraframework.service.board.PostService;
 
 @Controller
-@RequestMapping(value="/custom/board")
+@RequestMapping(value=ControllerCommonMethod.customer_page_path + "/board")
 public class CutomerBoardController extends ControllerCommonMethod {
 	@Autowired 
 	private PostCommentService service;
@@ -202,7 +202,7 @@ public class CutomerBoardController extends ControllerCommonMethod {
 			}
 			// 유효성 검사 종료
 			
-			res.setNext_url("/custom/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ post.getMenu_id());
+			res.setNext_url(ControllerCommonMethod.customer_page_path +"/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ post.getMenu_id());
 			
 			System.out.println(post.getMobile_contents() + "hihi");
 			
@@ -256,7 +256,7 @@ public class CutomerBoardController extends ControllerCommonMethod {
 			}
 			// 유효성 검사 종료
 			
-			res.setNext_url("/custom/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ post.getMenu_id());
+			res.setNext_url(ControllerCommonMethod.customer_page_path +"/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ post.getMenu_id());
 
 			System.out.println(post.getMobile_contents() + "hihi");
 
@@ -331,7 +331,7 @@ public class CutomerBoardController extends ControllerCommonMethod {
 					Menu menu = menu_service.getMenuById(post.getMenu_id());
 					
 					res.setMessage("선택한 포스터를 모두 삭제하였습니다.");
-					res.setNext_url("/custom/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ menu.getMenu_idx());
+					res.setNext_url(ControllerCommonMethod.customer_page_path +"/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ menu.getMenu_idx());
 				}
 			}
 		} catch (Exception e) {

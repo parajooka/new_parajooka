@@ -51,7 +51,7 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		}
 	}
 	
-	@RequestMapping(value="/custom/menu/index", method=RequestMethod.GET)
+	@RequestMapping(value= ControllerCommonMethod.customer_page_path +"/menu/index", method=RequestMethod.GET)
 	public String user_menu(HttpServletRequest request, int menu_idx, HttpServletResponse response) {
 		Homepage homepage = (Homepage) request.getServletContext().getAttribute("homepage");
 		Menu menu = service.getMenuById(menu_idx);
@@ -67,7 +67,7 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		
 		//해당 메뉴가 존재하지 않거나 사용여부가 미사용으로 설정해둔 경우
 		if (menu == null || menu.getUse_yn() == 1) {
-			return ControllerCommonMethod.alertMessageByString("현재 페이지는 접근이 불가능한 페이지입니다.", "/custom/ready", request, response);
+			return ControllerCommonMethod.alertMessageByString("현재 페이지는 접근이 불가능한 페이지입니다.", ControllerCommonMethod.customer_page_path +"/ready", request, response);
 		//메뉴가 내부 url 이동인 경우
 		} else if (menu.getMenu_type() == 1) {
 			return RedirectPage(request, menu.getMenu_url());
@@ -82,7 +82,7 @@ public class CustomerMenuController extends ControllerCommonMethod {
 					return "custom/temp_jsp/menu_"+ menu.getMenu_idx();
 				}
 				default:
-					return RedirectPage(request, "/custom/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ menu.getMenu_idx());
+					return RedirectPage(request, ControllerCommonMethod.customer_page_path +"/board/index?type="+ menu.getMenu_type() +"&menu_idx="+ menu.getMenu_idx());
 			}
 			
 		} else {
@@ -92,7 +92,7 @@ public class CustomerMenuController extends ControllerCommonMethod {
 		return null;
 	}
 	
-	@RequestMapping(value="/custom/ready", method=RequestMethod.GET)
+	@RequestMapping(value= ControllerCommonMethod.customer_page_path +"/ready", method=RequestMethod.GET)
 	public String readyPage(HttpServletRequest request) {
 		return getRequestURI(request);
 	}

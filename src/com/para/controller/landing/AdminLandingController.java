@@ -34,7 +34,7 @@ import com.paraframework.common.PageUtil;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 @Controller
-@RequestMapping(value="/jooka/admin/landing")
+@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/landing")
 public class AdminLandingController extends ControllerCommonMethod {
 	@Autowired
 	private LandingQuestionService question_service;
@@ -100,7 +100,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 			}
 			
 			res.setMessage("선택한 문항들이 정상적으로 삭제되었습니다.");
-			res.setNext_url("/jooka/admin/landing/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/index");
 		} catch (Exception e) {
 			alertMessage("잘못된 접근입니다.", request, response);
 		}
@@ -124,7 +124,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		
 		if (answer_id == null || answer_id.length() == 0) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/landing/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/index");
 			res.setProcessing_result(true);
 			return res;
 		}
@@ -135,7 +135,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		} catch (Exception e) {
 			// TODO: handle exception
 			res.setMessage("존재하지않거나 삭제된 답안입니다.");
-			res.setNext_url("/jooka/admin/landing/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/index");
 			res.setProcessing_result(true);
 			return res;
 		}
@@ -232,7 +232,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		
 		if (question_id == null || question_id.length() == 0 || answer_id == null || answer_id.length() == 0) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/landing/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/index");
 			res.setProcessing_result(true);
 			
 			return res;
@@ -246,10 +246,10 @@ public class AdminLandingController extends ControllerCommonMethod {
 			chain_service.InsertChain(chain);
 			
 			res.setMessage("해당 문항에 새로운 상위(부모)문항이 정상적으로 추가되었습니다.");
-			res.setNext_url("/jooka/admin/landing/question_manage?question_id="+ question_id);
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/question_manage?question_id="+ question_id);
 		} catch(Exception e) {
 			res.setMessage("존재하지 않거나 삭제된 문항 혹은 답안입니다.");
-			res.setNext_url("/jooka/admin/landing/index");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/index");
 			res.setProcessing_result(true);
 			
 			return res;
@@ -339,7 +339,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		PageUtil page = (PageUtil) request.getSession().getAttribute("paging");
 		if (page == null || request.getParameter("page") == null) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/landing/question_injection");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 			res.setProcessing_result(true);
 			return res;
 		} else {
@@ -407,7 +407,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		
 		if (question_idx == null | question_idx.length() == 0) {
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/landing/question_injection");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 			res.setProcessing_result(true);
 			return res;
 		}
@@ -420,7 +420,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 		} catch (Exception e) {
 			// TODO: handle exception
 			res.setMessage("잘못된 접근입니다.");
-			res.setNext_url("/jooka/admin/landing/question_injection");
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 			res.setProcessing_result(true);
 			return res;
 		}
@@ -436,15 +436,15 @@ public class AdminLandingController extends ControllerCommonMethod {
 		AjaxResponse res = new AjaxResponse();
 		int question_id = question.getQuestion_id();
 		
-		if (!res.validation_data(result, "/jooka/admin/landing/question_manage?question_id="+ question.getQuestion_id(), "해당 문항이 정상적으로 수정되었습니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.admin_page_path + "/landing/question_manage?question_id="+ question.getQuestion_id(), "해당 문항이 정상적으로 수정되었습니다.", res)) {
 			// 유효성 검사 :: START
 				try {
 					if (question_service.ValidationQuestion(question_id) == 0) {
-						return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
-					return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", "/jooka/admin/landing/question_injection");
+					return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 				}
 			
 				String[] answer_layer_array = request.getParameterValues("answer_layer_count");
@@ -471,19 +471,19 @@ public class AdminLandingController extends ControllerCommonMethod {
 					}
 					
 					if (answer_seq == null || answer_seq.length() == 0) {
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 					
 					try {
 						Integer.parseInt(answer_seq);
 					} catch (Exception e) {
 						// TODO: handle exception
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 				}
 				
 				if (question_id == 0) {
-					return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+					return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 				}
 				
 				//기존 데이터 유효성 검사 시작
@@ -516,7 +516,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 					
 					//정렬 순서가 존재하지않을경우 경고
 					if (answer_seq == null || answer_seq.length() == 0) {
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 					
 					//정렬 순서에 이상한값이 입력된 경우 경고
@@ -524,7 +524,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 						Integer.parseInt(answer_seq);
 					} catch (Exception e) {
 						// TODO: handle exception
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 				}
 			// 유효성 검사 :: END
@@ -638,15 +638,15 @@ public class AdminLandingController extends ControllerCommonMethod {
 		String answer_id = request.getParameter("answer_id");
 		
 		
-		if (!res.validation_data(result, "/jooka/admin/landing/index", "신규문항 등록이 완료되었습니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.admin_page_path + "/landing/index", "신규문항 등록이 완료되었습니다.", res)) {
 			// 유효성 검사 :: START
 				try {
 					if (answer_service.ValidtaionAnswerId(Integer.parseInt(answer_id)) == 0) {
-						return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
-					return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", "/jooka/admin/landing/question_injection");
+					return res.returnResponse("존재하지않는 대상이 부모로 지정되었습니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 				}
 			
 				String[] answer_layer_array = request.getParameterValues("answer_layer_count");
@@ -673,14 +673,14 @@ public class AdminLandingController extends ControllerCommonMethod {
 					}
 					
 					if (answer_seq == null || answer_seq.length() == 0) {
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 					
 					try {
 						Integer.parseInt(answer_seq);
 					} catch (Exception e) {
 						// TODO: handle exception
-						return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+						return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 					}
 				}
 				
@@ -689,7 +689,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 				}
 				
 				if (answer_id == null || answer_id.length() == 0) {
-					return res.returnResponse("잘못된 접근입니다.", "/jooka/admin/landing/question_injection");
+					return res.returnResponse("잘못된 접근입니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 				}
 			// 유효성 검사 :: END
 			
@@ -710,7 +710,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 					chain.setAnswer_id(Integer.parseInt(answer_id));
 				} catch (Exception e) {
 					// TODO: handle exception
-					return res.returnResponse("잘못된 부모 문항의 아이디가 입력되었습니다.", "/jooka/admin/landing/question_injection");
+					return res.returnResponse("잘못된 부모 문항의 아이디가 입력되었습니다.", ControllerCommonMethod.admin_page_path + "/landing/question_injection");
 				}
 				chain.setQuestion_id(question.getQuestion_id());
 				chain_service.InsertChain(chain);
@@ -744,7 +744,7 @@ public class AdminLandingController extends ControllerCommonMethod {
 			// 데이터 삽입 :: END
 			
 			//해당 문항의 관리페이지로 이동시켜준다.
-			res.setNext_url("/jooka/admin/landing/question_manage?question_id="+ question.getQuestion_id());
+			res.setNext_url(ControllerCommonMethod.admin_page_path + "/landing/question_manage?question_id="+ question.getQuestion_id());
 		}
 		
 		res.setProcessing_result(true);
