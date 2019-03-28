@@ -35,7 +35,7 @@
 				${question.question_title}
 			</td>
 			<td>
-				<a class="btn-orange" href="/jooka/admin/landing/question_manage?question_id=${question.question_id}">관리</a>
+				<a class="btn-orange" href="${admin_root_path}/landing/question_manage?question_id=${question.question_id}">관리</a>
 			</td>
 		</tr>
 		</c:forEach>
@@ -49,7 +49,7 @@
 	</table>
 	<div style="text-align: right;">
 		<a class="btn-gray delete_question" style="float:left;">문항 삭제</a>
-		<a class="btn-gray injection_parent_question" href="/jooka/admin/landing/question_injection">신규문항 등록</a>
+		<a class="btn-gray injection_parent_question" href="${admin_root_path}/landing/question_injection">신규문항 등록</a>
 	</div>
 	${paging_layout}
 	${search_layout}
@@ -87,7 +87,7 @@ $(document).ready(function() {
 				});
 				
 				
-				get_item_info("/jooka/admin/landing/delete/question", func, {"delete_question_targets":delete_question_targets}, $('body'));
+				get_item_info("${admin_root_path}/landing/delete/question", func, {"delete_question_targets":delete_question_targets}, $('body'));
 			}
 		}
 	});

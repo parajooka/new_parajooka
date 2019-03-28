@@ -22,7 +22,7 @@ $(function() {
 $.ajax({
 	    type:"GET",
 	    cache : false,
-	    url:'/jooka/admin/category/bytree',
+	    url:'${admin_root_path}/category/bytree',
 	    success : function(data) {
 	    	var category_list = data['object'];
 			var source = []; //전체 트리를 담을 변수
@@ -81,7 +81,7 @@ $.ajax({
 	        			    	location.replace(nextUrl);
 	        				}
 	        				
-	        				get_item_info("/jooka/admin/category/moveCategory", func, {"category_idx":sel_id, "parent_category_idx": parent_id}, $('body'));
+	        				get_item_info("${admin_root_path}/category/moveCategory", func, {"category_idx":sel_id, "parent_category_idx": parent_id}, $('body'));
 	        			}
 	        		}
 	        		return false;
@@ -124,7 +124,7 @@ $.ajax({
 	        	            	
 		        	        	$('.edit_submit').show();
 		        	        	$('.insert_submit').hide();
-	        	            	get_item_info("/jooka/admin/category/getCategory", func, {"category_idx" : node.id}, $('body'));
+	        	            	get_item_info("${admin_root_path}/category/getCategory", func, {"category_idx" : node.id}, $('body'));
 	        	            } else if (node.id == 0) {
 		        	        	$('.insert_submit').show();
 		        	        	$('.edit_submit').hide();

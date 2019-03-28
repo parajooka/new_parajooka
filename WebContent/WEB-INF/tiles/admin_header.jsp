@@ -27,3 +27,4 @@
 <script  src="/resources/common/js/form.js"></script>
 <script  src="/resources/common/js/input_number.js"></script>
 <script  src="/resources/common/js/admin_basic.js"></script>
+

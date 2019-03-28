@@ -118,7 +118,7 @@
 		</c:forEach>
 	</div>
 	<p class="survey_btn">
-		<a class="btn-darkblue" href="/jooka/admin/manage_hire_volunteer/survey_result?id=${volunteer_result.id}&value=1" style="margin: 0 1vw;">합격</a>
-		<a class="btn-orange" href="/jooka/admin/manage_hire_volunteer/survey_result?id=${volunteer_result.id}&value=2" style="margin: 0 1vw;">불합격</a>
+		<a class="btn-darkblue" href="${admin_root_path}/manage_hire_volunteer/survey_result?id=${volunteer_result.id}&value=1" style="margin: 0 1vw;">합격</a>
+		<a class="btn-orange" href="${admin_root_path}/manage_hire_volunteer/survey_result?id=${volunteer_result.id}&value=2" style="margin: 0 1vw;">불합격</a>
 	</p>
 </form:form>

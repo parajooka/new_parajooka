@@ -51,7 +51,7 @@
 				${participant.end_time}
 			</td>
 			<td>
-				<a class="btn-orange" href="/jooka/admin/landing/participant_manage?participant_id=${participant.participant_id}">관리</a>
+				<a class="btn-orange" href="${admin_root_path}/landing/participant_manage?participant_id=${participant.participant_id}">관리</a>
 			</td>
 		</tr>
 		</c:forEach>
@@ -102,7 +102,7 @@ $(document).ready(function() {
 				});
 				
 				
-				get_item_info("/jooka/admin/landing/delete/participant", func, {"delete_participant_targets":delete_participant_targets}, $('body'));
+				get_item_info("${admin_root_path}/landing/delete/participant", func, {"delete_participant_targets":delete_participant_targets}, $('body'));
 			}
 		}
 	});

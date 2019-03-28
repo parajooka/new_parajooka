@@ -22,7 +22,7 @@ $(function() {
 $.ajax({
 	    type:"GET",
 	    cache : false,
-	    url:'/jooka/admin/menu/bytree',
+	    url:'${admin_root_path}/menu/bytree',
 	    success : function(data) {
 	    	var menu_list = data['object'];
 			var source = []; //전체 트리를 담을 변수
@@ -81,7 +81,7 @@ $.ajax({
 	        			    	location.replace(nextUrl);
 	        				}
 	        				
-	        				get_item_info("/jooka/admin/menu/moveMenu", func, {"menu_idx":sel_id, "parent_menu_idx": parent_id}, $('body'));
+	        				get_item_info("${admin_root_path}/menu/moveMenu", func, {"menu_idx":sel_id, "parent_menu_idx": parent_id}, $('body'));
 	        			}
 	        		}
 	        		return false;
@@ -138,7 +138,7 @@ $.ajax({
 	        	            	
 		        	        	$('.edit_submit').show();
 		        	        	$('.insert_submit').hide();
-	        	            	get_item_info("/jooka/admin/menu/getMenu", func, {"menu_idx" : node.id}, $('body'));
+	        	            	get_item_info("${admin_root_path}/menu/getMenu", func, {"menu_idx" : node.id}, $('body'));
 	        	            } else if (node.id == 0) {
 		        	        	$('.insert_submit').show();
 		        	        	$('.edit_submit').hide();
@@ -233,7 +233,7 @@ $.ajax({
 						<td>메뉴 URL</td>
 						<td>
 							<input type="text" name="menu_url" id="menu_url"/>
-							<a class="plus_info">메뉴 url은 메뉴의 타입이 html작성이 아닐경우 모두 적용됩니다. ex) /jooka/admin/access_ip</a>
+							<a class="plus_info">메뉴 url은 메뉴의 타입이 html작성이 아닐경우 모두 적용됩니다. ex) ${admin_root_path}/access_ip</a>
 						</td>
 					</tr>
 					<tr>

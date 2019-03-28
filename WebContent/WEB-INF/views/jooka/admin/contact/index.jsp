@@ -110,7 +110,7 @@ $(document).ready(function() {
 		}
 		
 		
-		get_item_info("/jooka/admin/contact/getMemo", func, {"contact_id":contact_id}, $('body'));
+		get_item_info("${admin_root_path}/contact/getMemo", func, {"contact_id":contact_id}, $('body'));
 	});
 	
 	$(".select_all").on("change", function() {
@@ -144,7 +144,7 @@ $(document).ready(function() {
 				});
 				
 				
-				get_item_info("/jooka/admin/contact/delete", func, {"delete_contact_targets":delete_contact_targets}, $('body'));
+				get_item_info("${admin_root_path}/contact/delete", func, {"delete_contact_targets":delete_contact_targets}, $('body'));
 			}
 		}
 	});

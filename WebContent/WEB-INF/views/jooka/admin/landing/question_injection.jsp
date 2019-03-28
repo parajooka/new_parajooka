@@ -93,13 +93,13 @@ $(document).ready(function(){
 	$(".edit_question_submit").on("click", function() {
 		if (confirm("'"+ q_title +"' 문항을 수정 하시겠습니까?'")) {
 			oEditors.getById["question_contents"].exec("UPDATE_CONTENTS_FIELD", []);
-			$(".question_injection_container").attr("action", "/jooka/admin/landing/edit/question")
+			$(".question_injection_container").attr("action", "${admin_root_path}/landing/edit/question")
 			data_submit($(".question_injection_container"));
 		}
 	});
 });
 </script>
-<form action="/jooka/admin/landing/submit/question" enctype="multipart/form-data" method="post" class="question_injection_container">
+<form action="${admin_root_path}/landing/submit/question" enctype="multipart/form-data" method="post" class="question_injection_container">
 	<%@include file="/WEB-INF/views/layer/admin_landing/question_load_layer.jsp"%>
 	<div class="question_inejction_section">
 		<div class="question_title_section">

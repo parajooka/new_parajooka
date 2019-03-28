@@ -13,6 +13,10 @@
     
     <!-- Listner list ==START -->
     <listener>
+    	<description>Server Boot init Listener</description>
+    	<listener-class>com.paraframework.listener.ServerInitListener</listener-class>
+    </listener>
+    <listener>
     	<description>임시파일 삭제 리스너</description>
     	<listener-class>com.paraframework.listener.TempFileRemoveListener</listener-class>
     </listener>

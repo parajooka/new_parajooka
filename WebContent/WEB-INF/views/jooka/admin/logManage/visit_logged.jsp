@@ -32,7 +32,7 @@ $(document).ready(function() {
 				$(".view_count").html(data['object']);
 			}
         	
-        	get_item_info("/jooka/admin/logManage/validLoggedDate", func, {"logged_date":$("#logged_calendar").val()}, $('.nob'));
+        	get_item_info("${admin_root_path}/logManage/validLoggedDate", func, {"logged_date":$("#logged_calendar").val()}, $('.nob'));
         }
     });
 });

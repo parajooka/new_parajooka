@@ -42,7 +42,7 @@ $(document).ready(function() {
 			}
 		}
 		
-		get_item_info("/jooka/admin/landing/add/parent_question", func, {"question_id":parent_idx, "answer_id":$("#answer_id").val()}, $('body'));
+		get_item_info("${admin_root_path}/landing/add/parent_question", func, {"question_id":parent_idx, "answer_id":$("#answer_id").val()}, $('body'));
 	});
 	
 	var this_answer_id;
@@ -82,7 +82,7 @@ $(document).ready(function() {
 											""+ (i + 1) +""+
 										"</td>"+
 										"<td>"+
-											"<a title='\""+ child_question['question_title'] +"\"문항으로 이동' class='parent_link' href='/jooka/admin/landing/question_manage?question_id="+ child_question['question_id'] +"'>"+
+											"<a title='\""+ child_question['question_title'] +"\"문항으로 이동' class='parent_link' href='${admin_root_path}/landing/question_manage?question_id="+ child_question['question_id'] +"'>"+
 												"[문항]"+ child_question['question_title'] +""+
 											"</a>"+
 										"</td>"+
@@ -97,7 +97,7 @@ $(document).ready(function() {
 				}
 			}
 			
-			get_item_info("/jooka/admin/landing/get/question/byAnswerId", func, {"answer_id":this_answer_id}, $('body'));
+			get_item_info("${admin_root_path}/landing/get/question/byAnswerId", func, {"answer_id":this_answer_id}, $('body'));
 		} else {
 			$(this).parent().find("table").remove();
 			$(this).html("하위문항 보기")
@@ -149,7 +149,7 @@ $(window).on("load", function() {
 							${status.count}
 						</td>
 						<td>
-							<a title="'${parent_question.question_title}'문항으로 이동" class="parent_link" href="/jooka/admin/landing/question_manage?question_id=${parent_question.question_id}">
+							<a title="'${parent_question.question_title}'문항으로 이동" class="parent_link" href="${admin_root_path}/landing/question_manage?question_id=${parent_question.question_id}">
 								[문항] ${parent_question.question_title}<br>
 								<span class="parent_answer_name">[답안] ${parent_answer_list.get(status.index).getAnswer_title()}</span>
 							</a>
@@ -168,7 +168,7 @@ $(window).on("load", function() {
 	<c:forEach items="${lading_answer}" var="answer" varStatus="status">
 		<div class="this_answer">
 			${answer.answer_title == null || answer.answer_title.length() == 0 ? answer.answer_img : answer.answer_title}
-			<a class="btn-gray" href="/jooka/admin/landing/question_injection?answer_id=${answer.answer_id}" style="float: right; vertical-align: top; margin-left:1vw;">신규 하위문항 추가</a>
+			<a class="btn-gray" href="${admin_root_path}/landing/question_injection?answer_id=${answer.answer_id}" style="float: right; vertical-align: top; margin-left:1vw;">신규 하위문항 추가</a>
 			<a class="btn-gray show_row_question" data-answer-id="${answer.answer_id}" style="float: right; vertical-align: top;">하위문항 보기</a>
 			<c:if test="${answer.answer_title == null || answer.answer_title.length() == 0}">
 				<p style="width:6vw;">
@@ -179,7 +179,7 @@ $(window).on("load", function() {
 	</c:forEach>
 </div>
 <div style="text-align: center; margin-top:2vw;">
-	<a class="btn-orange" style="font-size: 1.3vw; padding: 0.5vw 1vw; display: inline-block;" href="/jooka/admin/landing/question_injection?question_id=${landing_question.question_id}">
+	<a class="btn-orange" style="font-size: 1.3vw; padding: 0.5vw 1vw; display: inline-block;" href="${admin_root_path}/landing/question_injection?question_id=${landing_question.question_id}">
 		해당문항 수정
 	</a>
 </div>
