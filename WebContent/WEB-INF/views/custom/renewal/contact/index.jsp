@@ -126,16 +126,23 @@
 	// 이전 달을 today에 값을 저장하고 달력에 today를 넣어줌
 	//today.getFullYear() 현재 년도//today.getMonth() 월  //today.getDate() 일 
 	//getMonth()는 현재 달을 받아 오므로 이전달을 출력하려면 -1을 해줘야함
-		if (new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()).getTime() < new Date(fixed_today.getFullYear(), fixed_today.getMonth(), fixed_today.getDate()).getTime()) {
+		if (today.getMonth() == fixed_today.getMonth()) {
 			alert("현재달의 이전으로는 예약이 불가능합니다.");
 			return
-		}  else if (new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()).getTime() == new Date(fixed_today.getFullYear(), fixed_today.getMonth(), fixed_today.getDate()).getTime()) {
+		}  else if (today.getMonth() - 1 == fixed_today.getMonth()) {
 			$(".before_calendar").css("visibility", "hidden");
 		} else {
 			$(".before_calendar").css("visibility", "visible");
 		}
 		
-		date = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
+		if (fixed_today.getDate() >= 28 && today.getMonth() == fixed_today.getMonth()) {
+			date.setDate(1);
+			date.setMonth(fixed_today.getMont() - 1);
+		} else {
+			date.setMonth(date.getMonth() - 1);
+		}
+		
+		today = date;
 		
 		var func = function(data) {
 			//잘모된 페이지 요청시
@@ -152,7 +159,6 @@
 			
 			var obj = data['object'];
 			
-			today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
 			buildCalendar(function() {
 				if (obj != null) {
 					for (var i = 0; i < obj.length; i++) {
@@ -165,7 +171,7 @@
 		    }); //달력 cell 만들어 출력 
 		}
 		
-		get_item_info("/custom/renewal/contact/moveCalendar", func, {"moveDate":date.getFullYear() +"-"+ pad((date.getMonth() + 1), 2) + "-" + date.getDate()}, $('body'));
+		get_item_info("/custom/renewal/contact/moveCalendar", func, {"moveDate":date.getFullYear() +"-"+ pad((date.getMonth() + 1), 2) + "-" + pad(date.getDate(), 2)}, $('body'));
 	}
 
 	function nextCalendar() {//다음 달
@@ -173,16 +179,22 @@
 		// 다음 달을 today에 값을 저장하고 달력에 today 넣어줌
 		//today.getFullYear() 현재 년도//today.getMonth() 월  //today.getDate() 일 
 		//getMonth()는 현재 달을 받아 오므로 다음달을 출력하려면 +1을 해줘야함
-		if (new Date(today.getFullYear(), today.getMonth() + 1, today.getDate()).getTime() > new Date(fixed_today.getFullYear(), fixed_today.getMonth() + 2, fixed_today.getDate()).getTime()) {
+		if (today.getMonth() == fixed_today.getMonth() + 2) {
 			alert("현재달의 기준 최대 2달 이후까지만 예약이 가능합니다.");
 			return;
-		}  else if (new Date(today.getFullYear(), today.getMonth() + 1, today.getDate()).getTime() == new Date(fixed_today.getFullYear(), fixed_today.getMonth() + 2, fixed_today.getDate()).getTime()) {
+		}  else if (today.getMonth() == fixed_today.getMonth() + 1) {
 			$(".next_calendar").css("visibility", "hidden");
 		} else {
 			$(".next_calendar").css("visibility", "visible");
 		}
 
-		date = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
+		if (fixed_today.getDate() >= 28 && today.getMonth() == fixed_today.getMonth()) {
+			date.setDate(fixed_today.getDate() + 1);
+		} else {
+			date.setMonth(date.getMonth() + 1);
+		}
+
+		today = date;
 		
 		var func = function(data) {
 			//잘모된 페이지 요청시
@@ -199,8 +211,6 @@
 			
 			var obj = data['object'];
 			
-			today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-			
 			buildCalendar(function() {
 				if (obj != null) {
 					for (var i = 0; i < obj.length; i++) {
@@ -212,7 +222,7 @@
 		    }); //달력 cell 만들어 출력 
 		}
 		
-		get_item_info("/custom/renewal/contact/moveCalendar", func, {"moveDate":date.getFullYear() +"-"+ pad((date.getMonth() + 1), 2) + "-" + date.getDate()}, $('body'));
+		get_item_info("/custom/renewal/contact/moveCalendar", func, {"moveDate":date.getFullYear() +"-"+ pad((date.getMonth() + 1), 2) + "-" + pad(date.getDate(), 2)}, $('body'));
 	}
 	
 	function buildCalendar(callback) {//현재 달 달력 만들기

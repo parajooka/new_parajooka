@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.paraframework.common.ControllerCommonMethod;
 
 @Controller
-@RequestMapping(value=ControllerCommonMethod.admin_page_path + "/2018/landing")
+@RequestMapping(value=ControllerCommonMethod.customer_page_path + "/2018/landing")
 public class BeforeLandingController extends ControllerCommonMethod {
 	
 	@RequestMapping(value="/no")
