@@ -32,6 +32,7 @@ public class AlarmContactListner implements ServletContextListener {
 	private ContactService service;
 
 	private SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
+	private SimpleDateFormat formatTime1 = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREAN);
 	private SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.KOREAN);
 	private static Contact meeting_target = null;
 
@@ -69,17 +70,17 @@ public class AlarmContactListner implements ServletContextListener {
 		Date tomorrow = null;
 		
 		try {
-			//오늘 9시날짜 저장
-			tomorrow = formatTime2.parse(year + "-" + month + "-" + date + " " + "09:00:00.000");
+			//오늘 12시날짜 저장
+			tomorrow = formatTime2.parse(year + "-" + month + "-" + date + " " + "12:00:00.000");
 			
-			//이미 오전 9시가 지난경우 내일 오전 9시로 예약
+			//이미 오후 12시가 지난경우 내일 오후 12시로 예약
 			if (ControllerCommonMethod.SleepTime(tomorrow) <= 0) {
 				cal.add(Calendar.DATE, 1);
 				String tomorrow_year = cal.get(Calendar.YEAR) + "";
 				String tomorrow_month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
 				String tomorrow_date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
 				
-				tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "09:00:00.000");
+				tomorrow = formatTime2.parse(tomorrow_year + "-" + tomorrow_month + "-" + tomorrow_date + " " + "12:00:00.000");
 			}
 			
 		} catch (ParseException e1) {
@@ -102,71 +103,85 @@ public class AlarmContactListner implements ServletContextListener {
 					}
 					
 					//예약자가 있다면 담당자에게 메일발송
-					if (meeting_target != null) {
-						String reservation_type = "";
+					try {
+						Calendar cal = new GregorianCalendar();
+						String year = cal.get(Calendar.YEAR) + "";
+						String month = String.format("%02d", (cal.get(Calendar.MONTH) + 1));
+						String date = String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
 						
-						//방문 유형 알아볼수있게 구분
-						if (meeting_target.getReservation_type() == 0) {
-							reservation_type = "방문";
-						} else if (meeting_target.getReservation_type() == 1) {
-							reservation_type = "전화";
-						} else if (meeting_target.getReservation_type() == 2) {
-							reservation_type = "메일";
-						}
+
+						Date today = formatTime1.parse(year + "-" + month + "-" + date + " " + "12:00");
 						
-						//메일 내용 작성
-						String msg = ""+
-								 "오늘의 미팅 예약자 : " + meeting_target.getParticipant().getName() + "<br>" +
-								 "예약시간 : " + meeting_target.getReservation_date() + "<br>" +
-								 "미팅수단 : "+ reservation_type + "<br><br>" +
-								 "자세한 내용은 관리자 페이지에서 확인 바랍니다.";
-						
-						SMTP smtp = new SMTP();
-						//메일 발송
-						smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
-						
-						//미팅 시간이되면 다시한번 메일을 발송하기위한 스케줄생성
-						Timer TimeAlarm = new Timer();
-						//DB에 데이트 시간이 yyyy-MM-dd HH:mm으로 저장되므로 뒤에 :00을 추가해준다.
-						Date meeting_time = null;
-						try {
-							meeting_time = formatTime2.parse(meeting_target.getReservation_date()+":00.000");
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-						TimeAlarm.schedule(new TimerTask() {
+						//12시 이후 미팅만 발송
+						if (meeting_target != null && formatTime1.parse(meeting_target.getReservation_date()).getTime() >= today.getTime()) {
+							String reservation_type = "";
 							
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								String reservation_type = "";
-								
-								//방문 유형 알아볼수있게 구분
-								if (meeting_target.getReservation_type() == 0) {
-									reservation_type = "방문";
-								} else if (meeting_target.getReservation_type() == 1) {
-									reservation_type = "전화";
-								} else if (meeting_target.getReservation_type() == 2) {
-									reservation_type = "메일";
-								}
-								
-								//메일 내용 작성
-								String msg = ""+
-										 "" + meeting_target.getParticipant().getName() + "님이 미팅을 기다리고 계십니다.<br>" +
-										 "예약시간 : " + meeting_target.getReservation_date() + "<br>" +
-										 "미팅수단 : "+ reservation_type + "<br>" +
-										 "연락처 : " + meeting_target.getReservation_pw() + "<br><br>" +
-										 "자세한 내용은 관리자 페이지에서 확인 바랍니다.";
-								
-								SMTP smtp = new SMTP();
-								smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
+							//방문 유형 알아볼수있게 구분
+							if (meeting_target.getReservation_type() == 0) {
+								reservation_type = "방문";
+							} else if (meeting_target.getReservation_type() == 1) {
+								reservation_type = "전화";
+							} else if (meeting_target.getReservation_type() == 2) {
+								reservation_type = "메일";
 							}
-						}, ControllerCommonMethod.SleepTime(meeting_time));
+							
+							//메일 내용 작성
+							String msg = ""+
+									 "오늘의 미팅 예약자 : " + meeting_target.getParticipant().getName() + "<br>" +
+									 "예약시간 : " + meeting_target.getReservation_date() + "<br>" +
+									 "미팅수단 : "+ reservation_type + "<br><br>" +
+									 "자세한 내용은 관리자 페이지에서 확인 바랍니다.";
+							
+							SMTP smtp = new SMTP();
+							//메일 발송
+							smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ formatTime.format(new Date()) + " 미팅 예약이 존재합니다.", msg);
+							
+							//미팅 시간이되면 다시한번 메일을 발송하기위한 스케줄생성
+							Timer TimeAlarm = new Timer();
+							//DB에 데이트 시간이 yyyy-MM-dd HH:mm으로 저장되므로 뒤에 :00을 추가해준다.
+							Date meeting_time = null;
+							try {
+								meeting_time = formatTime2.parse(meeting_target.getReservation_date()+":00.000");
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							TimeAlarm.schedule(new TimerTask() {
+								
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									String reservation_type = "";
+									
+									//방문 유형 알아볼수있게 구분
+									if (meeting_target.getReservation_type() == 0) {
+										reservation_type = "방문";
+									} else if (meeting_target.getReservation_type() == 1) {
+										reservation_type = "전화";
+									} else if (meeting_target.getReservation_type() == 2) {
+										reservation_type = "메일";
+									}
+									
+									//메일 내용 작성
+									String msg = ""+
+											 "" + meeting_target.getParticipant().getName() + "님이 미팅을 기다리고 계십니다.<br>" +
+											 "예약시간 : " + meeting_target.getReservation_date() + "<br>" +
+											 "미팅수단 : "+ reservation_type + "<br>" +
+											 "연락처 : " + meeting_target.getReservation_pw() + "<br><br>" +
+											 "자세한 내용은 관리자 페이지에서 확인 바랍니다.";
+									
+									SMTP smtp = new SMTP();
+									smtp.SendMail("mt9665@naver.com", "[Para&Jooka] "+ meeting_target.getParticipant().getName() +"님과의 미팅이 예약된 시간입니다.", msg);
+								}
+							}, ControllerCommonMethod.SleepTime(meeting_time));
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
-					//재귀문 실행 (발송후 또 다음날 00시 00분 30초에 미팅조회하여 그 날 미팅계획을 발송한다)
+					//재귀문 실행 (발송후 또 다음날 12시 00분 00초에 미팅조회하여 그 날 미팅계획을 발송한다)
 					work();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
