@@ -2,7 +2,6 @@ package com.paraframework.common.interceptor;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,6 +87,12 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	}
 	
 	public void WriteLogged(HttpServletRequest request) throws IOException {
+		File dir = new File("C:\\res\\logged\\"+ ControllerCommonMethod.project_name);
+		
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		
 		File temp = new File("C:\\res\\logged\\para-jooka\\logged_"+ formatTime.format(new Date()) + ".txt");
 		bufferedWriter = new BufferedWriter(new FileWriterWithEncoding(temp, "UTF-8", true));
 		

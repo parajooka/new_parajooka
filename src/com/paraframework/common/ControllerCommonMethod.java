@@ -39,6 +39,7 @@ public class ControllerCommonMethod {
 	private static Timer timer = new Timer();
 	public final static String admin_page_path = "/jooka/admin";
 	public final static String customer_page_path = "/custom";
+	public final static String project_name = "para-jooka";
 	
 	@Autowired
 	private SqlUtilService search_service;
