@@ -43,7 +43,7 @@ public class TempJspHandler extends ControllerCommonMethod {
 		try {
 			//WEB-INF 경로를 구한다.
 			path = context.getResource("/WEB-INF/views/custom").getPath();
-			path = path + "/temp_jsp";
+			path = path + "/temp_jsp/";
 			//경로 없으면 자동생성
 			File directory_file = new File(path);
 			
