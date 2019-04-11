@@ -18,18 +18,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.AccessIp;
-import com.paraframework.object.Homepage;
 import com.paraframework.service.AccessIpService;
-import com.paraframework.service.HomepageService;
-import com.paraframework.service.MenuService;
 
 public class BasicInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
-	private MenuService service;
-	@Autowired
 	private AccessIpService acc_service;
 	@Autowired
-	private HomepageService homepage_service;
 	private static SimpleDateFormat formatTime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREAN);
 	private static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
 	private static BufferedWriter bufferedWriter= null;
@@ -39,9 +33,14 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		String url = request.getRequestURL().toString();
 		url.substring(0, url.indexOf("/"));
 		
-		if(url.matches(".*([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}.*")) {
-			return ControllerCommonMethod.alertMessage("차단된 url로 접근 하였습니다.", request, response);
-		}
+		
+		/*
+		 * if (url.matches(
+		 * ".*([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}.*"
+		 * )) { return ControllerCommonMethod.alertMessage("차단된 url로 접근 하였습니다.",
+		 * request, response); }
+		 */
+		 
 			
 		/* 로직처리 */ 
 		String ip = request.getHeader("X-FORWARDED-FOR");
@@ -64,22 +63,6 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		
-		 //홈페이지 메뉴 로딩
-		if (!ControllerCommonMethod.MenuUpload) {
-			ControllerCommonMethod.MenuUpload = true;
-			request.getServletContext().setAttribute("menu_list", service.getViewMenu());
-		}
-		
-		//홈페이지 정보 호출
-		if (!ControllerCommonMethod.HomePageUpload) {
-			Homepage homepage = homepage_service.getHomepage();
-			
-			if (homepage != null) {
-				ControllerCommonMethod.HomePageUpload = true;
-				request.getServletContext().setAttribute("homepage", homepage);
-			}
-		}
-		
 		//방문 로그 기록
 		WriteLogged(request);
 		
@@ -93,7 +76,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 			dir.mkdirs();
 		}
 		
-		File temp = new File("C:\\res\\logged\\para-jooka\\logged_"+ formatTime.format(new Date()) + ".txt");
+		File temp = new File("C:\\res\\logged\\"+ ControllerCommonMethod.project_name +"\\logged_"+ formatTime.format(new Date()) + ".txt");
 		bufferedWriter = new BufferedWriter(new FileWriterWithEncoding(temp, "UTF-8", true));
 		
 		//이미 오늘의 로그파일이 만들어진경우 한줄바꿈

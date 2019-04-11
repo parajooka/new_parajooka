@@ -1,5 +1,6 @@
 package com.paraframework.controller;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,24 +19,25 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
+import com.paraframework.common.handler.HomepageInfoHandler;
+import com.paraframework.common.handler.TempJspHandler;
 import com.paraframework.object.Homepage;
 import com.paraframework.service.HomepageService;
 
 @Controller
-@RequestMapping(value= {"/jooka", ControllerCommonMethod.admin_page_path + "/homepage"})
+@RequestMapping(value= {ControllerCommonMethod.admin_page_path, ControllerCommonMethod.admin_page_path + "/homepage"})
 public class HomepageController extends ControllerCommonMethod {
 	@Autowired
 	private HomepageService service;
 
-	@Override
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String Index(HttpServletRequest request) {
+	@RequestMapping(value= "", method=RequestMethod.GET)
+	public String main(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return RedirectPage(request, ControllerCommonMethod.admin_page_path + "/homepage/index");
 	}
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
-	public String main(HttpServletRequest request, Model model, Homepage homepage) {
+	public String main(HttpServletRequest request, Model model, Homepage homepage) throws MalformedURLException {
 		// TODO Auto-generated method stub
 		Homepage orign_homepage = (Homepage) request.getServletContext().getAttribute("homepage");
 		
@@ -83,6 +85,10 @@ public class HomepageController extends ControllerCommonMethod {
 			}
 			
 			service.insertHompage(homepage);
+			
+			//홈페이지를 context에 등록
+			HomepageInfoHandler handler = new HomepageInfoHandler();
+			handler.UploadHomepageObject(request.getServletContext());
 		}
 		
 		res.setProcessing_result(true);
@@ -159,8 +165,12 @@ public class HomepageController extends ControllerCommonMethod {
 			
 			service.updateHomepage(homepage);
 			
-			request.getServletContext().removeAttribute("homepage");
-			request.getServletContext().setAttribute("homepage", service.getHomepage());
+			//홈페이지를 context에 등록
+			HomepageInfoHandler handler = new HomepageInfoHandler();
+			handler.UploadHomepageObject(request.getServletContext());
+			
+			TempJspHandler jspHandler = new TempJspHandler();
+			jspHandler.ReCreateAllTempJsp(request.getServletContext());
 		}
 		
 		res.setProcessing_result(true);

@@ -42,8 +42,14 @@ public class TempJspHandler extends ControllerCommonMethod {
 		String path = null;
 		try {
 			//WEB-INF 경로를 구한다.
-			path = context.getResource("/WEB-INF/views/custom/temp_jsp").getPath();
-			path = path.substring(1, path.length()); 
+			path = context.getResource("/WEB-INF/views/custom").getPath();
+			path = path + "/temp_jsp";
+			//경로 없으면 자동생성
+			File directory_file = new File(path);
+			
+			if (!directory_file.exists()) {
+				directory_file.mkdirs();
+			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

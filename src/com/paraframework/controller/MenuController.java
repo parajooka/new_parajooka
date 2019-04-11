@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
+import com.paraframework.common.handler.HomepageInfoHandler;
 import com.paraframework.common.handler.TempJspHandler;
 import com.paraframework.object.Menu;
 import com.paraframework.object.MenuHtml;
@@ -113,10 +114,9 @@ public class MenuController extends ControllerCommonMethod {
 		res.setNext_url(ControllerCommonMethod.admin_page_path + "/menu/index");
 		
 
-		if (request.getServletContext().getAttribute("menu_list") != null) {
-			request.getServletContext().removeAttribute("menu_list");
-			request.getServletContext().setAttribute("menu_list", service.getAllMenu());
-		}
+		//context에 홈페이지 정보 갱신
+		HomepageInfoHandler handler = new HomepageInfoHandler();
+		handler.UploadCustomerMenu(request.getServletContext());
 		
 		return res;
 	}
@@ -133,6 +133,12 @@ public class MenuController extends ControllerCommonMethod {
 			if ((menu.getParent_menu_idx() == 0 && menu.getGroup_idx() == 0) ||
 				(menu.getParent_menu_idx() != 0 && parent_menu != null && menu.getGroup_idx() == parent_menu.getGroup_idx())) {
 					//추가하려는 메뉴가 최상위가 아닐경우 부모의 그룹아이디를 따라간다.
+				
+					//url직접 이동이 아닌경우, url이 입력되지않았다면
+					//db에 null이 들어갈 수 없기때문에 /로 지정
+					if (menu.getMenu_type() != 0 && (menu.getMenu_url() == null || menu.getMenu_url().length() == 0)) {
+						menu.setMenu_url("/");
+					}
 					service.insertMenu(menu);
 					
 					//추가하려는 메뉴가 최상위일경우 자신의 아이디를 그룹아이디에 집어넣는다.
@@ -153,10 +159,9 @@ public class MenuController extends ControllerCommonMethod {
 						handler.ReCreateTempJsp(request.getServletContext(), menu);
 					}
 					
-					if (request.getServletContext().getAttribute("menu_list") != null) {
-						request.getServletContext().removeAttribute("menu_list");
-						request.getServletContext().setAttribute("menu_list", service.getViewMenu());
-					}
+					//context에 홈페이지 정보 갱신
+					HomepageInfoHandler handler = new HomepageInfoHandler();
+					handler.UploadCustomerMenu(request.getServletContext());
 			} else {
 				res.setMessage("잘못된 접근입니다.");
 			}
@@ -187,10 +192,9 @@ public class MenuController extends ControllerCommonMethod {
 						handler.ReCreateTempJsp(request.getServletContext(), menu);
 					}
 		
-					if (request.getServletContext().getAttribute("menu_list") != null) {
-						request.getServletContext().removeAttribute("menu_list");
-						request.getServletContext().setAttribute("menu_list", service.getViewMenu());
-					}
+					//context에 홈페이지 정보 갱신
+					HomepageInfoHandler handler = new HomepageInfoHandler();
+					handler.UploadCustomerMenu(request.getServletContext());
 			} else {
 				res.setMessage("잘못된 접근입니다.");
 			}
@@ -236,10 +240,9 @@ public class MenuController extends ControllerCommonMethod {
 			res.setProcessing_result(true);
 			
 
-			if (request.getServletContext().getAttribute("menu_list") != null) {
-				request.getServletContext().removeAttribute("menu_list");
-				request.getServletContext().setAttribute("menu_list", service.getViewMenu());
-			}
+			//context에 홈페이지 정보 갱신
+			HomepageInfoHandler infoHandler = new HomepageInfoHandler();
+			infoHandler.UploadCustomerMenu(request.getServletContext());
 		}
 		
 		

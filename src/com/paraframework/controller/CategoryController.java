@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paraframework.common.AjaxResponse;
 import com.paraframework.common.ControllerCommonMethod;
+import com.paraframework.common.handler.HomepageInfoHandler;
 import com.paraframework.object.Category;
 import com.paraframework.service.CategoryService;
 
@@ -111,10 +112,9 @@ public class CategoryController extends ControllerCommonMethod {
 			
 			res.setMessage("카테고리 이동이 완료되었습니다.");
 			
-
-			if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-				ControllerCommonMethod.AdminCategoryUpload = false;
-			}
+			//context에 홈페이지 정보 갱신
+			HomepageInfoHandler handler = new HomepageInfoHandler();
+			handler.UploadAdminMenu(request.getServletContext());
 
 		res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 		res.setProcessing_result(true);
@@ -142,9 +142,10 @@ public class CategoryController extends ControllerCommonMethod {
 						service.moveCategory(Category);
 					}
 					
-					if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-						ControllerCommonMethod.AdminCategoryUpload = false;
-					}
+					//context에 홈페이지 정보 갱신
+					HomepageInfoHandler handler = new HomepageInfoHandler();
+					handler.UploadAdminMenu(request.getServletContext());
+					
 			} else {
 				res.setMessage("잘못된 접근입니다.");
 			}
@@ -169,10 +170,10 @@ public class CategoryController extends ControllerCommonMethod {
 			if ((Category.getParent_category_idx() == 0 && Category.getGroup_idx() == target_Category.getGroup_idx()) ||
 					(Category.getParent_category_idx() != 0 && parent_Category != null && Category.getGroup_idx() == parent_Category.getGroup_idx())) {
 					service.updateCategory(Category);
-		
-					if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-						ControllerCommonMethod.AdminCategoryUpload = false;
-					}
+						
+					//context에 홈페이지 정보 갱신
+					HomepageInfoHandler handler = new HomepageInfoHandler();
+					handler.UploadAdminMenu(request.getServletContext());
 			} else {
 				res.setMessage("잘못된 접근입니다.");
 			}
@@ -214,10 +215,9 @@ public class CategoryController extends ControllerCommonMethod {
 			res.setNext_url(ControllerCommonMethod.admin_page_path + "/category/index");
 			res.setProcessing_result(true);
 			
-
-			if (request.getServletContext().getAttribute("admin_Category_list") != null) {
-				ControllerCommonMethod.AdminCategoryUpload = false;
-			}
+			//context에 홈페이지 정보 갱신
+			HomepageInfoHandler handler = new HomepageInfoHandler();
+			handler.UploadAdminMenu(request.getServletContext());
 		}
 		
 		res.setProcessing_result(true);
