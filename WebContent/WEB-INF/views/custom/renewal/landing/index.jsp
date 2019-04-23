@@ -802,7 +802,7 @@ $(document).ready(function() {
 </script>
 <div class="landing_landing_container">
 	<div class="landing_landing_section">
-	    <video style="width:600px; margin-top:-50px;" loop="loop" id="hergry_intro" muted="muted" autoplay="autoplay" playsinline>
+		<video style="width:600px; margin-top:-50px;" loop="loop" id="hergry_intro" muted="muted" autoplay="autoplay" playsinline>
 			<source src="/video/landing.mp4" type="video/mp4">
 			<source src="/video/landing.mp4" type="video/mp4">
 			Your browser does not support the video tag.
