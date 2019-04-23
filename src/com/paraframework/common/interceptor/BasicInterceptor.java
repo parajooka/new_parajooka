@@ -1,11 +1,16 @@
 package com.paraframework.common.interceptor;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,6 +21,7 @@ import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.google.gson.Gson;
 import com.paraframework.common.ControllerCommonMethod;
 import com.paraframework.object.AccessIp;
 import com.paraframework.service.AccessIpService;
@@ -64,12 +70,50 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		
 		
 		//방문 로그 기록
-		WriteLogged(request);
+		WriteLogged(request, ip);
 		
 		return true;
 	}
 	
-	public void WriteLogged(HttpServletRequest request) throws IOException {
+	public void WriteLogged(HttpServletRequest request, String ip) throws IOException {
+		//외부 사이트에 아이피 위치추적 요청
+		Gson gson = new Gson();
+        HashMap<String, Object> resultMap = null;
+        
+        System.out.println(ip);
+        
+        String country = null;
+        String city = null;
+        String region = null;
+        
+        try {
+            //URL url = new URL("http://ip-api.com/json/naver.com");
+            URL url = new URL("http://ip-api.com/json/"+ ip);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+            int responseCode = con.getResponseCode();
+            String inputLine;
+            StringBuffer responseBuffer = new StringBuffer();
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            while ((inputLine = in.readLine()) != null) {
+                responseBuffer.append(inputLine);
+            }
+            in.close();
+            System.out.println(responseCode +" code");
+            if(200==responseCode) {
+                resultMap = gson.fromJson(responseBuffer.toString(), HashMap.class);
+                System.out.println(resultMap.get("status") +" status");
+                if("success".equals(resultMap.get("status"))){
+                	country = (String) resultMap.get("country");
+                	city = (String) resultMap.get("city");
+                	region = (String) resultMap.get("regionName");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }   
+        
 		File dir = new File("C:\\res\\logged\\"+ ControllerCommonMethod.project_name);
 		
 		if (!dir.exists()) {
@@ -96,7 +140,7 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 	    	strParam = "?"+ strParam.substring(0, strParam.length() - 1);
 	    }
 		 
-	    bufferedWriter.write("방문자 아이피 : "+ ControllerCommonMethod.getIpAddress(request) +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
+	    bufferedWriter.write("방문자 아이피 : "+ ControllerCommonMethod.getIpAddress(request) +" || 국가 : "+ country +"|| 도시 : "+ city +", "+ region +" || 시간 : "+ formatTime2.format(new Date()) + " || 방문 페이지: "+ request.getRequestURL() +""+ strParam);
 		bufferedWriter.close();
 	}
 }
