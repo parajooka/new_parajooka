@@ -54,6 +54,8 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
             ip = request.getRemoteAddr();
         }
         
+        ip = ip.split(",")[0].trim();
+        
 		List<AccessIp> access = acc_service.getAccessIp();
 		
 		if (ip.equals("0:0:0:0:0:0:0:1") || ip.equals("127.0.0.1")) {
