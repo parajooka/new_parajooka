@@ -80,8 +80,6 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
 		Gson gson = new Gson();
         HashMap<String, Object> resultMap = null;
         
-        System.out.println(ip);
-        
         String country = null;
         String city = null;
         String region = null;
@@ -100,10 +98,8 @@ public class BasicInterceptor extends HandlerInterceptorAdapter {
                 responseBuffer.append(inputLine);
             }
             in.close();
-            System.out.println(responseCode +" code");
             if(200==responseCode) {
                 resultMap = gson.fromJson(responseBuffer.toString(), HashMap.class);
-                System.out.println(resultMap.get("status") +" status");
                 if("success".equals(resultMap.get("status"))){
                 	country = (String) resultMap.get("country");
                 	city = (String) resultMap.get("city");

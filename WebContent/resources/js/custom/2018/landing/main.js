@@ -7,7 +7,7 @@ var mask_checked = true;
 
 var img_preloading_list = [
 	"pc_01.png", "pc_02.png", "pc_03.png", "pc_04.png", "pc_05.png", "pc_06.png",
-	"pc_07.png","pc_08.png", "pc_09.png", "pc_10.png", "pc_11.png", "pc_12.png",
+	"pc_07.png","pc_08.png", "pc_09.png", "pc_10.png", "pc_11.png", "pc_12.png", "pc_main.gif",
 	"MrParajooka.gif", "menu/01.png", "BLACK.png", "rain.gif", "main.gif"
 ];
 
