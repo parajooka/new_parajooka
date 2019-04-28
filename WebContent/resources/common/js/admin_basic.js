@@ -30,4 +30,10 @@
 	
 	$(".admin_menu_open").trigger("click");
 	
+	//관리자페이지 레이아웃 높이 지정
+	var navigation_height = $(".navigation").height();
+	
+	if (navigation_height > $(window).height()) {
+		$(".container").css("min-height", navigation_height +"px");
+	}
 });
