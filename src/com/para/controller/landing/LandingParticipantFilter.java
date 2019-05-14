@@ -53,6 +53,7 @@ public class LandingParticipantFilter implements Filter {
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {
+		
 	}
 
 }

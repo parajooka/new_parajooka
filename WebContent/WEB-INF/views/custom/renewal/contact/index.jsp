@@ -189,7 +189,8 @@
 		}
 
 		if (fixed_today.getDate() >= 28 && today.getMonth() == fixed_today.getMonth()) {
-			date.setDate(fixed_today.getDate() + 1);
+			date.setDate(1);
+			date.setMonth(date.getMonth() + 1);
 		} else {
 			date.setMonth(date.getMonth() + 1);
 		}
