@@ -142,4 +142,20 @@
     WHERE
     	menu_name = #{name}
 </select>
+<select id="getParentMenu" resultType="com.para.object.workboard.WorkMenu">
+	SELECT  
+		menu_idx,
+        add_date, 
+		group_idx, 
+		menu_name, 
+		modify_date, 
+		parent_menu_idx, 
+		print_seq, 
+		view_yn,
+		use_yn
+    FROM
+    	workmenu
+    WHERE
+    	parent_menu_idx = 0
+</select>
 </mapper>

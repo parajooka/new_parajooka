@@ -13,13 +13,9 @@ public class WorkPost {
 	private static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREAN);
 	
 	private int post_id;
-	@NotNull (message = "글을 작성하고자 하는  메뉴를 선택 해주세요.")
-	@Pattern(regexp = "^[0-9]*$", message = "잘못된 메뉴를 선택 하였습니다.")
-	@Min(value = 1, message = "잘못된 메뉴를 선택 하였습니다.")
-	private Integer menu_idx;
+	@Min(value = 1, message = "게시글을 작성할 메뉴를 선택 해주세요.")
+	private int menu_idx;
 	
-	@Pattern(regexp = "^[0-9]*$", message = "암호는 숫자만 입력 가능합니다.")
-	@Size(min = 4, max = 8, message = "암호는 최소 4자리에서 최대 8자리까지 입력 가능합니다.")
 	private String post_password;
 	
 	@NotNull (message = "제목을 입력 해주세요.")
@@ -74,10 +70,10 @@ public class WorkPost {
 	public void setModify_date(String modify_date) {
 		this.modify_date = modify_date;
 	}
-	public Integer getMenu_idx() {
+	public int getMenu_idx() {
 		return menu_idx;
 	}
-	public void setMenu_idx(Integer menu_idx) {
+	public void setMenu_idx(int menu_idx) {
 		this.menu_idx = menu_idx;
 	}
 	public String getWrite_date() {

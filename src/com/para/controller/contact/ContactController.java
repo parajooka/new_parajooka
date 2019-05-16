@@ -180,8 +180,16 @@ public class ContactController extends ControllerCommonMethod {
 			
 			SMTP smtp = new SMTP();
 			
+			LandingParticipant participant = landing_service.getParticipant(contact.getParticipant_id());
+			
+			contact.setReservation_memo(contact.getReservation_memo().replaceAll("\n", "<br>"));
+			
 			if (!isAdmin(request)) {
-				smtp.SendMail("mt9665@naver.com", "Para&Jooka 컨텍트 미팅예약이 신규등록 되었습니다.", "등록일시 : "+ formatTime2.format(new Date()) + "<br>관리자 페이지에서 확인바랍니다.");
+				smtp.SendMail("mt9665@naver.com", "Para&Jooka 컨텍트 미팅예약이 신규등록 되었습니다.", "등록일시 : "+ formatTime2.format(new Date()) + "<br>"
+						+ "예약날짜 : " + contact.getReservation_date() + "<br>"
+						+ "예약자 : "+ participant.getName() + "<br>"
+						+ "소속 : "+ participant.getCompany() + "<br><br>"
+						+ "==== 아래는 메모 내용입니다. ====<br>"+ contact.getReservation_memo());
 			}
 		}
 		

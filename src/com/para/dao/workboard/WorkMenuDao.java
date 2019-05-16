@@ -22,4 +22,6 @@ public interface WorkMenuDao {
 	public WorkMenu getMenuById(int id);
 	
 	public List<WorkMenu> getViewMenu();
+	
+	public List<WorkMenu> getParentMenu();
 }

@@ -67,4 +67,10 @@ public class WorkMenuService implements WorkMenuDao {
 		// TODO Auto-generated method stub
 		return dao.getViewMenu();
 	}
+
+	@Override
+	public List<WorkMenu> getParentMenu() {
+		// TODO Auto-generated method stub
+		return dao.getParentMenu();
+	}
 }

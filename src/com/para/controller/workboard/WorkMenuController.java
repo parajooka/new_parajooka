@@ -30,7 +30,7 @@ public class WorkMenuController extends ControllerCommonMethod {
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
-		request.setAttribute("menu", "업무보고 메뉴 관리");
+		request.setAttribute("menu", "업무 메뉴 관리");
 		return getRequestURI(request);
 	}
 	
@@ -83,6 +83,11 @@ public class WorkMenuController extends ControllerCommonMethod {
 		} else {
 			//이동의 타깃이되는 메뉴
 			WorkMenu target_menu = service.getMenuById(menu.getParent_menu_idx());
+			
+//			if(target_menu.getParent_menu_idx() != 0) {
+//				return res.returnResponse("게시판 메뉴는 최대 2뎁스까지만 사용 가능합니다.", ControllerCommonMethod.admin_page_path + "/workboard/category/index");
+//			}
+			
 			//요청 메뉴의 그룹을 부모의 그룹과 동일하게 변경
 			move_menu.setGroup_idx(target_menu.getGroup_idx());
 			//요청 메뉴의 부모아이디를 타깃의 아이디로 변경
@@ -126,6 +131,10 @@ public class WorkMenuController extends ControllerCommonMethod {
 			if ((menu.getParent_menu_idx() == 0 && menu.getGroup_idx() == 0) ||
 				(menu.getParent_menu_idx() != 0 && parent_menu != null && menu.getGroup_idx() == parent_menu.getGroup_idx())) {
 					//추가하려는 메뉴가 최상위가 아닐경우 부모의 그룹아이디를 따라간다.
+				
+//				if (parent_menu != null && parent_menu.getParent_menu_idx() != 0) {
+//					return res.returnResponse("게시판 메뉴는 최대 2뎁스까지만 사용 가능합니다.", ControllerCommonMethod.admin_page_path + "/workboard/category/index");
+//				}
 				
 					service.insertMenu(menu);
 					
