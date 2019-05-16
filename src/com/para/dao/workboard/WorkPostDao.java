@@ -14,6 +14,8 @@ public interface WorkPostDao {
 	
 	public int DeletePost(@Param("ids") List<Integer> ids);
 	
+	public int movePost(@Param("ids") List<Integer> ids, @Param("menu_idx") int menu_idx);
+	
 	public WorkPost getPostById(int id);
 	
 	public List<WorkPost> getPostByIds(@Param("ids") List<Integer> ids);

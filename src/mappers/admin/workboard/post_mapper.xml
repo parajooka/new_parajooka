@@ -34,6 +34,18 @@
 		post_id = ${post_id}
 </update>
 
+<update id="movePost">
+	UPDATE 
+   		workpost
+	SET 
+		menu_idx = #{menu_idx}
+	WHERE
+		post_id IN 
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			${id}
+		</foreach>
+</update>
+
 <delete id="DeletePost" parameterType="java.util.List">
 	DELETE FROM
 		workpost

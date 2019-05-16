@@ -238,7 +238,7 @@ public class WorkPostController extends ControllerCommonMethod {
 		
 		for (String key : target_array) {
 			if (!validNumber(key, request, response)) {
-				return res.returnResponse("잘못된 포트폴리오 키값입니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
+				return res.returnResponse("잘못된 게시글 키값입니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
 			}
 		}
 		
@@ -291,6 +291,50 @@ public class WorkPostController extends ControllerCommonMethod {
 		res.setProcessing_result(true);
 		
 		return res;
+	}
+	
+	@RequestMapping(value="/moveMenu", method = RequestMethod.POST)
+	public @ResponseBody AjaxResponse MoveMenu(HttpServletRequest request, HttpServletResponse response) {
+		AjaxResponse res = new AjaxResponse();
+		
+		String[] target_array = request.getParameterValues("target_array[]");
+		String menu_idx = request.getParameter("menu_idx");
+		
+		if (menu_idx == null || menu_idx.length() == 0) {
+			return res.returnResponse("이동 할 메뉴가 선택되지 않았습니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
+		}
+		
+		WorkMenu menu = null;
+		
+		try {
+			menu = menu_service.getMenuById(Integer.parseInt(menu_idx));
+			
+			if (menu == null || menu.getUse_yn() == 1) {
+				return res.returnResponse("존재하지 않거나 사용 할 수 없는 메뉴입니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("업무보고 게시글 메뉴 이동 도중 잘못된 메뉴 아이디값 입력됨");
+		}
+		
+		if (target_array == null || target_array.length == 0) {
+			return res.returnResponse("삭제하려는 타겟이 존재하지 않습니다.", null);
+		}
+		
+		List<Integer> move_target_list = new ArrayList<Integer>();
+		
+		for (String key : target_array) {
+			if (!validNumber(key, request, response)) {
+				return res.returnResponse("잘못된 게시글 키값입니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
+			}
+			
+			move_target_list.add(Integer.parseInt(key));
+		}
+		
+		service.movePost(move_target_list, Integer.parseInt(menu_idx));
+		
+		return res.returnResponse("게시글이 '"+ menu.getMenu_name() +"' 게시판으로 이동 되었습니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index?menu_idx="+ menu.getMenu_idx());
 	}
 	
 	public List<WorkMenu> getTreeNode() {

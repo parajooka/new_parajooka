@@ -84,7 +84,9 @@ $.ajax({
 	        	        if (event.node) {
 	        	            //노드가 선택 되어있을경우.
 	        	            var node = event.node;
-	        	            if (event.node.id > 0) {
+	        	            var parent_node = node.parent;
+	        	            
+	        	            if (event.node.id > 0 && typeof parent_node.id != "undefined" && parent_node.id > 0) {
 		        	            sel_node = node;
 	        	            	location.href = "${admin_root_path}/workboard/board/index?menu_idx="+ sel_node.id;
 	        	            } else {
@@ -101,6 +103,8 @@ $.ajax({
 	        
 	        	if (typeof before_node != "undefined" && before_node.length > 0) {
 	        		sel_node = $tree.tree('getNodeById', parseInt(before_node));
+	        		
+	        		$("#menu_idx").val(before_node);
 	        		
 	        		$('#tree1').tree('addToSelection', sel_node);
 	        	}
@@ -148,6 +152,12 @@ $(document).ready(function() {
 	});
 	
 	$(".post_view").dialog({
+		autoOpen: false,
+		appendTo : ".container",
+		resizable : false
+	});
+	
+	$('.move_menu').dialog({
 		autoOpen: false,
 		appendTo : ".container",
 		resizable : false
@@ -318,6 +328,56 @@ $(document).ready(function() {
 			get_item_info("${admin_root_path}/workboard/board/delete", func, {"target_array":target_array}, $('body'));			
 		}
 	});
+	
+	$(".move_post").on("click", function() {
+		var target_array = [];
+		var func = function(data) {
+			//잘모된 페이지 요청시
+			if (data['message'] != null) {
+				alert(data['message']);
+				if (data['next_url'] != null) {
+					location.href = encodeURI(data['next_url']);
+				}
+				return;
+			}
+		}
+		
+		$.each($(".del_post"), function(index, value) {
+			if ($(value).prop("checked") == true) {
+				target_array.push($(value).val());
+			}
+		});
+		
+		if (target_array.length == 0) {
+			alert("이동할 게시글들을 선택 해주세요.");
+		} else {
+			$('.move_menu').dialog('open');
+		}
+	});
+	
+	$(".move_menu_btn").on("click", function() {
+		var target_array = [];
+		var func = function(data) {
+			//잘모된 페이지 요청시
+			if (data['message'] != null) {
+				alert(data['message']);
+				if (data['next_url'] != null) {
+					location.href = encodeURI(data['next_url']);
+				}
+				return;
+			}
+		}
+		
+		$.each($(".del_post"), function(index, value) {
+			if ($(value).prop("checked") == true) {
+				target_array.push($(value).val());
+			}
+		});
+		
+		if (confirm("선택한 "+ target_array.length +"개의 게시글을 이동 하시겠습니까?")) {
+			get_item_info("${admin_root_path}/workboard/board/moveMenu", func, {"target_array":target_array, "menu_idx":$("#move_menu_idx").val()}, $('body'));			
+		}
+	});
 });
 </script>
 <div class="body">
@@ -384,6 +444,7 @@ $(document).ready(function() {
 			<div style="margin-top:10px;">
 				<a class="btn-gray del_post_btn" style="font-size: 1vw; padding: 0.5vw 1vw; display: inline-block;">삭제</a>
 				<a class="btn-gray new_post" style="font-size: 1vw; padding: 0.5vw 1vw; display: inline-block; float: right;">글 작성</a>
+				<a class="btn-gray move_post" style="font-size: 1vw; padding: 0.5vw 1vw; display: inline-block; float: right; margin-right: 10px;">글 이동</a>
 			</div>
 			${paging_layout}
 		</div>
@@ -455,5 +516,20 @@ $(document).ready(function() {
 		<div class="select_post_contents" style="height: 50vh; overflow-y:auto; overflow-x:hidden;">
 		
 		</div>
+	</div>
+</div>
+<div class="move_menu" title="게시글 메뉴 이동">
+	<div style="border-bottom: 1px solid black; padding-bottom: 20px; margin-bottom: 20px;">
+		<p style="margin-bottom: 10px; font-weight: bold;">
+			카테고리 선택
+		</p>
+		<select style="width: 30vw; font-size: 13px; padding: 3px 0;" id="move_menu_idx" name="move_menu_idx">
+			<c:forEach items="${TreeMenu}" var="menu" varStatus="status">
+				<option ${menu.parent_menu_idx == 0 ? 'disabled="disabled"':''} value="${menu.menu_idx}">${menu.menu_name}</option>
+			</c:forEach>
+		</select>
+	</div>
+	<div style="text-align: center;">
+		<a class="btn-darkblue move_menu_btn" style="color: white; font-size: 1vw; padding: 0.3vw 0.5vw;">이동</a>
 	</div>
 </div>

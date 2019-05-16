@@ -69,4 +69,9 @@ public class WorkPostService implements WorkPostDao {
 		return dao.getPostByIds(ids);
 	}
 
+	@Override
+	public int movePost(List<Integer> ids, int menu_idx) {
+		// TODO Auto-generated method stub
+		return dao.movePost(ids, menu_idx);
+	}
 }
