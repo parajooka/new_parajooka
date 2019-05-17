@@ -429,7 +429,7 @@ $(document).ready(function() {
 						${post.modify_date}
 					</td>
 					<td>
-						<a data-btn-type="modify" data-post-id="${post.post_id}" data-menu-id="${post.menu_idx}" class="btn-darkblue edit_post" style="width: auto; padding: 0.35vw 0.5vw; font-size: 0.8vw; border-radius: inherit;">수정</a>
+						<a data-btn-type="modify" data-post-id="${post.post_id}" data-menu-id="${post.menu_idx}" class="btn-darkblue edit_post" style="width: auto; padding: 0.35vw 0.5vw; font-size: 0.8vw; border-radius: inherit; margin-left:0;">수정</a>
 					</td>
 				</tr>
 				</c:forEach>
