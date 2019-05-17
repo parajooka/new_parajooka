@@ -179,7 +179,14 @@ public class WorkPostController extends ControllerCommonMethod {
 			return res.returnResponse("잘못된 값이 입력되었습니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index");
 		}
 		
+		//암호가 걸려있는 게시물을 경우 내용을 모두 숨기고 local에 암호가 걸려있는걸 알리기위한 셋팅
 		if (post.getPost_password() != null && post.getPost_password().length() > 0) {
+			int orign_menu_id = post.getMenu_idx();
+			int orign_post_id = post.getPost_id();
+			
+			post = new WorkPost();
+			post.setPost_id(orign_post_id);
+			post.setMenu_idx(orign_menu_id);
 			post.setPost_password("tempPassword");
 		}
 		
@@ -319,7 +326,7 @@ public class WorkPostController extends ControllerCommonMethod {
 		}
 		
 		if (target_array == null || target_array.length == 0) {
-			return res.returnResponse("삭제하려는 타겟이 존재하지 않습니다.", null);
+			return res.returnResponse("이동하려는 타겟이 존재하지 않습니다.", null);
 		}
 		
 		List<Integer> move_target_list = new ArrayList<Integer>();
@@ -337,6 +344,10 @@ public class WorkPostController extends ControllerCommonMethod {
 		return res.returnResponse("게시글이 '"+ menu.getMenu_name() +"' 게시판으로 이동 되었습니다.", ControllerCommonMethod.admin_page_path + "/workboard/board/index?menu_idx="+ menu.getMenu_idx());
 	}
 	
+	/**
+	 * 글 작성 게시판을 트리 형태로 정렬 해주는 메서드
+	 * @return
+	 */
 	public List<WorkMenu> getTreeNode() {
 		List<WorkMenu> AllNode = menu_service.getViewMenu();
 		List<WorkMenu> ParentNode = menu_service.getParentMenu();
