@@ -188,6 +188,7 @@ public class ContactController extends ControllerCommonMethod {
 				smtp.SendMail("mt9665@naver.com", "Para&Jooka 컨텍트 미팅예약이 신규등록 되었습니다.", "등록일시 : "+ formatTime2.format(new Date()) + "<br>"
 						+ "예약날짜 : " + contact.getReservation_date() + "<br>"
 						+ "예약자 : "+ participant.getName() + "<br>"
+						+ "연락처 : "+ contact.getReservation_pw() + "<br>"
 						+ "소속 : "+ participant.getCompany() + "<br><br>"
 						+ "==== 아래는 메모 내용입니다. ====<br>"+ contact.getReservation_memo());
 			}

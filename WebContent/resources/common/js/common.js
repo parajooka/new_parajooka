@@ -334,4 +334,44 @@ $(document).ready(function() {
 			$(this).parent().nextAll(".upload_file_name").html($(this).val());
 		}
 	});
+	
+
+	//ie, edge fixed요소 스크롤시 덜컹 거리는 현상 해결
+	if(navigator.userAgent.match(/Trident\/7\./) || navigator.userAgent.toLowerCase().search("edge/") > -1 || navigator.appName == "Microsoft Internet Explorer") {
+        $('html, body').on("mousewheel", function (event) {
+        	if ($("html").css("overflow-y") == "auto" && $("body").css("overflow-y") == "auto") {
+	            event.preventDefault();
+	    
+	            var wheelDelta = event.wheelDelta;
+	    
+	            var currentScrollPosition = window.pageYOffset;
+	            
+	            if (event.originalEvent.wheelDelta > 0) {
+	            	window.scrollTo(0, currentScrollPosition - 50);
+	            } else {
+	            	window.scrollTo(0, currentScrollPosition + 50);
+	            }
+        	}
+        });
+    
+        $('html, body').keydown(function (e) {
+            var currentScrollPosition = window.pageYOffset;
+            
+            if ($("html").css("overflow-y") == "auto" && $("body").css("overflow-y") == "auto") {
+	            switch (e.which) {
+	                case 38: // up
+	                	e.preventDefault(); // prevent the default action (scroll / move caret)
+	                    window.scrollTo(0, currentScrollPosition - 120);
+	                    break;
+	    
+	                case 40: // down
+	                	e.preventDefault(); // prevent the default action (scroll / move caret)
+	                    window.scrollTo(0, currentScrollPosition + 120);
+	                    break;
+	    
+	                default: return; // exit this handler for other keys
+	            }
+            }
+        });
+    }
 });
