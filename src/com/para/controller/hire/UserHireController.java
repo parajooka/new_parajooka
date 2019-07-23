@@ -222,7 +222,7 @@ public class UserHireController extends ControllerCommonMethod {
 		AjaxResponse res = new AjaxResponse();
 		HttpSession session = request.getSession();
 		
-		if (!res.validation_data(result, ControllerCommonMethod.admin_page_path + "/hire/hire_list", "공고에 정상적으로 지원하였습니다.\r\n결과는 지원서 검토후 합격자에게 문자로 개별 통보됩니다.", res)) {
+		if (!res.validation_data(result, ControllerCommonMethod.customer_page_path + "/hire/hire_list", "공고에 정상적으로 지원하였습니다.\r\n결과는 지원서 검토후 합격자에게 문자로 개별 통보됩니다.", res)) {
 			
 			String hire_id = request.getParameter("hire_id");
 			String info_acc = request.getParameter("info_acc");
@@ -432,7 +432,7 @@ public class UserHireController extends ControllerCommonMethod {
 			SMTP smtp = new SMTP();
 			
 			//지원 메일 관리자에게 발송
-			smtp.SendMail("mt9665@naver.com", 
+			smtp.SendMail("para_jooka@naver.com", 
 						  volunteer.getName() +"님이 공고에 참여하였습니다.", 
 						  "참여 공고명 : <font style='color:red; font-weight:bold'>"+ hire.getTitle() +"</font><br>"+
 						  "참여자 관리는 관리자페이지에서 진행할 수 있습니다.<br>" +

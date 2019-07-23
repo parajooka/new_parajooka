@@ -77,6 +77,7 @@ public class HireController extends ControllerCommonMethod {
 				service.UpdateHire(hire);
 			} else {
 				res.setMessage("공고 종료일이 시작일보다 작을수는 없고\r\n공고 시작일은 오늘 날짜보다 작을수 없습니다.");
+				res.setNext_url("N");
 			}
 		}
 		
@@ -101,6 +102,7 @@ public class HireController extends ControllerCommonMethod {
 				service.UpdateHire(hire);
 			} else {
 				res.setMessage("공고 종료일이 시작일보다 작을수는 없고\r\n공고 시작일은 수정 이전의 시작일보다 작을수 없습니다.");
+				res.setNext_url("N");
 			}
 		}
 		

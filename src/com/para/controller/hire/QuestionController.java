@@ -67,7 +67,8 @@ public class QuestionController extends ControllerCommonMethod {
 			String min_content = request.getParameter("answer_1_content");
 			
 			if (block_count == 1 && (min_content == null || min_content.length() < 1)) {
-				res.setMessage("질문 및 문제에는 최소한 1개의 정답은 필요합니다.");
+				res.setMessage("질문 및 문제에는 최소한 1개의 답안이 필요합니다.");
+				res.setNext_url("N");
 				res.setProcessing_result(true);
 				return res;
 			}
@@ -178,6 +179,7 @@ public class QuestionController extends ControllerCommonMethod {
 				//등록된 답안도 없고 새로 추가한 답안도 없을 경우
 				if (min_content == null || min_content.length() < 1) {
 					res.setMessage("질문 및 문제에는 최소한 1개의 정답은 필요합니다.");
+					res.setNext_url("N");
 					res.setProcessing_result(true);
 					return res;
 				} else {
