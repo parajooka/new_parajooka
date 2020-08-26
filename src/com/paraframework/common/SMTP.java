@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 public class SMTP {
 	private final static String host = "smtp.naver.com"; 
 	private final static String user = "para_jooka@naver.com";  // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
-	private final static String password = "parajooka1$";      // 패스워드
+	private final static String password = "alflso12@";      // 패스워드
 	
 	public void SendMail(String receiverMail, String title, String content) {
 		// SMTP 서버 정보를 설정한다. 

@@ -28,8 +28,9 @@
 <script  src="/resources/common/js/form.js"></script>
 <script  src="/resources/common/js/input_number.js"></script>
 <script  src="/resources/common/js/jquery.sticky.js"></script>
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script> 
 <!-- Facebook Pixel Code -->
-<script>
+<!-- <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -43,5 +44,5 @@
 </script>
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=669537223502850&ev=PageView&noscript=1"
-/></noscript>
+/></noscript> -->
 <!-- End Facebook Pixel Code -->

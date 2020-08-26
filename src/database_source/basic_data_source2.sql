@@ -27,13 +27,16 @@ CREATE TABLE MENU (
 	menu_idx INT PRIMARY KEY AUTO_INCREMENT,
 	add_date DATE NOT NULL,
 	group_idx INT NOT NULL, 
-	menu_name VARCHAR(50) NOT NULL, 
+	menu_name VARCHAR(100) NOT NULL, 
 	menu_type INT NOT NULL,
 	modify_date DATE NOT NULL, 
 	parent_menu_idx INT NOT NULL, 
 	print_seq INT NOT NULL, 
 	view_yn INT NOT NULL,
 	use_yn INT NOT NULL,
+	upload_file_size INT NOT NULL DEFAULT 0,
+	menu_info VARCHAR(2000),
+	menu_icon VARCHAR(500),
 	menu_url VARCHAR(200) NOT NULL
 );
 
@@ -57,8 +60,10 @@ CREATE TABLE CATEGORY (
 	print_seq INT NOT NULL, 
 	view_yn INT NOT NULL,
 	use_yn INT NOT NULL,
-	category_url VARCHAR(500) NOT NULL
-);
+	category_url VARCHAR(500) NOT NULL,
+	upload_file_size INT NOT NULL DEFAULT 0,
+	level INT NOT NULL DEFAULT 0
+);	
 
 #POST
 CREATE TABLE POST (
@@ -99,3 +104,20 @@ CREATE TABLE POSTFILE (
 	
 	FOREIGN KEY (`post_id`) REFERENCES `POST` (`post_id`) on delete cascade
 );
+
+#ADMIN
+CREATE TABLE ADMIN (
+	admin_id INT PRIMARY KEY AUTO_INCREMENT,
+	admin_level INT NOT NULL DEFAULT 1,
+	admin_account VARCHAR(30) NOT NULL,
+	admin_password VARCHAR(500) NOT NULL,
+	admin_name VARCHAR(30)  NOT NULL,
+	admin_email VARCHAR(100)  NOT NULL,
+	admin_phone VARCHAR(20)  NOT NULL,
+	admin_create VARCHAR(30)  NOT NULL,
+	admin_modify VARCHAR(30)  NOT NULL,
+	uuid VARCHAR(150)
+);
+
+#최고관리자 비밀번호 supersuper00!
+INSERT INTO Admin (admin_level, admin_account, admin_password, admin_name, admin_email, admin_create, admin_modify, uuid, admin_phone) VALUES (10, 'superadmin', '16EC9BF12878DE53068C192284A71AA0', '최고관리자', 'nomail@nomail.com', '1999-01-01 00:00:00', '1999-01-01 00:00:00', null, '0111235678');

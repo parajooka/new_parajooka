@@ -37,7 +37,7 @@
 	
 	.edit_contact_pw {height: 47vh;}
 	
-	.date_click_btn {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; cursor: pointer;}
+	.date_click_btn {position: absolute; top: 0; left: 0; width: 100%; height: 8vh; z-index: 20; cursor: pointer;}
 	
 	.dialog_mask {position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9998; background-color: #000; opacity: 0; display: none;}
 

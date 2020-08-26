@@ -1,4 +1,3 @@
-####################### \ucc44\uc6a9\uacf5\uace0 \uad00\ub828 \ud14c\uc774\ube14 #######################
 #Hire
 CREATE TABLE HIRE (
 	id INT PRIMARY KEY AUTO_INCREMENT,

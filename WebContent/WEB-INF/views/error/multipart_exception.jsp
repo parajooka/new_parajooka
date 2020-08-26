@@ -11,6 +11,6 @@
 <title>MultipartException</title>
 </head>
 <body>
-
+파일은 최대 1기가까지 업로드 가능합니다.
 </body>
 </html>

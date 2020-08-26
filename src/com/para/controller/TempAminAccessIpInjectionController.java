@@ -48,7 +48,6 @@ public class TempAminAccessIpInjectionController extends ControllerCommonMethod 
 			smtp.SendMail("kdyshj700@gmail.com", "[Para & Jooka] 임시 아이피가 새로 등록 되었습니다.", "등록자 IP : "+ ip_add + "<br>허용 아이피 : " + access_ip.getAccess_ip() + "<br>등록일시 : " + access_ip.getAuth_date());
 			
 			CustomTimer(new CustomizingTimer() {
-				
 				@Override
 				public void actionFunc() {
 					// TODO Auto-generated method stub
